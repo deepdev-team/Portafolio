@@ -13,7 +13,7 @@
     --text-dark: #374151;
     --text-light: #6b7280;
     --border-color: #e5e7eb;
-    --gradient: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+    --gradient: linear-gradient(135deg, #2563eb 0%, #0369a1 100%);
     --shadow: 0 10px 25px rgba(0,0,0,0.1);
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
@@ -189,13 +189,13 @@ body {
 
 .social-links a:hover {
     background: white;
-    color: var(--primary-color);
+    color: #1d4ed8; /* fijo: sobre fondo blanco en ambos temas */
     transform: scale(1.1);
 }
 
 .btn-download {
     display: inline-block;
-    background: rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.15);
     color: white;
     padding: 12px 25px;
     border-radius: 50px;
@@ -210,7 +210,7 @@ body {
 
 .btn-download:hover {
     background: white;
-    color: var(--primary-color);
+    color: #1d4ed8; /* fijo: sobre fondo blanco en ambos temas */
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
@@ -363,13 +363,13 @@ body {
     z-index: 30;
 }
 
-/* Categorías principales */
-.frontend { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-.backend { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
-.database { background: linear-gradient(135deg, #06b6d4, #0891b2); }
-.automation { background: linear-gradient(135deg, #2563eb, #1e40af); }
+/* Categorías principales (tonos con contraste >= 4.5:1 para texto blanco) */
+.frontend { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+.backend { background: linear-gradient(135deg, #0369a1, #075985); }
+.database { background: linear-gradient(135deg, #0e7490, #155e75); }
+.automation { background: linear-gradient(135deg, #1e40af, #312e81); }
 .tools { background: linear-gradient(135deg, #1d4ed8, #1e3a8a); }
-.methodologies { background: linear-gradient(135deg, #0284c7, #075985); }
+.methodologies { background: linear-gradient(135deg, #475569, #334155); }
 
 .center-node {
     font-size: 14px;
@@ -1885,4 +1885,38 @@ footer {
         grid-template-columns: 1fr 1fr;
         gap: 10px;
     }
+}
+
+/* ================================
+   ACENTOS ACCESIBLES (WCAG AA)
+   Un solo hex no alcanza 4.5:1 sobre tarjeta blanca Y tarjeta oscura,
+   por eso cada acento tiene valor por tema.
+   ================================ */
+.accent-blue { color: #2563eb; }
+.accent-green { color: #047857; }
+.accent-sky { color: #0369a1; }
+.accent-purple { color: #6d28d9; }
+
+[data-theme="dark"] .accent-blue { color: #60a5fa; }
+[data-theme="dark"] .accent-green { color: #34d399; }
+[data-theme="dark"] .accent-sky { color: #38bdf8; }
+[data-theme="dark"] .accent-purple { color: #a78bfa; }
+
+/* En dark mode, --primary-color (#3b82f6) queda bajo 4.5:1 sobre las cards
+   para texto pequeño; los títulos suben un tono a --secondary-color.
+   No se cambia --primary-color global porque sirve de fondo con texto blanco. */
+[data-theme="dark"] .skill-category h4,
+[data-theme="dark"] .job-card h3,
+[data-theme="dark"] .category-card-header h4,
+[data-theme="dark"] .carousel-indicator,
+[data-theme="dark"] .skill-icon-card:hover span {
+    color: var(--secondary-color);
+}
+
+/* Mismo ajuste para los encabezados con color inline var(--primary-color);
+   el selector por atributo evita tocar cada style="" del HTML. */
+[data-theme="dark"] h3[style*="var(--primary-color)"],
+[data-theme="dark"] h4[style*="var(--primary-color)"],
+[data-theme="dark"] h5[style*="var(--primary-color)"] {
+    color: var(--secondary-color) !important;
 }

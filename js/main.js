@@ -827,7 +827,7 @@ const CVGenerator = {
         },
         get perfil() {
             const exp = ExperienceCalculator.getFullText();
-            return `Desarrollador Full Stack con ${exp} de experiencia creando soluciones web para el sector público y empresarial. Especializado en Laravel y Vue.js, con sólida experiencia en automatización de procesos (RPA) y desarrollo de aplicaciones empresariales con Power Platform. Enfoque en código limpio, buenas prácticas y entrega de valor.`;
+            return `Desarrollador Full Stack con ${exp} de experiencia en desarrollo de software y automatización de procesos para el sector público y empresarial. Especializado en Laravel y Vue.js, con sólida experiencia en RPA y desarrollo de aplicaciones empresariales con Power Platform. Enfoque en código limpio, buenas prácticas y entrega de valor.`;
         },
         experiencia: [
             {
@@ -851,7 +851,7 @@ const CVGenerator = {
                 logros: [
                     'Desarrollo de bots RPA con UiPath (VB.NET + Python) para procesos financieros y de RRHH',
                     'Desarrollo de aplicaciones internas con Power Apps y Dataverse',
-                    'Desarrollo de chatbots con Power Virtual Agents para autogestión de empleados: consultas de vacaciones, nómina y generación de certificados laborales',
+                    'Creación de chatbots internos con Power Virtual Agents para autogestión de empleados (nómina, vacaciones y certificados laborales)',
                     'Personalización y desarrollo de módulos en ODOO (ERP)',
                     'Automatización de procesos contables y tributarios con macros VBA'
                 ]
@@ -898,7 +898,8 @@ const CVGenerator = {
                 'Resolución de problemas',
                 'Trabajo en equipo',
                 'Comunicación efectiva',
-                'Adaptación al cambio'
+                'Adaptación al cambio',
+                'Gestión del tiempo'
             ]
         },
         idiomas: [
@@ -1100,7 +1101,7 @@ const CVGenerator = {
             y = 20;
         }
 
-        y = this.addSection(doc, 'PROYECTOS PERSONALES', y, margin);
+        y = this.addSection(doc, 'PROYECTOS DESTACADOS', y, margin);
 
         this.data.proyectos.forEach(proyecto => {
             if (y > pageHeight - 30) {

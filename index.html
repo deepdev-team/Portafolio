@@ -9,7 +9,7 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
     <!-- Preload Critical Assets -->
-    <link rel="preload" href="css/styles.css?v=5" as="style">
+    <link rel="preload" href="css/styles.css?v=6" as="style">
     <link rel="preload" href="assets/images/profile.jpg" as="image">
 
     <title>David Gonzalez | Desarrollador Full Stack Laravel + Vue.js | Bogotá</title>
@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
 
     <!-- Main Stylesheet -->
-    <link href="css/styles.css?v=5" rel="stylesheet">
+    <link href="css/styles.css?v=6" rel="stylesheet">
 
     <!-- jsPDF for CV Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
@@ -79,7 +79,7 @@
             </ul>
 
             <div class="hero-actions">
-                <button class="btn-cta-primary" data-goto="proyectos" aria-label="Ver proyectos en vivo">
+                <button class="btn-cta-primary" data-goto="proyectos" data-filter="web-dev" aria-label="Ver proyectos en vivo">
                     <i class="fas fa-rocket"></i> Ver proyectos en vivo
                 </button>
                 <button class="btn-download" onclick="CVGenerator.generate()" aria-label="Descargar curriculum vitae en formato PDF">
@@ -315,6 +315,12 @@
                         </div>
                         <p class="category-card-desc">Web, Power Platform y RPA</p>
                     </div>
+                </div>
+
+                <!-- Aviso cuando no hay categoría seleccionada -->
+                <div id="projects-placeholder" class="projects-placeholder">
+                    <i class="fas fa-hand-pointer" aria-hidden="true"></i>
+                    <p>Selecciona una categoría para explorar los proyectos</p>
                 </div>
 
                 <!-- Proyectos Desarrollo Web (lidera: marca Full Stack) -->
@@ -1345,6 +1351,6 @@
     </div>
 
     <!-- Main JavaScript -->
-    <script src="js/main.js?v=5" defer></script>
+    <script src="js/main.js?v=6" defer></script>
 </body>
 </html>

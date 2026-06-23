@@ -723,6 +723,115 @@ body {
     gap: 10px;
 }
 
+/* Grupos de proyectos ocultos por defecto: aparecen al seleccionar una categoría */
+.projects-container {
+    display: none;
+}
+
+/* Aviso inicial cuando ningún grupo está seleccionado */
+.projects-placeholder {
+    text-align: center;
+    padding: 45px 20px;
+    color: var(--text-light);
+}
+
+.projects-placeholder i {
+    display: block;
+    font-size: 2.4rem;
+    color: var(--primary-color);
+    opacity: 0.55;
+    margin-bottom: 14px;
+}
+
+.projects-placeholder p {
+    font-size: 1.05rem;
+    margin: 0;
+}
+
+/* ================================
+   PROJECT ACCORDION (presentación: expandir y explicar uno a uno)
+   La estructura interna la genera main.js sobre cada .card de proyecto.
+   ================================ */
+.project-acc {
+    padding: 0;
+    overflow: hidden;
+}
+
+.project-acc-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 20px 25px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+}
+
+.project-acc-titlewrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.project-acc-icon {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+.project-acc-title {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 1.15rem;
+}
+
+.project-acc-head:hover .project-acc-title,
+.project-acc-head:hover .project-acc-icon {
+    color: var(--primary-color);
+}
+
+.project-acc-chevron {
+    color: var(--text-light);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.project-acc.open .project-acc-chevron {
+    transform: rotate(180deg);
+}
+
+/* Cuerpo colapsable con animación de altura (técnica grid 0fr -> 1fr) */
+.project-acc-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+}
+
+.project-acc.open .project-acc-body {
+    grid-template-rows: 1fr;
+}
+
+.project-acc-inner {
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* El padding va solo cuando está abierto; si no, su altura impediría
+   que la pista del grid colapse del todo a 0 (quedaría un borde visible). */
+.project-acc.open .project-acc-inner {
+    padding: 0 25px 25px;
+}
+
+[data-theme="dark"] .project-acc-icon,
+[data-theme="dark"] .project-acc-title {
+    color: var(--secondary-color);
+}
+
 /* Cajas de info con borde de color por familia de proyecto */
 .info-box {
     padding: 15px;
@@ -1740,8 +1849,20 @@ footer {
         height: 38px;
     }
 
-    .project-featured > div {
+    .project-row {
         flex-direction: column;
+    }
+
+    .project-acc-head {
+        padding: 16px 18px;
+    }
+
+    .project-acc.open .project-acc-inner {
+        padding: 0 18px 18px;
+    }
+
+    .project-acc-title {
+        font-size: 1.05rem;
     }
 }
 

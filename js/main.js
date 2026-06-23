@@ -26,6 +26,13 @@ const Navigation = {
                 const sectionId = el.getAttribute('data-goto');
                 const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
                 this.showSection(sectionId, navLink);
+
+                // CTA opcional: abrir una categoría de proyectos al llegar (data-filter)
+                const filter = el.getAttribute('data-filter');
+                if (filter && typeof ProjectsFilter !== 'undefined') {
+                    ProjectsFilter.filterProjects(filter);
+                }
+
                 const content = document.getElementById('main-content');
                 if (content) content.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
@@ -487,6 +494,17 @@ const ProjectsFilter = {
             activeCard.classList.add('active');
         }
 
+        // Ocultar el aviso inicial una vez se elige una categoría
+        const placeholder = document.getElementById('projects-placeholder');
+        if (placeholder) placeholder.style.display = 'none';
+
+        // Reiniciar los acordeones a colapsado: lista limpia al cambiar de grupo
+        document.querySelectorAll('.project-acc.open').forEach(acc => {
+            acc.classList.remove('open');
+            const h = acc.querySelector('.project-acc-head');
+            if (h) h.setAttribute('aria-expanded', 'false');
+        });
+
         if (category === 'all') {
             containers.forEach(container => {
                 container.style.display = 'block';
@@ -509,6 +527,81 @@ const ProjectsFilter = {
 function filterProjects(category) {
     ProjectsFilter.filterProjects(category);
 }
+
+// ======================
+// PROJECTS ACCORDION MODULE
+// Convierte cada tarjeta de proyecto en un acordeón: encabezado compacto
+// (icono + título + badges) siempre visible; el detalle se expande al clic.
+// ======================
+const ProjectsAccordion = {
+    init() {
+        document.querySelectorAll('.projects-container > .card').forEach(card => this.transform(card));
+    },
+
+    transform(card) {
+        const titleEl = card.querySelector('.project-title');
+        if (!titleEl) return;
+
+        // --- Encabezado (siempre visible) ---
+        const head = document.createElement('button');
+        head.type = 'button';
+        head.className = 'project-acc-head';
+        head.setAttribute('aria-expanded', 'false');
+
+        const titlewrap = document.createElement('span');
+        titlewrap.className = 'project-acc-titlewrap';
+
+        const iconEl = titleEl.querySelector('i');
+        if (iconEl) {
+            const ic = iconEl.cloneNode(true);
+            ic.classList.add('project-acc-icon');
+            titlewrap.appendChild(ic);
+        }
+
+        const titleSpan = document.createElement('span');
+        titleSpan.className = 'project-acc-title';
+        titleSpan.textContent = titleEl.textContent.trim();
+        titlewrap.appendChild(titleSpan);
+
+        // Mover los badges (viven junto al título en .project-head, si existen)
+        const ph = titleEl.closest('.project-head');
+        if (ph) {
+            ph.querySelectorAll('.proj-badge, .demo-badge').forEach(b => titlewrap.appendChild(b));
+        }
+
+        head.appendChild(titlewrap);
+
+        const chevron = document.createElement('i');
+        chevron.className = 'fas fa-chevron-down project-acc-chevron';
+        chevron.setAttribute('aria-hidden', 'true');
+        head.appendChild(chevron);
+
+        // --- Cuerpo colapsable (resto del contenido de la tarjeta) ---
+        const body = document.createElement('div');
+        body.className = 'project-acc-body';
+        const inner = document.createElement('div');
+        inner.className = 'project-acc-inner';
+        while (card.firstChild) inner.appendChild(card.firstChild);
+        body.appendChild(inner);
+
+        // Quitar el título duplicado (ya está en el encabezado)
+        const innerTitle = inner.querySelector('.project-title');
+        if (innerTitle) {
+            const innerPh = innerTitle.closest('.project-head');
+            innerTitle.remove();
+            if (innerPh && innerPh.children.length === 0) innerPh.remove();
+        }
+
+        card.appendChild(head);
+        card.appendChild(body);
+        card.classList.add('project-acc');
+
+        head.addEventListener('click', () => {
+            const open = card.classList.toggle('open');
+            head.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+    }
+};
 
 // ======================
 // MOBILE CAROUSEL MODULE
@@ -1884,14 +1977,15 @@ const CursorEffects = {
 // ======================
 document.addEventListener('DOMContentLoaded', () => {
     Navigation.init();
+    ProjectsAccordion.init();
     MobileCarousel.init();
     DarkMode.init();
     ImageGallery.init();
     ScrollToTop.init();
     ExperienceCalculator.init();
 
-    // La sección Proyectos abre liderando con Desarrollo Web (refuerza la marca Full Stack)
-    ProjectsFilter.filterProjects('web-dev');
+    // Proyectos arranca "recogido": solo las categorías + un aviso.
+    // Cada grupo aparece al seleccionar su categoría (ver ProjectsFilter / category cards).
 
     // Efectos decorativos: solo si el usuario NO pidió menos movimiento
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

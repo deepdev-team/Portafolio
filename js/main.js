@@ -960,7 +960,7 @@ const CVGenerator = {
     data: {
         personal: {
             nombre: 'David Steven Gonzalez Padilla',
-            titulo: 'Desarrollador Full Stack | Laravel + Vue.js',
+            titulo: 'Desarrollador Full Stack | Web & SaaS',
             telefono: '+57 305 759 4088',
             email: 'davidsgonzalez98@hotmail.com',
             ubicacion: 'Bogotá, Colombia',
@@ -969,7 +969,7 @@ const CVGenerator = {
         },
         get perfil() {
             const exp = ExperienceCalculator.getFullText();
-            return `Desarrollador Full Stack con ${exp} de experiencia en desarrollo de software y automatización de procesos para el sector público y empresarial. Especializado en Laravel y Vue.js, con sólida experiencia en RPA y desarrollo de aplicaciones empresariales con Power Platform. Enfoque en código limpio, buenas prácticas y entrega de valor.`;
+            return `Desarrollador Full Stack con ${exp} de experiencia en desarrollo de software y automatización de procesos para el sector público y empresarial. Trabajo de extremo a extremo adaptándome al stack de cada proyecto (Laravel, Vue, Next.js), con sólida experiencia en RPA y Power Platform. Enfoque en código limpio, buenas prácticas y entrega de valor.`;
         },
         experiencia: [
             {
@@ -1480,7 +1480,7 @@ const ExperienceCalculator = {
         const metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc) {
             metaDesc.setAttribute('content',
-                `David Gonzalez - Desarrollador Full Stack especializado en Laravel, Vue.js y RPA. ${this.getShortText()} de experiencia en sector público y empresarial.`
+                `David Gonzalez - Desarrollador Full Stack. ${this.getShortText()} construyendo apps web y plataformas SaaS; experiencia en Laravel, Vue, Next.js, RPA y Power Platform para sector público y empresarial.`
             );
         }
     }

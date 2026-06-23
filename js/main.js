@@ -1033,7 +1033,8 @@ const CVGenerator = {
         habilidades: {
             tecnicas: [
                 'PHP / Laravel',
-                'JavaScript / TypeScript / Vue.js',
+                'JavaScript / TypeScript',
+                'Vue.js / Next.js / Inertia',
                 'MySQL / ORACLE / SQLite',
                 'Tailwind CSS / Redis',
                 'Python / Django',
@@ -1066,33 +1067,39 @@ const CVGenerator = {
         proyectos: [
             {
                 nombre: 'VigilIA - Administración de Conjuntos Residenciales',
-                tecnologias: 'Laravel 12 + Vue.js 3 + PHP 8.4 + MySQL + Sanctum + Spatie Permission',
+                tecnologias: 'Laravel 12 + Vue 3 + Ionic + MySQL + Sanctum + Spatie Permission',
                 url: 'vigilia.deepdev.com.co',
-                descripcion: 'Sistema integral multi-tenant con control de acceso, facturación, reservas, PQRS, emergencias, 7 roles y 105 permisos'
+                descripcion: 'SaaS multi-tenant con control de acceso, facturación, reservas, PQRS, emergencias y apps móviles; 7 roles y 106 permisos'
+            },
+            {
+                nombre: 'DeepView - Seguridad Comunitaria',
+                tecnologias: 'Laravel 12 + Vue 3 + TypeScript + Ionic + MySQL + Redis',
+                url: 'admin-deepview.deepdev.com.co',
+                descripcion: 'Plataforma multi-tenant de seguridad para barrios y conjuntos: alertas, emergencias y app móvil para vecinos'
             },
             {
                 nombre: 'Valera Emocional - Bienestar Laboral',
-                tecnologias: 'Laravel 12 + Vue.js 3 + TypeScript + MySQL + PWA',
-                url: 'github.com/ROBOCOP3PK/valera',
-                descripcion: 'Plataforma SaaS multi-tenant de permisos laborales con aprobaciones jerárquicas, motor de reglas y dashboards'
+                tecnologias: 'Laravel 12 + Vue 3 + TypeScript + MySQL + PWA',
+                url: 'valera.deepdev.com.co',
+                descripcion: 'SaaS multi-tenant de permisos laborales con aprobaciones jerárquicas, motor de reglas y dashboards de analítica'
             },
             {
                 nombre: 'PetuniaPlay - E-commerce para Mascotas',
-                tecnologias: 'Laravel 12 + Vue.js 3 + Tailwind CSS + MySQL',
+                tecnologias: 'Laravel 12 + Vue 3 + Tailwind CSS + MySQL',
                 url: 'tienda.deepdev.com.co',
-                descripcion: 'Sistema completo de e-commerce con catálogo, carrito, cupones, programa de fidelidad y panel admin'
+                descripcion: 'E-commerce completo con catálogo, carrito, cupones, programa de fidelidad y panel de administración'
             },
             {
                 nombre: 'Finanzas Compartidas - Gestión de Gastos',
-                tecnologias: 'Laravel 12 + Vue.js 3 + Pinia + SQLite + PWA',
+                tecnologias: 'Laravel 12 + Vue 3 + Pinia + SQLite + PWA',
                 url: 'finanzas.deepdev.com.co',
                 descripcion: 'App PWA para gastos personales y compartidos con funcionamiento offline y sincronización'
             },
             {
-                nombre: 'Sistema de Gestión de Demandas - Sector Público',
-                tecnologias: 'Laravel + Vue.js + MySQL + ORACLE + Tailwind CSS',
-                url: '',
-                descripcion: 'Plataforma web para entidades públicas con gestión de pagos, validaciones bancarias y reportes PDF'
+                nombre: 'Domicilios - Pedidos para Restaurantes',
+                tecnologias: 'Laravel + Vue 3 + MySQL + PWA',
+                url: 'domicilios.deepdev.com.co',
+                descripcion: 'Plataforma de domicilios para restaurantes locales (pedidos sin comisiones) con app de cliente y panel'
             }
         ]
     },
@@ -1105,21 +1112,28 @@ const CVGenerator = {
                 reader.onload = () => {
                     const img = new Image();
                     img.onload = () => {
-                        const size = Math.min(img.width, img.height);
+                        const src = Math.min(img.width, img.height);
+                        // Salida fija pequeña: la foto se muestra a 34mm, no necesita más.
+                        // Esto baja el PDF de ~7MB a ~150KB (apto para ATS/correo).
+                        const out = 400;
                         const canvas = document.createElement('canvas');
-                        canvas.width = size;
-                        canvas.height = size;
+                        canvas.width = out;
+                        canvas.height = out;
                         const ctx = canvas.getContext('2d');
+                        // Fondo del color del header: JPEG no tiene transparencia, así las
+                        // esquinas fuera del círculo se mimetizan con el header azul.
+                        ctx.fillStyle = 'rgb(37, 99, 235)';
+                        ctx.fillRect(0, 0, out, out);
                         // Recorte circular
                         ctx.beginPath();
-                        ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+                        ctx.arc(out / 2, out / 2, out / 2, 0, Math.PI * 2);
                         ctx.closePath();
                         ctx.clip();
                         // Centrar imagen
-                        const offsetX = (img.width - size) / 2;
-                        const offsetY = (img.height - size) / 2;
-                        ctx.drawImage(img, offsetX, offsetY, size, size, 0, 0, size, size);
-                        resolve(canvas.toDataURL('image/png'));
+                        const offsetX = (img.width - src) / 2;
+                        const offsetY = (img.height - src) / 2;
+                        ctx.drawImage(img, offsetX, offsetY, src, src, 0, 0, out, out);
+                        resolve(canvas.toDataURL('image/jpeg', 0.85));
                     };
                     img.onerror = reject;
                     img.src = reader.result;
@@ -1156,7 +1170,7 @@ const CVGenerator = {
         const photoY = (52 - photoSize) / 2;
         try {
             const profileImgData = await this.loadProfileImage();
-            doc.addImage(profileImgData, 'PNG', photoX, photoY, photoSize, photoSize);
+            doc.addImage(profileImgData, 'JPEG', photoX, photoY, photoSize, photoSize);
             // Borde blanco circular
             doc.setDrawColor(...this.colors.white);
             doc.setLineWidth(1.5);

@@ -973,6 +973,13 @@ const CVGenerator = {
         },
         experiencia: [
             {
+                cargo: 'Ingeniero de Desarrollo',
+                empresa: 'Sies Salud',
+                periodo: 'Abr 2026 - Actualidad',
+                ubicacion: '',
+                logros: []
+            },
+            {
                 cargo: 'Desarrollador Full Stack',
                 empresa: 'TurriSystem',
                 periodo: 'Dic 2024 - Mar 2026',
@@ -1201,7 +1208,7 @@ const CVGenerator = {
             doc.setTextColor(...this.colors.gray);
             doc.setFontSize(9);
             doc.setFont('Roboto', 'normal');
-            const periodoText = `${exp.periodo} | ${exp.ubicacion}`;
+            const periodoText = exp.ubicacion ? `${exp.periodo} | ${exp.ubicacion}` : exp.periodo;
             const periodoWidth = doc.getTextWidth(periodoText);
             doc.text(periodoText, pageWidth - margin - periodoWidth, y);
 

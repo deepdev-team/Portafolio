@@ -863,6 +863,7 @@ body {
 .proj-badge--platform { background: linear-gradient(135deg, #6d28d9, #5b21b6); }
 .proj-badge--pwa      { background: linear-gradient(135deg, #0e7490, #155e75); }
 .proj-badge--wip      { background: linear-gradient(135deg, #475569, #334155); }
+.proj-badge--saas     { background: linear-gradient(135deg, #4338ca, #3730a3); }
 
 /* Badge "Demo en vivo" — usa el acento ámbar para señalar lo más valioso */
 .demo-badge {

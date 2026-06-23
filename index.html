@@ -79,7 +79,7 @@
             </ul>
 
             <div class="hero-actions">
-                <button class="btn-cta-primary" data-goto="proyectos" data-filter="web-dev" aria-label="Ver proyectos en vivo">
+                <button class="btn-cta-primary" data-goto="proyectos" data-filter="saas" aria-label="Ver proyectos en vivo">
                     <i class="fas fa-rocket"></i> Ver proyectos en vivo
                 </button>
                 <button class="btn-download" onclick="CVGenerator.generate()" aria-label="Descargar curriculum vitae en formato PDF">
@@ -218,11 +218,40 @@
                 <h2>Proyectos Realizados</h2>
 
                 <div class="category-cards-grid">
-                    <!-- Desarrollo Web (primero: refuerza la marca Full Stack) -->
+                    <!-- Productos SaaS / Apps propias (lidera: productos reales en producción) -->
+                    <div class="category-card" onclick="filterProjects('saas')" id="filter-saas">
+                        <div class="category-card-header">
+                            <h4>Productos SaaS / Apps propias</h4>
+                            <span class="category-badge">10 productos</span>
+                        </div>
+                        <div class="category-tech-icons">
+                            <div class="tech-icon-item" title="Laravel">
+                                <i class="devicon-laravel-original colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="Vue.js">
+                                <i class="devicon-vuejs-plain colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="Next.js">
+                                <i class="devicon-nextjs-original colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="TypeScript">
+                                <i class="devicon-typescript-plain colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="Ionic">
+                                <i class="devicon-ionic-original colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="MySQL">
+                                <i class="devicon-mysql-plain colored"></i>
+                            </div>
+                        </div>
+                        <p class="category-card-desc">SaaS multi-tenant en producción (deepdev.com.co)</p>
+                    </div>
+
+                    <!-- Desarrollo Web (personal/laboral) -->
                     <div class="category-card" onclick="filterProjects('web-dev')" id="filter-web-dev">
                         <div class="category-card-header">
-                            <h4>Desarrollo Web Full Stack</h4>
-                            <span class="category-badge">6 proyectos</span>
+                            <h4>Desarrollo Web</h4>
+                            <span class="category-badge">4 proyectos</span>
                         </div>
                         <div class="category-tech-icons">
                             <div class="tech-icon-item" title="Laravel">
@@ -244,7 +273,7 @@
                                 <img src="assets/icons/odoo.svg" width="24" height="24" alt="Odoo">
                             </div>
                         </div>
-                        <p class="category-card-desc">Laravel + Vue.js + Odoo Full Stack</p>
+                        <p class="category-card-desc">Personal y laboral (e-commerce, sector público)</p>
                     </div>
 
                     <!-- Power Platform -->
@@ -306,14 +335,14 @@
                     <div class="category-card category-card-all" onclick="filterProjects('all')" id="filter-all">
                         <div class="category-card-header">
                             <h4>Ver Todos</h4>
-                            <span class="category-badge">16 proyectos</span>
+                            <span class="category-badge">24 proyectos</span>
                         </div>
                         <div class="category-tech-icons">
                             <div class="tech-icon-item" title="Todos">
                                 <i class="fas fa-th-large" style="color: var(--primary-color);"></i>
                             </div>
                         </div>
-                        <p class="category-card-desc">Web, Power Platform y RPA</p>
+                        <p class="category-card-desc">SaaS, Web, Power Platform y RPA</p>
                     </div>
                 </div>
 
@@ -323,10 +352,586 @@
                     <p>Selecciona una categoría para explorar los proyectos</p>
                 </div>
 
-                <!-- Proyectos Desarrollo Web (lidera: marca Full Stack) -->
+                <!-- Proyectos Productos SaaS / Apps propias -->
+                <div class="projects-container" data-category="saas">
+                    <h3 class="projects-group-title accent-blue">
+                        <i class="fas fa-cubes"></i> Productos SaaS / Apps propias (en producción en deepdev.com.co)
+                    </h3>
+
+                    <!-- VigilIA -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-shield-halved"></i> VigilIA - Administración de Conjuntos Residenciales
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Sistema integral de administración de conjuntos residenciales</strong> con arquitectura multi-tenant. REST API (Laravel 12) + panel Vue 3 + landing React + 2 apps móviles Ionic (residentes y guardias), cada componente en su subdominio.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Control de acceso vehicular y peatonal con registro de visitantes</li>
+                                        <li>Facturación, cartera y gestión de pagos por unidad</li>
+                                        <li>Reservas de áreas comunes con validación de disponibilidad</li>
+                                        <li>PQRS, módulo de emergencias y comunicados</li>
+                                        <li>App de residentes y app de guardias (PWA)</li>
+                                        <li>Multi-tenancy por propiedad, 7 roles y 106 permisos</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">Vue 3</span>
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Ionic</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Sanctum</span>
+                                    <span class="skill-tag">Spatie Permission</span>
+                                    <span class="skill-tag">Reverb (WebSockets)</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://vigilia.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Servidor propio · 5 subdominios · cola + WebSockets · CI/CD con GitHub Actions</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="vigilia">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/vigilia/screenshot1.jpg" alt="VigilIA - panel de administración" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/vigilia/screenshot1.jpg" alt="VigilIA captura 1" class="thumb active" onclick="changeGalleryImage(this, 'vigilia')">
+                                        <img src="assets/images/projects/vigilia/screenshot2.jpg" alt="VigilIA captura 2" class="thumb" onclick="changeGalleryImage(this, 'vigilia')">
+                                        <img src="assets/images/projects/vigilia/screenshot3.jpg" alt="VigilIA captura 3" class="thumb" onclick="changeGalleryImage(this, 'vigilia')">
+                                        <img src="assets/images/projects/vigilia/screenshot4.jpg" alt="VigilIA captura 4" class="thumb" onclick="changeGalleryImage(this, 'vigilia')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DeepView -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-people-roof"></i> DeepView - Seguridad Comunitaria
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma de seguridad comunitaria</strong> para barrios y conjuntos residenciales. Monorepo con arquitectura separada: API Laravel 12 + panel admin Vue 3 + app móvil Ionic, multi-tenant por frente de seguridad.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Alertas y emergencias comunitarias en tiempo real</li>
+                                        <li>Gestión de residentes y frentes de seguridad</li>
+                                        <li>Panel administrativo con dashboards y reportes</li>
+                                        <li>App móvil para vecinos (Ionic + Capacitor)</li>
+                                        <li>Roles y permisos granulares (5 roles, 45 permisos)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">Vue 3</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">Ionic 8</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Redis</span>
+                                    <span class="skill-tag">Sanctum</span>
+                                    <span class="skill-tag">Spatie Permission</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://admin-deepview.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Servidor propio · API + panel + app móvil · multi-tenant · CI/CD · código privado</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="deepview">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/deepview/screenshot1.jpg" alt="DeepView - panel de administración" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/deepview/screenshot1.jpg" alt="DeepView captura 1" class="thumb active" onclick="changeGalleryImage(this, 'deepview')">
+                                        <img src="assets/images/projects/deepview/screenshot2.jpg" alt="DeepView captura 2" class="thumb" onclick="changeGalleryImage(this, 'deepview')">
+                                        <img src="assets/images/projects/deepview/screenshot3.jpg" alt="DeepView captura 3" class="thumb" onclick="changeGalleryImage(this, 'deepview')">
+                                        <img src="assets/images/projects/deepview/screenshot4.jpg" alt="DeepView captura 4" class="thumb" onclick="changeGalleryImage(this, 'deepview')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Citaria -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-calendar-check"></i> Citaria - SaaS de Reservas y Citas
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma multi-tenant de agenda y reservas online</strong> para negocios por cita (barberías, salones, spa, estética). Landing temática + panel de gestión + portal público de reservas por negocio, con tema por nicho.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Registro self-service de negocios y catálogo de servicios</li>
+                                        <li>Panel de gestión por negocio (agenda, clientes, horarios)</li>
+                                        <li>Portal público de reservas por slug con calendario y franjas</li>
+                                        <li>Temas por tipo de negocio (barbería oscura / spa clara)</li>
+                                        <li>Roles y permisos, planes y categorías</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">Vue 3</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">Ionic</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Sanctum</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://citaria.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Landing
+                                    </a>
+                                    <a href="https://panel-citaria.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-repo">
+                                        <i class="fas fa-gauge"></i> Ver Panel
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Servidor propio · landing + API + panel + portal de reservas · multi-tenant · código privado</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="citaria">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/citaria/screenshot1.jpg" alt="Citaria - panel de gestión" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/citaria/screenshot1.jpg" alt="Citaria captura 1" class="thumb active" onclick="changeGalleryImage(this, 'citaria')">
+                                        <img src="assets/images/projects/citaria/screenshot2.jpg" alt="Citaria captura 2" class="thumb" onclick="changeGalleryImage(this, 'citaria')">
+                                        <img src="assets/images/projects/citaria/screenshot3.jpg" alt="Citaria captura 3" class="thumb" onclick="changeGalleryImage(this, 'citaria')">
+                                        <img src="assets/images/projects/citaria/screenshot4.jpg" alt="Citaria captura 4" class="thumb" onclick="changeGalleryImage(this, 'citaria')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EduGestión -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-school"></i> EduGestión - Gestión Escolar
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma de gestión escolar para colegios privados</strong> (14 módulos + portal de padres). App Next.js 15 SSR con aislamiento multi-tenant por colegio y notificaciones por WhatsApp, email e in-app.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Asistencia, pagos y cartera, comunicados y agenda</li>
+                                        <li>Matrícula, horarios, excusas, encuestas y citas</li>
+                                        <li>Chat, reportes de visitas y cierre de periodo</li>
+                                        <li>Notificaciones WhatsApp (Meta Cloud API) + email + in-app</li>
+                                        <li>Multi-tenant por colegio, jobs programados idempotentes</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Next.js 15</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">Prisma</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">JWT</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://edugestion.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Landing
+                                    </a>
+                                    <a href="https://app-edugestion.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-repo">
+                                        <i class="fas fa-gauge"></i> Ver App
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Next.js SSR (systemd) · 14 módulos · multi-tenant · CI/CD · backup diario · código privado</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="edugestion">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/edugestion/screenshot1.jpg" alt="EduGestión - panel del colegio" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/edugestion/screenshot1.jpg" alt="EduGestión captura 1" class="thumb active" onclick="changeGalleryImage(this, 'edugestion')">
+                                        <img src="assets/images/projects/edugestion/screenshot2.jpg" alt="EduGestión captura 2" class="thumb" onclick="changeGalleryImage(this, 'edugestion')">
+                                        <img src="assets/images/projects/edugestion/screenshot3.jpg" alt="EduGestión captura 3" class="thumb" onclick="changeGalleryImage(this, 'edugestion')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sistema Inventarios -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-warehouse"></i> Sistema de Inventarios - TallerPro
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Sistema de gestión de inventario y control contable</strong> para talleres automotrices. Monorepo: API Laravel 12 + SPA Vue 3, con control de roles y módulos de operación completos.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Catálogo de productos y categorías con alertas de bajo stock</li>
+                                        <li>Compras, ventas y órdenes de servicio</li>
+                                        <li>Gestión de clientes y proveedores</li>
+                                        <li>Reportes e indicadores de ingresos/gastos</li>
+                                        <li>5 roles y 35 permisos (super admin, encargado, mecánico, cajero)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">Vue 3</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Sanctum</span>
+                                    <span class="skill-tag">Spatie Permission</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://inventarios.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Servidor propio · API + SPA · 5 roles · 35 permisos · código privado</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="inventarios">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/inventarios/screenshot1.jpg" alt="Inventarios TallerPro - dashboard" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/inventarios/screenshot1.jpg" alt="Inventarios captura 1" class="thumb active" onclick="changeGalleryImage(this, 'inventarios')">
+                                        <img src="assets/images/projects/inventarios/screenshot2.jpg" alt="Inventarios captura 2" class="thumb" onclick="changeGalleryImage(this, 'inventarios')">
+                                        <img src="assets/images/projects/inventarios/screenshot3.jpg" alt="Inventarios captura 3" class="thumb" onclick="changeGalleryImage(this, 'inventarios')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Domicilios -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-motorcycle"></i> Domicilios - Pedidos para Restaurantes
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="proj-badge proj-badge--pwa">PWA</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma de domicilios para restaurantes locales</strong> (pedidos sin comisiones). API Laravel + SPA Vue 3, con app de cliente, panel de restaurante y módulo de "Momentos" con video.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Catálogo / menú con fotos, carrito y pedidos</li>
+                                        <li>Panel de restaurante y gestión de productos</li>
+                                        <li>Módulo "Momentos" con transcodificación de video (ffmpeg)</li>
+                                        <li>PWA instalable con caché optimizada</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel</span>
+                                    <span class="skill-tag">Vue 3</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">PWA</span>
+                                    <span class="skill-tag">FFmpeg</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://domicilios.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Servidor propio · API + SPA + landing · PWA · CI/CD · código privado</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="domicilios">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/domicilios/screenshot1.jpg" alt="Domicilios - menú del restaurante" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/domicilios/screenshot1.jpg" alt="Domicilios captura 1" class="thumb active" onclick="changeGalleryImage(this, 'domicilios')">
+                                        <img src="assets/images/projects/domicilios/screenshot2.jpg" alt="Domicilios captura 2" class="thumb" onclick="changeGalleryImage(this, 'domicilios')">
+                                        <img src="assets/images/projects/domicilios/screenshot3.jpg" alt="Domicilios captura 3" class="thumb" onclick="changeGalleryImage(this, 'domicilios')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Valera Emocional -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-hand-holding-heart"></i> Valera Emocional - Bienestar Laboral
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="proj-badge proj-badge--pwa">PWA</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma SaaS multi-tenant de bienestar y permisos laborales.</strong> Permite a empresas gestionar solicitudes de permisos con aprobaciones jerárquicas, motor de reglas configurable y dashboards de analítica.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Flujos de aprobación jerárquicos multinivel</li>
+                                        <li>Motor de reglas configurable por empresa</li>
+                                        <li>Dashboard de analítica con gráficos interactivos</li>
+                                        <li>PWA offline (Workbox + Dexie.js)</li>
+                                        <li>Multi-tenancy completo con aislamiento por empresa</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">Vue 3</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Sanctum</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">PWA</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://valera.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Servidor propio · multi-tenant · cola + scheduler · CI/CD · código privado</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="valera">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/valera/screenshot1.jpg" alt="Valera Emocional - panel" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/valera/screenshot1.jpg" alt="Valera captura 1" class="thumb active" onclick="changeGalleryImage(this, 'valera')">
+                                        <img src="assets/images/projects/valera/screenshot2.jpg" alt="Valera captura 2" class="thumb" onclick="changeGalleryImage(this, 'valera')">
+                                        <img src="assets/images/projects/valera/screenshot3.jpg" alt="Valera captura 3" class="thumb" onclick="changeGalleryImage(this, 'valera')">
+                                        <img src="assets/images/projects/valera/screenshot4.jpg" alt="Valera captura 4" class="thumb" onclick="changeGalleryImage(this, 'valera')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TalentIA -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-user-tie"></i> TalentIA - Gestión de Talento Humano (IPS)
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Producto white-label de gestión de talento humano</strong> para IPS. Lo desplegado: la landing comercial y el backend del <strong>chatbot de ventas "Tali"</strong> (IA conectada a un workflow n8n con fallback por palabras clave).</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Landing comercial del producto (React + Framer Motion)</li>
+                                        <li>Chatbot de ventas con IA (n8n) y respaldo sin conexión</li>
+                                        <li>Persistencia de conversaciones y mensajes</li>
+                                        <li>API pública con throttling y CORS restringido</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">React 19</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">n8n</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://talentia.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Servidor propio · landing + API de chatbot IA · white-label · código privado</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="talentia">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/talentia/screenshot1.jpg" alt="TalentIA - landing" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/talentia/screenshot1.jpg" alt="TalentIA captura 1" class="thumb active" onclick="changeGalleryImage(this, 'talentia')">
+                                        <img src="assets/images/projects/talentia/screenshot2.jpg" alt="TalentIA captura 2" class="thumb" onclick="changeGalleryImage(this, 'talentia')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Centinela -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-shield"></i> Centinela - SaaS para Vigilancia Privada
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="proj-badge proj-badge--wip">En desarrollo</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma de operaciones para empresas de vigilancia y seguridad privada.</strong> Por ahora está en producción la landing comercial; la API, el panel y la app llegan con el piloto.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Alcance del producto:</h5>
+                                    <ul class="styled-list">
+                                        <li>Landing comercial one-page con propuesta de valor</li>
+                                        <li>Gestión de operaciones, turnos y puestos (en diseño)</li>
+                                        <li>Identidad de marca y conversión por WhatsApp/email</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Vue 3</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">Vite</span>
+                                    <span class="skill-tag">Tailwind CSS 4</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://centinela.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Landing
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-code-branch"></i> Landing en producción · producto en fase de piloto</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="centinela">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/centinela/screenshot1.jpg" alt="Centinela - landing" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/centinela/screenshot1.jpg" alt="Centinela captura 1" class="thumb active" onclick="changeGalleryImage(this, 'centinela')">
+                                        <img src="assets/images/projects/centinela/screenshot2.jpg" alt="Centinela captura 2" class="thumb" onclick="changeGalleryImage(this, 'centinela')">
+                                        <img src="assets/images/projects/centinela/screenshot3.jpg" alt="Centinela captura 3" class="thumb" onclick="changeGalleryImage(this, 'centinela')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coworkia -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-building"></i> Coworkia - SaaS para Coworking
+                                    </h4>
+                                    <span class="proj-badge proj-badge--saas">SaaS</span>
+                                    <span class="proj-badge proj-badge--wip">En desarrollo</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma multi-tenant de gestión y reserva de espacios de coworking</strong> (zonas, membresías con créditos, day passes, acceso con QR, aforo en tiempo real, pagos). En producción está la landing; la app está en planeación.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Alcance del producto:</h5>
+                                    <ul class="styled-list">
+                                        <li>Landing one-page con panel de ocupación en vivo (demo)</li>
+                                        <li>Membresías con créditos y day passes</li>
+                                        <li>Acceso con QR y aforo en tiempo real (en diseño)</li>
+                                        <li>Pagos con MercadoPago (en diseño)</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Vue 3</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">Vite</span>
+                                    <span class="skill-tag">Tailwind CSS 4</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://coworkia.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Landing
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-code-branch"></i> Landing en producción · producto en planeación</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="coworkia">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/coworkia/screenshot1.jpg" alt="Coworkia - landing" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/coworkia/screenshot1.jpg" alt="Coworkia captura 1" class="thumb active" onclick="changeGalleryImage(this, 'coworkia')">
+                                        <img src="assets/images/projects/coworkia/screenshot2.jpg" alt="Coworkia captura 2" class="thumb" onclick="changeGalleryImage(this, 'coworkia')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyectos Desarrollo Web (personal/laboral) -->
                 <div class="projects-container" data-category="web-dev">
                     <h3 class="projects-group-title accent-blue">
-                        <i class="fas fa-code"></i> Desarrollo Web Full Stack (Laravel + Vue.js)
+                        <i class="fas fa-code"></i> Desarrollo Web — Proyectos personales y laborales
                     </h3>
 
                     <!-- PetuniaPlay - CON GALERÍA -->
@@ -389,69 +994,6 @@
                                         <img src="assets/images/projects/petuniaplay/screenshot5.png" alt="PetuniaPlay captura 5" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
                                         <img src="assets/images/projects/petuniaplay/screenshot6.png" alt="PetuniaPlay captura 6" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- VigilIA - flagship con galería -->
-                    <div class="card project-featured">
-                        <div class="project-row">
-                            <div class="project-col">
-                                <div class="project-head">
-                                    <h4 class="project-title">
-                                        <i class="fas fa-shield-halved"></i> VigilIA - Administración de Conjuntos Residenciales
-                                    </h4>
-                                    <span class="proj-badge proj-badge--personal">Proyecto personal</span>
-                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
-                                </div>
-                                <p class="project-lead"><strong>Sistema integral de administración de conjuntos residenciales</strong> con arquitectura multi-tenant. REST API (Laravel 12) + SPA (Vue.js 3) con 8 módulos funcionales, gestión de roles y permisos granulares, y despliegue automatizado.</p>
-
-                                <div class="info-box info-box--green">
-                                    <h5 class="accent-green">Funcionalidades principales:</h5>
-                                    <ul class="styled-list">
-                                        <li>Control de acceso vehicular y peatonal con registro de visitantes</li>
-                                        <li>Facturación, cartera y gestión de pagos por unidad</li>
-                                        <li>Reservas de áreas comunes con validación de disponibilidad</li>
-                                        <li>Sistema de PQRS con seguimiento y categorización</li>
-                                        <li>Módulo de emergencias y comunicados</li>
-                                        <li>Multi-tenancy por propiedad, 7 roles y 105 permisos</li>
-                                    </ul>
-                                </div>
-
-                                <div class="tag-row">
-                                    <span class="skill-tag">Laravel 12</span>
-                                    <span class="skill-tag">Vue.js 3</span>
-                                    <span class="skill-tag">PHP 8.4</span>
-                                    <span class="skill-tag">MySQL</span>
-                                    <span class="skill-tag">Tailwind CSS</span>
-                                    <span class="skill-tag">Sanctum</span>
-                                    <span class="skill-tag">Spatie Permission</span>
-                                    <span class="skill-tag">Redis</span>
-                                </div>
-
-                                <div class="project-actions">
-                                    <a href="https://vigilia.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
-                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
-                                    </a>
-                                    <a href="https://github.com/ROBOCOP3PK/vigilia" target="_blank" rel="noopener noreferrer" class="btn-repo">
-                                        <i class="fab fa-github"></i> Ver en GitHub
-                                    </a>
-                                </div>
-
-                                <p class="project-foot"><i class="fas fa-server"></i> Desplegado en servidor propio | 8 módulos | 105 permisos | CI/CD con GitHub Actions</p>
-                            </div>
-                            <div class="project-col">
-                                <div class="tech-lockup" aria-hidden="true">
-                                    <span class="tech-lockup-bg"><i class="fas fa-shield-halved"></i></span>
-                                    <div class="tech-lockup-icons">
-                                        <i class="devicon-laravel-original colored" title="Laravel"></i>
-                                        <i class="devicon-vuejs-plain colored" title="Vue.js"></i>
-                                        <i class="devicon-php-plain colored" title="PHP"></i>
-                                        <i class="devicon-mysql-plain colored" title="MySQL"></i>
-                                        <i class="devicon-redis-plain colored" title="Redis"></i>
-                                    </div>
-                                    <span class="tech-lockup-label">Multi-tenant SaaS</span>
                                 </div>
                             </div>
                         </div>
@@ -566,66 +1108,6 @@
                                         <img src="assets/images/projects/finanzas/screenshot5.jpeg" alt="Finanzas Compartidas captura 5" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
                                         <img src="assets/images/projects/finanzas/screenshot6.jpeg" alt="Finanzas Compartidas captura 6" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Valera Emocional - WIP, sin galería -->
-                    <div class="card project-featured">
-                        <div class="project-row">
-                            <div class="project-col">
-                                <div class="project-head">
-                                    <h4 class="project-title">
-                                        <i class="fas fa-hand-holding-heart"></i> Valera Emocional - Bienestar Laboral
-                                    </h4>
-                                    <span class="proj-badge proj-badge--personal">Proyecto personal</span>
-                                    <span class="proj-badge proj-badge--pwa">PWA</span>
-                                    <span class="proj-badge proj-badge--wip">En desarrollo</span>
-                                </div>
-                                <p class="project-lead"><strong>Plataforma SaaS multi-tenant de bienestar y permisos laborales.</strong> Permite a empresas gestionar solicitudes de permisos con aprobaciones jerárquicas, motor de reglas configurable y dashboards de analítica.</p>
-
-                                <div class="info-box info-box--green">
-                                    <h5 class="accent-green">Funcionalidades principales:</h5>
-                                    <ul class="styled-list">
-                                        <li>Flujos de aprobación jerárquicos multinivel</li>
-                                        <li>Motor de reglas configurable por empresa</li>
-                                        <li>Dashboard de analítica con gráficos interactivos</li>
-                                        <li>Integración con Slack y Microsoft Teams</li>
-                                        <li>PWA con funcionamiento offline</li>
-                                        <li>Multi-tenancy completo con aislamiento por empresa</li>
-                                    </ul>
-                                </div>
-
-                                <div class="tag-row">
-                                    <span class="skill-tag">Laravel 12</span>
-                                    <span class="skill-tag">Vue.js 3</span>
-                                    <span class="skill-tag">TypeScript</span>
-                                    <span class="skill-tag">PHP 8.2</span>
-                                    <span class="skill-tag">MySQL</span>
-                                    <span class="skill-tag">Tailwind CSS</span>
-                                    <span class="skill-tag">Chart.js</span>
-                                    <span class="skill-tag">PWA</span>
-                                </div>
-
-                                <div class="project-actions">
-                                    <a href="https://github.com/ROBOCOP3PK/valera" target="_blank" rel="noopener noreferrer" class="btn-repo">
-                                        <i class="fab fa-github"></i> Ver en GitHub
-                                    </a>
-                                </div>
-
-                                <p class="project-foot"><i class="fas fa-code-branch"></i> En desarrollo activo | Arquitectura SaaS multi-tenant</p>
-                            </div>
-                            <div class="project-col">
-                                <div class="tech-lockup" aria-hidden="true">
-                                    <span class="tech-lockup-bg"><i class="fas fa-hand-holding-heart"></i></span>
-                                    <div class="tech-lockup-icons">
-                                        <i class="devicon-laravel-original colored" title="Laravel"></i>
-                                        <i class="devicon-vuejs-plain colored" title="Vue.js"></i>
-                                        <i class="devicon-typescript-plain colored" title="TypeScript"></i>
-                                        <i class="devicon-php-plain colored" title="PHP"></i>
-                                    </div>
-                                    <span class="tech-lockup-label">SaaS · en desarrollo</span>
                                 </div>
                             </div>
                         </div>

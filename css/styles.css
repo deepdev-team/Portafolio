@@ -24,7 +24,7 @@
     --glass-border: rgba(255,255,255,0.40);
     --glass-border-hover: rgba(255,255,255,0.55);
     --glass-shadow-inset: rgba(255,255,255,0.45);
-    --glass-nav-bg: linear-gradient(180deg, rgba(248,250,252,0.07) 0%, rgba(248,250,252,0.03) 100%);
+    --glass-nav-bg: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.78) 100%);
     /* CTA accent (ámbar) — único color reservado para acciones: demos en vivo y botones principales */
     --cta: #b45309;
     --cta-grad: linear-gradient(135deg, #b45309, #92400e);
@@ -55,7 +55,7 @@
     --glass-border: rgba(255,255,255,0.12);
     --glass-border-hover: rgba(255,255,255,0.20);
     --glass-shadow-inset: rgba(255,255,255,0.15);
-    --glass-nav-bg: linear-gradient(180deg, rgba(15,23,42,0.07) 0%, rgba(15,23,42,0.03) 100%);
+    --glass-nav-bg: linear-gradient(180deg, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.72) 100%);
     --cta: #fbbf24;
     --cta-grad: linear-gradient(135deg, #d97706, #b45309);
     --chip-bg: rgba(255,255,255,0.06);

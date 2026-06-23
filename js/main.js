@@ -19,6 +19,17 @@ const Navigation = {
                 this.showSection(sectionId, link);
             });
         });
+
+        // CTAs en cualquier parte (hero, etc.) que apuntan a una sección via data-goto
+        document.querySelectorAll('[data-goto]').forEach(el => {
+            el.addEventListener('click', () => {
+                const sectionId = el.getAttribute('data-goto');
+                const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                this.showSection(sectionId, navLink);
+                const content = document.getElementById('main-content');
+                if (content) content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
     },
 
     showSection(sectionId, clickedLink) {
@@ -37,6 +48,7 @@ const Navigation = {
         // Remove active class from all nav links
         document.querySelectorAll('.nav-link').forEach(link => {
             link.classList.remove('active');
+            link.removeAttribute('aria-current');
         });
 
         // Show selected section
@@ -45,6 +57,7 @@ const Navigation = {
         // Add active class to clicked nav link
         if (clickedLink) {
             clickedLink.classList.add('active');
+            clickedLink.setAttribute('aria-current', 'page');
         }
 
         // Initialize diagram if diagrama section is selected
@@ -316,6 +329,9 @@ const SkillsDiagram = {
             node.className = `node ${skill.class}`;
             node.id = id;
             node.textContent = this.capitalize(id);
+            node.setAttribute('tabindex', '0');
+            node.setAttribute('role', 'button');
+            node.setAttribute('aria-label', `${this.capitalize(id)} — ver conexiones`);
 
             node.style.left = `${skill.position.x}%`;
             node.style.top = `${skill.position.y}%`;
@@ -425,9 +441,25 @@ const SkillsDiagram = {
                 clearHighlights();
             });
 
+            node.addEventListener('focus', () => {
+                highlightConnections(nodeId);
+            });
+
+            node.addEventListener('blur', () => {
+                clearHighlights();
+            });
+
             node.addEventListener('click', () => {
                 highlightConnections(nodeId);
                 setTimeout(clearHighlights, 3000);
+            });
+
+            node.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    highlightConnections(nodeId);
+                    setTimeout(clearHighlights, 3000);
+                }
             });
         });
     }
@@ -479,31 +511,6 @@ function filterProjects(category) {
 }
 
 // ======================
-// ANIMATIONS MODULE
-// ======================
-const Animations = {
-    init() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            observer.observe(card);
-        });
-    }
-};
-
-// ======================
 // MOBILE CAROUSEL MODULE
 // ======================
 const MobileCarousel = {
@@ -516,11 +523,12 @@ const MobileCarousel = {
 
     sectionData: [
         { id: 'perfil', name: 'Perfil', icon: 'fa-user' },
-        { id: 'experiencia', name: 'Experiencia', icon: 'fa-briefcase' },
-        { id: 'educacion', name: 'Educación', icon: 'fa-graduation-cap' },
-        { id: 'habilidades', name: 'Habilidades', icon: 'fa-cogs' },
         { id: 'proyectos', name: 'Proyectos', icon: 'fa-code-branch' },
-        { id: 'diagrama', name: 'Skills', icon: 'fa-project-diagram' }
+        { id: 'experiencia', name: 'Experiencia', icon: 'fa-briefcase' },
+        { id: 'habilidades', name: 'Habilidades', icon: 'fa-cogs' },
+        { id: 'educacion', name: 'Educación', icon: 'fa-graduation-cap' },
+        { id: 'diagrama', name: 'Skills', icon: 'fa-project-diagram' },
+        { id: 'contacto', name: 'Contacto', icon: 'fa-paper-plane' }
     ],
 
     init() {
@@ -657,7 +665,13 @@ const MobileCarousel = {
             // Also update the desktop nav for consistency
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach((link, i) => {
-                link.classList.toggle('active', i === newIndex);
+                const isActive = i === newIndex;
+                link.classList.toggle('active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'page');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
             });
         }
     },
@@ -755,36 +769,71 @@ const ImageGallery = {
         thumb.classList.add('active');
     },
 
+    lastFocus: null,
+
     openModal(imageSrc) {
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
 
+        this.lastFocus = document.activeElement;
         modalImage.src = imageSrc;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+
+        // Mover el foco al botón de cerrar para navegación por teclado
+        const closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn) closeBtn.focus();
     },
 
     closeModal() {
         const modal = document.getElementById('imageModal');
+        if (!modal.classList.contains('active')) return;
         modal.classList.remove('active');
         document.body.style.overflow = '';
+
+        // Devolver el foco al elemento que abrió el modal
+        if (this.lastFocus && typeof this.lastFocus.focus === 'function') {
+            this.lastFocus.focus();
+        }
+        this.lastFocus = null;
     },
 
     init() {
-        // Close modal on ESC key
+        const modal = document.getElementById('imageModal');
+
         document.addEventListener('keydown', (e) => {
+            if (!modal || !modal.classList.contains('active')) return;
+            // Cerrar con ESC
             if (e.key === 'Escape') {
                 this.closeModal();
             }
+            // Trampa de foco simple: mantener el foco en el botón de cerrar
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const closeBtn = modal.querySelector('.modal-close');
+                if (closeBtn) closeBtn.focus();
+            }
         });
 
-        // Prevent modal close when clicking on image
+        // Evitar que el clic en la imagen cierre el modal
         const modalImage = document.getElementById('modalImage');
         if (modalImage) {
             modalImage.addEventListener('click', (e) => {
                 e.stopPropagation();
             });
         }
+
+        // Hacer operables por teclado las miniaturas y la imagen principal de cada galería
+        document.querySelectorAll('.gallery-main img, .gallery-thumbs .thumb').forEach(img => {
+            img.setAttribute('role', 'button');
+            img.setAttribute('tabindex', '0');
+            img.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    img.click();
+                }
+            });
+        });
     }
 };
 
@@ -1354,13 +1403,15 @@ const NeuralNetwork = {
     mouse: { x: -9999, y: -9999 },
     width: 0,
     height: 0,
-    SPACING: 90,
+    SPACING: 110,
     CONNECT_DIST: 130,
     MOUSE_RADIUS: 200,
     MOUSE_FORCE: 25,
     RETURN_SPEED: 0.03,
     NODE_RADIUS: 1.5,
     isDark: false,
+    rafId: null,
+    paused: false,
 
     init() {
         if (window.matchMedia('(pointer: coarse)').matches) return;
@@ -1419,6 +1470,17 @@ const NeuralNetwork = {
             this.mouse.y = -9999;
         });
 
+        // Pausar el loop cuando la pestaña no está visible (ahorra CPU/batería)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.paused = true;
+                if (this.rafId) cancelAnimationFrame(this.rafId);
+            } else if (this.paused) {
+                this.paused = false;
+                this.animate();
+            }
+        });
+
         // Observe theme changes
         const observer = new MutationObserver(() => {
             this.isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -1458,18 +1520,20 @@ const NeuralNetwork = {
             node.y += node.vy;
         }
 
-        // Draw connections
+        // Draw connections — comparamos distancia al cuadrado y solo hacemos sqrt
+        // cuando el par está dentro del rango (la mayoría no lo está).
         this.ctx.lineWidth = 0.5;
+        const maxSq = this.CONNECT_DIST * this.CONNECT_DIST;
         for (let i = 0; i < this.nodes.length; i++) {
             for (let j = i + 1; j < this.nodes.length; j++) {
                 const a = this.nodes[i];
                 const b = this.nodes[j];
                 const dx = a.x - b.x;
                 const dy = a.y - b.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
+                const distSq = dx * dx + dy * dy;
 
-                if (dist < this.CONNECT_DIST) {
-                    const alpha = lineAlpha * (1 - dist / this.CONNECT_DIST);
+                if (distSq < maxSq) {
+                    const alpha = lineAlpha * (1 - Math.sqrt(distSq) / this.CONNECT_DIST);
                     this.ctx.strokeStyle = `rgba(${color}, ${alpha})`;
                     this.ctx.beginPath();
                     this.ctx.moveTo(a.x, a.y);
@@ -1487,7 +1551,9 @@ const NeuralNetwork = {
             this.ctx.fill();
         }
 
-        requestAnimationFrame(() => this.animate());
+        if (!this.paused) {
+            this.rafId = requestAnimationFrame(() => this.animate());
+        }
     }
 };
 
@@ -1818,15 +1884,26 @@ const CursorEffects = {
 // ======================
 document.addEventListener('DOMContentLoaded', () => {
     Navigation.init();
-    Animations.init();
     MobileCarousel.init();
     DarkMode.init();
     ImageGallery.init();
     ScrollToTop.init();
     ExperienceCalculator.init();
-    NeuralNetwork.init();
-    LightingEffects.init();
-    CursorEffects.init();
+
+    // La sección Proyectos abre liderando con Desarrollo Web (refuerza la marca Full Stack)
+    ProjectsFilter.filterProjects('web-dev');
+
+    // Efectos decorativos: solo si el usuario NO pidió menos movimiento
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+        NeuralNetwork.init();
+        LightingEffects.init();
+        CursorEffects.init();
+        // Ocultar el cursor nativo SOLO si el cursor personalizado realmente se activó
+        if (!CursorEffects.isTouchDevice()) {
+            document.documentElement.classList.add('custom-cursor');
+        }
+    }
 
     // Set current year in footer
     const yearElement = document.getElementById('current-year');

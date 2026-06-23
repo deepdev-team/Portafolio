@@ -9,7 +9,7 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
     <!-- Preload Critical Assets -->
-    <link rel="preload" href="css/styles.css?v=3" as="style">
+    <link rel="preload" href="css/styles.css?v=5" as="style">
     <link rel="preload" href="assets/images/profile.jpg" as="image">
 
     <title>David Gonzalez | Desarrollador Full Stack Laravel + Vue.js | Bogotá</title>
@@ -20,16 +20,21 @@
     <meta name="author" content="David Steven Gonzalez Padilla">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="David Gonzalez - Desarrollador Full Stack">
-    <meta property="og:description" content="Portafolio profesional de David Gonzalez, desarrollador web especializado en Laravel + Vue.js">
+    <meta property="og:title" content="David Gonzalez - Desarrollador Full Stack Laravel + Vue.js">
+    <meta property="og:description" content="Construyo plataformas web y SaaS multi-tenant con Laravel + Vue.js. Apps en producción, sector público y automatización de procesos.">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_CO">
     <meta property="og:url" content="https://portafolio.deepdev.com.co">
     <meta property="og:image" content="https://portafolio.deepdev.com.co/assets/images/profile.jpg">
+    <meta property="og:image:alt" content="David Steven Gonzalez Padilla, Desarrollador Full Stack">
+    <meta property="og:image:width" content="150">
+    <meta property="og:image:height" content="150">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="David Gonzalez - Desarrollador Full Stack">
     <meta name="twitter:description" content="Desarrollador Full Stack especializado en Laravel, Vue.js y RPA">
+    <meta name="twitter:image" content="https://portafolio.deepdev.com.co/assets/images/profile.jpg">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://portafolio.deepdev.com.co">
@@ -44,7 +49,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
 
     <!-- Main Stylesheet -->
-    <link href="css/styles.css?v=3" rel="stylesheet">
+    <link href="css/styles.css?v=5" rel="stylesheet">
 
     <!-- jsPDF for CV Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
@@ -61,21 +66,26 @@
             <img src="assets/images/profile.jpg" alt="David Gonzalez" class="profile-image" width="150" height="150">
             <h1>David Steven Gonzalez Padilla</h1>
             <p class="subtitle">Desarrollador Full Stack | Laravel + Vue.js | Ingeniero Electrónico</p>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+573057594088" aria-label="Llamar a David Gonzalez">3057594088</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:davidsgonzalez98@hotmail.com" aria-label="Enviar email a David Gonzalez">davidsgonzalez98@hotmail.com</a>
-                </div>
+
+            <p class="hero-tagline">
+                Construyo plataformas web y SaaS multi-tenant con <strong>Laravel + Vue.js</strong>, sobre una sólida base en automatización de procesos.
+            </p>
+
+            <ul class="hero-stats" aria-label="Resumen profesional">
+                <li class="hero-stat"><strong data-experience="short">+4 años</strong><span>experiencia</span></li>
+                <li class="hero-stat"><strong>3</strong><span>demos en vivo</span></li>
+                <li class="hero-stat"><strong>Laravel 12</strong><span>+ Vue 3</span></li>
+                <li class="hero-stat"><strong>Sector</strong><span>público</span></li>
+            </ul>
+
+            <div class="hero-actions">
+                <button class="btn-cta-primary" data-goto="proyectos" aria-label="Ver proyectos en vivo">
+                    <i class="fas fa-rocket"></i> Ver proyectos en vivo
+                </button>
+                <button class="btn-download" onclick="CVGenerator.generate()" aria-label="Descargar curriculum vitae en formato PDF">
+                    <i class="fas fa-download"></i> Descargar CV
+                </button>
             </div>
-            
-            <button class="btn-download" onclick="CVGenerator.generate()" aria-label="Descargar curriculum vitae en formato PDF">
-                <i class="fas fa-download"></i> Descargar CV
-            </button>
 
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/david-steven-gonzalez-padilla" target="_blank" rel="noopener noreferrer" aria-label="Perfil de LinkedIn de David Gonzalez">
@@ -93,23 +103,8 @@
         <nav class="nav-tabs" role="navigation" aria-label="Navegación principal del portafolio">
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="#perfil" class="nav-link active">
+                    <a href="#perfil" class="nav-link active" aria-current="page">
                         <i class="fas fa-user"></i> Perfil
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#experiencia" class="nav-link">
-                        <i class="fas fa-briefcase"></i> Experiencia
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#educacion" class="nav-link">
-                        <i class="fas fa-graduation-cap"></i> Educación
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#habilidades" class="nav-link">
-                        <i class="fas fa-cogs"></i> Habilidades
                     </a>
                 </li>
                 <li class="nav-item">
@@ -118,8 +113,28 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="#experiencia" class="nav-link">
+                        <i class="fas fa-briefcase"></i> Experiencia
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#habilidades" class="nav-link">
+                        <i class="fas fa-cogs"></i> Habilidades
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#educacion" class="nav-link">
+                        <i class="fas fa-graduation-cap"></i> Educación
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="#diagrama" class="nav-link">
                         <i class="fas fa-project-diagram"></i> Red de Skills
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contacto" class="nav-link">
+                        <i class="fas fa-paper-plane"></i> Contacto
                     </a>
                 </li>
             </ul>
@@ -134,7 +149,7 @@
                     <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 25px;">
                         <strong>Desarrollador Full Stack</strong> especializado en Laravel + Vue.js con <strong><span data-experience="full">+4 años</span> de experiencia</strong> en desarrollo de software y automatización de procesos para el sector público y empresarial. Mi enfoque combina desarrollo ágil con una mentalidad orientada a procesos.
                     </p>
-                    
+
                     <div style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(59, 130, 246, 0.05)); padding: 20px; border-radius: 10px; border-left: 4px solid var(--primary-color); margin-bottom: 25px;">
                         <h4 style="color: var(--primary-color); margin-bottom: 15px; font-size: 1.1rem;">
                             <i class="fas fa-rocket"></i> Habilidades Clave:
@@ -158,7 +173,7 @@
                             </li>
                         </ul>
                     </div>
-                    
+
                     <p style="font-size: 1.1rem; line-height: 1.8;">
                         Mi experiencia más reciente fue en <strong>TurriSystem</strong>, desarrollando módulos de gestión de pagos, validación bancaria y generación de reportes para entidades públicas. Mi objetivo es seguir construyendo aplicaciones escalables que resuelvan problemas reales mientras evoluciono hacia roles de <strong>Desarrollador Senior Full Stack</strong>.
                     </p>
@@ -198,10 +213,747 @@
                 </div>
             </section>
 
+            <!-- Proyectos Section -->
+            <section id="proyectos" class="section">
+                <h2>Proyectos Realizados</h2>
+
+                <div class="category-cards-grid">
+                    <!-- Desarrollo Web (primero: refuerza la marca Full Stack) -->
+                    <div class="category-card" onclick="filterProjects('web-dev')" id="filter-web-dev">
+                        <div class="category-card-header">
+                            <h4>Desarrollo Web Full Stack</h4>
+                            <span class="category-badge">6 proyectos</span>
+                        </div>
+                        <div class="category-tech-icons">
+                            <div class="tech-icon-item" title="Laravel">
+                                <i class="devicon-laravel-original colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="Vue.js">
+                                <i class="devicon-vuejs-plain colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="PHP">
+                                <i class="devicon-php-plain colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="MySQL">
+                                <i class="devicon-mysql-plain colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="Tailwind CSS">
+                                <i class="devicon-tailwindcss-original colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="Odoo">
+                                <img src="assets/icons/odoo.svg" width="24" height="24" alt="Odoo">
+                            </div>
+                        </div>
+                        <p class="category-card-desc">Laravel + Vue.js + Odoo Full Stack</p>
+                    </div>
+
+                    <!-- Power Platform -->
+                    <div class="category-card" onclick="filterProjects('power-platform')" id="filter-power-platform">
+                        <div class="category-card-header">
+                            <h4>Power Platform</h4>
+                            <span class="category-badge">5 proyectos</span>
+                        </div>
+                        <div class="category-tech-icons">
+                            <div class="tech-icon-item" title="Power Apps">
+                                <img src="assets/icons/powerapps.svg" width="24" height="24" alt="Power Apps">
+                            </div>
+                            <div class="tech-icon-item" title="Power Automate">
+                                <img src="assets/icons/powerautomate.svg" width="24" height="24" alt="Power Automate">
+                            </div>
+                            <div class="tech-icon-item" title="Dataverse">
+                                <img src="assets/icons/dataverse.svg" width="24" height="24" alt="Dataverse">
+                            </div>
+                            <div class="tech-icon-item" title="SharePoint">
+                                <img src="assets/icons/sharepoint.svg" width="24" height="24" alt="SharePoint">
+                            </div>
+                            <div class="tech-icon-item" title="Power BI">
+                                <img src="assets/icons/powerbi.svg" width="24" height="24" alt="Power BI">
+                            </div>
+                            <div class="tech-icon-item" title="Excel">
+                                <img src="assets/icons/excel.svg" width="24" height="24" alt="Excel">
+                            </div>
+                        </div>
+                        <p class="category-card-desc">Apps empresariales, flujos y dashboards</p>
+                    </div>
+
+                    <!-- RPA UiPath -->
+                    <div class="category-card" onclick="filterProjects('rpa')" id="filter-rpa">
+                        <div class="category-card-header">
+                            <h4>RPA - UiPath</h4>
+                            <span class="category-badge">5 bots</span>
+                        </div>
+                        <div class="category-tech-icons">
+                            <div class="tech-icon-item" title="UiPath">
+                                <img src="assets/icons/uipath.svg" width="24" height="24" alt="UiPath">
+                            </div>
+                            <div class="tech-icon-item" title="VB.NET">
+                                <i class="devicon-dot-net-plain colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="Python">
+                                <i class="devicon-python-plain colored"></i>
+                            </div>
+                            <div class="tech-icon-item" title="ERP Integration">
+                                <i class="fas fa-cogs" style="color: #6366f1;"></i>
+                            </div>
+                            <div class="tech-icon-item" title="Email Automation">
+                                <i class="fas fa-envelope" style="color: #0078D4;"></i>
+                            </div>
+                        </div>
+                        <p class="category-card-desc">UiPath + VB.NET + Python scripting</p>
+                    </div>
+
+                    <!-- Ver Todos -->
+                    <div class="category-card category-card-all" onclick="filterProjects('all')" id="filter-all">
+                        <div class="category-card-header">
+                            <h4>Ver Todos</h4>
+                            <span class="category-badge">16 proyectos</span>
+                        </div>
+                        <div class="category-tech-icons">
+                            <div class="tech-icon-item" title="Todos">
+                                <i class="fas fa-th-large" style="color: var(--primary-color);"></i>
+                            </div>
+                        </div>
+                        <p class="category-card-desc">Web, Power Platform y RPA</p>
+                    </div>
+                </div>
+
+                <!-- Proyectos Desarrollo Web (lidera: marca Full Stack) -->
+                <div class="projects-container" data-category="web-dev">
+                    <h3 class="projects-group-title accent-blue">
+                        <i class="fas fa-code"></i> Desarrollo Web Full Stack (Laravel + Vue.js)
+                    </h3>
+
+                    <!-- PetuniaPlay - CON GALERÍA -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-paw"></i> PetuniaPlay - E-commerce para Mascotas
+                                    </h4>
+                                    <span class="proj-badge proj-badge--personal">Proyecto personal</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Sistema completo de e-commerce</strong> especializado en productos para mascotas. Arquitectura REST API (Laravel 12) + SPA (Vue.js 3) con programa de fidelidad, cupones avanzados y cumplimiento legal colombiano.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Catálogo con filtros avanzados, carrito y checkout completo</li>
+                                        <li>Sistema de cupones con validaciones y programa de fidelidad</li>
+                                        <li>Panel admin con dashboard, gestión de inventario y despachos</li>
+                                        <li>Reseñas, wishlist, Q&A y rastreo de pedidos</li>
+                                        <li>Autenticación Sanctum, roles (admin/manager/customer)</li>
+                                        <li>Dark mode, diseño responsive y cumplimiento Ley 1581/2012</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">Vue.js 3</span>
+                                    <span class="skill-tag">PHP 8.2</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">PrimeVue</span>
+                                    <span class="skill-tag">Pinia</span>
+                                    <span class="skill-tag">REST API</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://tienda.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
+                                    </a>
+                                    <a href="https://github.com/ROBOCOP3PK/PetuniaPlay" target="_blank" rel="noopener noreferrer" class="btn-repo">
+                                        <i class="fab fa-github"></i> Ver en GitHub
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Desplegado en servidor propio | 22 modelos | 33 vistas Vue | 37 migraciones</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="petuniaplay">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/petuniaplay/screenshot1.png" alt="PetuniaPlay - vista principal de la tienda" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/petuniaplay/screenshot1.png" alt="PetuniaPlay captura 1" class="thumb active" onclick="changeGalleryImage(this, 'petuniaplay')">
+                                        <img src="assets/images/projects/petuniaplay/screenshot2.png" alt="PetuniaPlay captura 2" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
+                                        <img src="assets/images/projects/petuniaplay/screenshot3.png" alt="PetuniaPlay captura 3" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
+                                        <img src="assets/images/projects/petuniaplay/screenshot4.png" alt="PetuniaPlay captura 4" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
+                                        <img src="assets/images/projects/petuniaplay/screenshot5.png" alt="PetuniaPlay captura 5" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
+                                        <img src="assets/images/projects/petuniaplay/screenshot6.png" alt="PetuniaPlay captura 6" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VigilIA - flagship con galería -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-shield-halved"></i> VigilIA - Administración de Conjuntos Residenciales
+                                    </h4>
+                                    <span class="proj-badge proj-badge--personal">Proyecto personal</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Sistema integral de administración de conjuntos residenciales</strong> con arquitectura multi-tenant. REST API (Laravel 12) + SPA (Vue.js 3) con 8 módulos funcionales, gestión de roles y permisos granulares, y despliegue automatizado.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Control de acceso vehicular y peatonal con registro de visitantes</li>
+                                        <li>Facturación, cartera y gestión de pagos por unidad</li>
+                                        <li>Reservas de áreas comunes con validación de disponibilidad</li>
+                                        <li>Sistema de PQRS con seguimiento y categorización</li>
+                                        <li>Módulo de emergencias y comunicados</li>
+                                        <li>Multi-tenancy por propiedad, 7 roles y 105 permisos</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">Vue.js 3</span>
+                                    <span class="skill-tag">PHP 8.4</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">Sanctum</span>
+                                    <span class="skill-tag">Spatie Permission</span>
+                                    <span class="skill-tag">Redis</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://vigilia.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
+                                    </a>
+                                    <a href="https://github.com/ROBOCOP3PK/vigilia" target="_blank" rel="noopener noreferrer" class="btn-repo">
+                                        <i class="fab fa-github"></i> Ver en GitHub
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Desplegado en servidor propio | 8 módulos | 105 permisos | CI/CD con GitHub Actions</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="tech-lockup" aria-hidden="true">
+                                    <span class="tech-lockup-bg"><i class="fas fa-shield-halved"></i></span>
+                                    <div class="tech-lockup-icons">
+                                        <i class="devicon-laravel-original colored" title="Laravel"></i>
+                                        <i class="devicon-vuejs-plain colored" title="Vue.js"></i>
+                                        <i class="devicon-php-plain colored" title="PHP"></i>
+                                        <i class="devicon-mysql-plain colored" title="MySQL"></i>
+                                        <i class="devicon-redis-plain colored" title="Redis"></i>
+                                    </div>
+                                    <span class="tech-lockup-label">Multi-tenant SaaS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Defensoría - CON GALERÍA -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-university"></i> Sistema de Gestión de Demandas
+                                    </h4>
+                                    <span class="proj-badge proj-badge--labor">Proyecto laboral</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma web para entidades públicas</strong> - Sistema crítico para gestión de demandas del sector público colombiano.</p>
+
+                                <div class="info-box info-box--blue">
+                                    <h5 style="color: var(--primary-color); margin-bottom: 10px;">Módulos desarrollados:</h5>
+                                    <ul class="styled-list">
+                                        <li>Gestión de Pagos con validaciones bancarias</li>
+                                        <li>Distribución automática de intereses</li>
+                                        <li>Generación de reportes PDF oficiales</li>
+                                        <li>Panel de administración completo</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel</span>
+                                    <span class="skill-tag">Vue.js</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">ORACLE</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-building"></i> Desarrollado en TurriSystem para el sector público · código privado del cliente</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="defensoria">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/defensoria/screenshot1.jpeg" alt="Sistema de Gestión de Demandas - vista principal" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/defensoria/screenshot1.jpeg" alt="Gestión de Demandas captura 1" class="thumb active" onclick="changeGalleryImage(this, 'defensoria')">
+                                        <img src="assets/images/projects/defensoria/screenshot2.jpeg" alt="Gestión de Demandas captura 2" class="thumb" onclick="changeGalleryImage(this, 'defensoria')">
+                                        <img src="assets/images/projects/defensoria/screenshot3.jpeg" alt="Gestión de Demandas captura 3" class="thumb" onclick="changeGalleryImage(this, 'defensoria')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Finanzas Compartidas - CON GALERÍA -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-wallet"></i> Finanzas Compartidas - Gestión de Gastos
+                                    </h4>
+                                    <span class="proj-badge proj-badge--personal">Proyecto personal</span>
+                                    <span class="proj-badge proj-badge--pwa">PWA</span>
+                                    <span class="demo-badge"><span class="demo-dot"></span> Demo en vivo</span>
+                                </div>
+                                <p class="project-lead"><strong>Aplicación PWA completa</strong> para gestión de gastos personales y compartidos con pareja. Calcula automáticamente deudas, soporta funcionamiento offline con sincronización, y está desplegada en servidor propio con Cloudflare Tunnel.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Dashboard con deuda en tiempo real y resumen mensual por categoría</li>
+                                        <li>Gastos personales, compartidos (%) y de pareja con cálculo automático</li>
+                                        <li>Sistema de servicios/recibos con ciclos de facturación configurables</li>
+                                        <li>Plantillas rápidas para registro de gastos frecuentes en 2-3 taps</li>
+                                        <li>PWA offline con IndexedDB, sincronización y manejo de conflictos</li>
+                                        <li>Autenticación Sanctum con verificación email y dark mode</li>
+                                        <li>Exportación de datos a CSV y PDF para reportes</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">Vue.js 3</span>
+                                    <span class="skill-tag">Pinia</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">SQLite</span>
+                                    <span class="skill-tag">Sanctum</span>
+                                    <span class="skill-tag">PWA</span>
+                                    <span class="skill-tag">IndexedDB</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://finanzas.deepdev.com.co" target="_blank" rel="noopener noreferrer" class="btn-demo">
+                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
+                                    </a>
+                                    <a href="https://github.com/ROBOCOP3PK/finanzas" target="_blank" rel="noopener noreferrer" class="btn-repo">
+                                        <i class="fab fa-github"></i> Ver en GitHub
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-server"></i> Desplegado en servidor casero (Ubuntu + Nginx + Cloudflare Tunnel)</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="finanzas">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/finanzas/screenshot1.jpeg" alt="Finanzas Compartidas - dashboard" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/finanzas/screenshot1.jpeg" alt="Finanzas Compartidas captura 1" class="thumb active" onclick="changeGalleryImage(this, 'finanzas')">
+                                        <img src="assets/images/projects/finanzas/screenshot2.jpeg" alt="Finanzas Compartidas captura 2" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
+                                        <img src="assets/images/projects/finanzas/screenshot3.jpeg" alt="Finanzas Compartidas captura 3" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
+                                        <img src="assets/images/projects/finanzas/screenshot4.jpeg" alt="Finanzas Compartidas captura 4" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
+                                        <img src="assets/images/projects/finanzas/screenshot5.jpeg" alt="Finanzas Compartidas captura 5" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
+                                        <img src="assets/images/projects/finanzas/screenshot6.jpeg" alt="Finanzas Compartidas captura 6" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Valera Emocional - WIP, sin galería -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-hand-holding-heart"></i> Valera Emocional - Bienestar Laboral
+                                    </h4>
+                                    <span class="proj-badge proj-badge--personal">Proyecto personal</span>
+                                    <span class="proj-badge proj-badge--pwa">PWA</span>
+                                    <span class="proj-badge proj-badge--wip">En desarrollo</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma SaaS multi-tenant de bienestar y permisos laborales.</strong> Permite a empresas gestionar solicitudes de permisos con aprobaciones jerárquicas, motor de reglas configurable y dashboards de analítica.</p>
+
+                                <div class="info-box info-box--green">
+                                    <h5 class="accent-green">Funcionalidades principales:</h5>
+                                    <ul class="styled-list">
+                                        <li>Flujos de aprobación jerárquicos multinivel</li>
+                                        <li>Motor de reglas configurable por empresa</li>
+                                        <li>Dashboard de analítica con gráficos interactivos</li>
+                                        <li>Integración con Slack y Microsoft Teams</li>
+                                        <li>PWA con funcionamiento offline</li>
+                                        <li>Multi-tenancy completo con aislamiento por empresa</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Laravel 12</span>
+                                    <span class="skill-tag">Vue.js 3</span>
+                                    <span class="skill-tag">TypeScript</span>
+                                    <span class="skill-tag">PHP 8.2</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">Tailwind CSS</span>
+                                    <span class="skill-tag">Chart.js</span>
+                                    <span class="skill-tag">PWA</span>
+                                </div>
+
+                                <div class="project-actions">
+                                    <a href="https://github.com/ROBOCOP3PK/valera" target="_blank" rel="noopener noreferrer" class="btn-repo">
+                                        <i class="fab fa-github"></i> Ver en GitHub
+                                    </a>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-code-branch"></i> En desarrollo activo | Arquitectura SaaS multi-tenant</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="tech-lockup" aria-hidden="true">
+                                    <span class="tech-lockup-bg"><i class="fas fa-hand-holding-heart"></i></span>
+                                    <div class="tech-lockup-icons">
+                                        <i class="devicon-laravel-original colored" title="Laravel"></i>
+                                        <i class="devicon-vuejs-plain colored" title="Vue.js"></i>
+                                        <i class="devicon-typescript-plain colored" title="TypeScript"></i>
+                                        <i class="devicon-php-plain colored" title="PHP"></i>
+                                    </div>
+                                    <span class="tech-lockup-label">SaaS · en desarrollo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Odoo - SIN GALERÍA -->
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-cogs"></i> Personalización de Módulos Odoo
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Desarrollo y mantenimiento</strong> de módulos personalizados en Odoo, el ERP seleccionado para reemplazar SAP en la organización, implementado en 8 módulos (Finanzas, RRHH, CRM, Producción, Nómina, Mesa de Ayuda, entre otros).</p>
+
+                        <div class="info-box info-box--sky">
+                            <h5 class="accent-sky">Trabajos realizados:</h5>
+                            <ul class="styled-list">
+                                <li><strong>Módulo "Scrum Web":</strong> Inclusión de nuevos campos funcionales</li>
+                                <li>Modificación de reglas de negocio según nuevos requisitos</li>
+                                <li>Ajustes visuales y mejoras en la interfaz de usuario</li>
+                                <li>Corrección de errores y optimización de acciones específicas</li>
+                                <li>Documentación técnica de cambios implementados</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">Odoo</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">XML</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Mejoró usabilidad y funcionalidad de módulos existentes, garantizando experiencia más fluida para usuarios finales.</p>
+                    </div>
+                </div>
+
+                <!-- Proyectos Power Platform -->
+                <div class="projects-container" data-category="power-platform">
+                    <h3 class="projects-group-title accent-blue">
+                        <i class="fas fa-plug"></i> Power Platform (Power Apps, Power Automate, Dataverse, Power Virtual Agents)
+                    </h3>
+
+                    <!-- TaskTime - Destacado con galería -->
+                    <div class="card project-featured">
+                        <div class="project-row">
+                            <div class="project-col">
+                                <div class="project-head">
+                                    <h4 class="project-title">
+                                        <i class="fas fa-clock"></i> TaskTime - Registro de Tiempo
+                                    </h4>
+                                    <span class="proj-badge proj-badge--platform">Power Platform</span>
+                                </div>
+                                <p class="project-lead"><strong>Plataforma de seguimiento de tiempo</strong> para el Centro de Servicios Compartidos (CSC), recopilando y analizando tiempo dedicado a proyectos y servicios en múltiples áreas de negocio.</p>
+
+                                <div class="info-box info-box--purple">
+                                    <h5 class="accent-purple">Capacidades del sistema:</h5>
+                                    <ul class="styled-list">
+                                        <li>Registro de actividades con formularios intuitivos</li>
+                                        <li>Reportes mensuales por empleado, cliente y proyecto</li>
+                                        <li>Dashboard para líderes de procesos</li>
+                                        <li>Exportación a Excel y Power BI</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tag-row">
+                                    <span class="skill-tag">Power Apps</span>
+                                    <span class="skill-tag">Power Automate</span>
+                                    <span class="skill-tag">Dataverse</span>
+                                    <span class="skill-tag">Power BI</span>
+                                </div>
+
+                                <p class="project-foot"><i class="fas fa-building"></i> Desarrollado en Thomas Greg and Sons</p>
+                            </div>
+                            <div class="project-col">
+                                <div class="project-gallery" data-project="tasktime">
+                                    <div class="gallery-main">
+                                        <img src="assets/images/projects/tasktime/screenshot1.png" alt="TaskTime - vista principal" class="gallery-image active" onclick="openImageModal(this.src)">
+                                    </div>
+                                    <div class="gallery-thumbs">
+                                        <img src="assets/images/projects/tasktime/screenshot1.png" alt="TaskTime captura 1" class="thumb active" onclick="changeGalleryImage(this, 'tasktime')">
+                                        <img src="assets/images/projects/tasktime/screenshot2.png" alt="TaskTime captura 2" class="thumb" onclick="changeGalleryImage(this, 'tasktime')">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-map-marker-alt"></i> Reserva de Zonas Corporativas
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Gestión integral de espacios:</strong> Puestos de trabajo, oficinas, salas de reuniones, parqueaderos y salas de capacitación.</p>
+
+                        <div class="info-box info-box--blue">
+                            <h5 style="color: var(--primary-color); margin-bottom: 10px;">Características destacadas:</h5>
+                            <ul class="styled-list">
+                                <li>Plano interactivo para selección de ubicaciones exactas</li>
+                                <li>Validaciones automáticas de capacidad y disponibilidad</li>
+                                <li>Función de habilitar/deshabilitar zonas específicas</li>
+                                <li>Flujo de aprobación para personal externo</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">Power Apps</span>
+                            <span class="skill-tag">Power Automate</span>
+                            <span class="skill-tag">Dataverse</span>
+                            <span class="skill-tag">SharePoint</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Optimizó la gestión de espacios corporativos, reduciendo conflictos en reservas y aumentando la eficiencia del uso de recursos.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-gift"></i> Gestión de Beneficios a Empleados
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Dashboard personalizado</strong> para que cada empleado visualice y administre sus beneficios laborales.</p>
+
+                        <div class="info-box info-box--blue">
+                            <h5 style="color: var(--primary-color); margin-bottom: 10px;">Funcionalidades principales:</h5>
+                            <ul class="styled-list">
+                                <li>Visualización de horas y días de beneficios disponibles</li>
+                                <li>Solicitud organizada de permisos</li>
+                                <li>Beneficios configurables adaptables a políticas empresariales</li>
+                                <li>Control de beneficios no acumulables</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">Power Apps</span>
+                            <span class="skill-tag">Dataverse</span>
+                            <span class="skill-tag">Control de Roles</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Facilitó la administración de beneficios, reduciendo carga administrativa y mejorando transparencia en comunicación con empleados.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-file-alt"></i> Gestión Documental
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Sistema integral</strong> para gestionar solicitudes de desarrollos internos con trazabilidad completa.</p>
+
+                        <div class="info-box info-box--blue">
+                            <h5 style="color: var(--primary-color); margin-bottom: 10px;">Características avanzadas:</h5>
+                            <ul class="styled-list">
+                                <li>Creación automática de tickets de mesa de ayuda</li>
+                                <li>Seguimiento detallado con historial completo</li>
+                                <li>Generación automática de documentos PDF</li>
+                                <li>Envío automático por correo electrónico</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">Power Apps</span>
+                            <span class="skill-tag">Power Automate</span>
+                            <span class="skill-tag">SharePoint</span>
+                            <span class="skill-tag">PDF Generation</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Automatizó gestión de solicitudes, mejorando trazabilidad y reduciendo tiempos de resolución de incidentes.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-comments"></i> Chatbots de Autogestión para Empleados
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Asistentes virtuales</strong> desarrollados con Power Virtual Agents para resolver consultas frecuentes y reducir la carga operativa del área de nómina y RRHH.</p>
+
+                        <div class="info-box info-box--blue">
+                            <h5 style="color: var(--primary-color); margin-bottom: 10px;">Funcionalidades principales:</h5>
+                            <ul class="styled-list">
+                                <li>Consulta de días acumulados de vacaciones e información general de nómina</li>
+                                <li>Respuestas automáticas a preguntas frecuentes de empleados</li>
+                                <li>Generación automática de documentos como certificados laborales</li>
+                                <li>Gestión de solicitudes desde el chatbot sin intervención del área de nómina</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">Power Virtual Agents</span>
+                            <span class="skill-tag">Power Automate</span>
+                            <span class="skill-tag">Dataverse</span>
+                            <span class="skill-tag">SharePoint</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Redujo significativamente las consultas presenciales al área de nómina, liberando tiempo operativo y permitiendo a los empleados resolver sus dudas de forma autónoma e inmediata.</p>
+                    </div>
+                </div>
+
+                <!-- Proyectos RPA -->
+                <div class="projects-container" data-category="rpa">
+                    <h3 class="projects-group-title accent-blue">
+                        <i class="fas fa-robot"></i> Automatización RPA con UiPath
+                    </h3>
+
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-receipt"></i> Asistente Virtual Impuestos
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Automatización fiscal:</strong> Generación y envío automático de certificados de retenciones para el área de Impuestos del Centro de Servicios Compartidos (CSC).</p>
+
+                        <div class="info-box info-box--blue">
+                            <h5 class="accent-blue">Proceso automatizado:</h5>
+                            <ul class="styled-list">
+                                <li>Acceso automático al ERP de la compañía</li>
+                                <li>Filtrado de clientes según reglas de negocio</li>
+                                <li>Generación de certificados de IVA, ICA y Retención en la Fuente en PDF</li>
+                                <li>Envío automático por correo electrónico a proveedores</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">UiPath</span>
+                            <span class="skill-tag">VB.NET</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">ERP Integration</span>
+                            <span class="skill-tag">PDF Generation</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Automatizó emisión de certificados de impuestos, reduciendo tiempos de respuesta y mejorando experiencia de clientes.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-upload"></i> Asistente Virtual Documental
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Carga masiva inteligente:</strong> Automatización de carga de documentos de contratación para el área de Gestión del Talento.</p>
+
+                        <div class="info-box info-box--blue">
+                            <h5 class="accent-blue">Validaciones automáticas:</h5>
+                            <ul class="styled-list">
+                                <li>Validación de nombres y estructuras de archivos de empleados</li>
+                                <li>Carga masiva al ERP con verificaciones de documentos de contratación</li>
+                                <li>Generación de alertas para documentos faltantes</li>
+                                <li>Reportes de errores y correcciones necesarias</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">UiPath</span>
+                            <span class="skill-tag">VB.NET</span>
+                            <span class="skill-tag">File Processing</span>
+                            <span class="skill-tag">ERP Integration</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Facilitó proceso de contratación, reduciendo errores y tiempos de carga manual.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-file-invoice-dollar"></i> Asistente Virtual Estados de Cuenta
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Comunicación automatizada:</strong> Generación y envío de estados de cuenta para el área de Cuentas por Pagar.</p>
+
+                        <div class="info-box info-box--blue">
+                            <h5 class="accent-blue">Funcionalidades:</h5>
+                            <ul class="styled-list">
+                                <li>Generación automática de estados de cuenta de proveedores</li>
+                                <li>Consolidación mensual en formato PDF</li>
+                                <li>Envío programado a proveedores</li>
+                                <li>Trazabilidad de entregas</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">UiPath</span>
+                            <span class="skill-tag">VB.NET</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Automated Reports</span>
+                            <span class="skill-tag">Email Automation</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Redujo carga de trabajo manual del área de servicio al cliente y mejoró puntualidad de respuestas.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-shield-alt"></i> Asistente Virtual Control de Acceso
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Seguridad automatizada:</strong> Validación inteligente de accesos y documentación.</p>
+
+                        <div class="info-box info-box--blue">
+                            <h5 class="accent-blue">Sistema de validación:</h5>
+                            <ul class="styled-list">
+                                <li>Validación automática de documentación</li>
+                                <li>Verificación de fechas y restricciones</li>
+                                <li>Consultas en plataformas públicas</li>
+                                <li>Aprobaciones/rechazos automáticos</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">UiPath</span>
+                            <span class="skill-tag">VB.NET</span>
+                            <span class="skill-tag">Web Scraping</span>
+                            <span class="skill-tag">Security</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Optimizó gestión de accesos en empresas con alto flujo de personal externo, mejorando seguridad y reduciendo errores.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4 class="project-title" style="margin-bottom: 15px;">
+                            <i class="fas fa-users"></i> Asistente Virtual Terceros
+                        </h4>
+                        <p style="margin-bottom: 15px;"><strong>Integración de datos:</strong> Automatización de la creación de proveedores y clientes (terceros) en Odoo para el área contable.</p>
+
+                        <div class="info-box info-box--blue">
+                            <h5 class="accent-blue">Proceso de integración:</h5>
+                            <ul class="styled-list">
+                                <li>Extracción de datos desde API externa</li>
+                                <li>Alta automática de proveedores/clientes en Odoo</li>
+                                <li>Validaciones propias del ERP y reglas de negocio contable</li>
+                                <li>Garantía de integridad de datos entre sistemas</li>
+                            </ul>
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="skill-tag">UiPath</span>
+                            <span class="skill-tag">VB.NET</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">API Integration</span>
+                            <span class="skill-tag">Odoo</span>
+                        </div>
+
+                        <p class="project-foot"><strong>Impacto:</strong> Aceleró registro de datos de terceros, reduciendo tiempos y garantizando consistencia.</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- Experiencia Section -->
             <section id="experiencia" class="section">
                 <h2>Experiencia Profesional</h2>
-                
+
                 <div class="card job-card">
                     <h3>Desarrollador Full Stack - TurriSystem</h3>
                     <p class="job-meta">Diciembre 2024 – Marzo 2026 | Bogotá (Modalidad híbrida)</p>
@@ -243,35 +995,6 @@
                 </div>
             </section>
 
-            <!-- Educación Section -->
-            <section id="educacion" class="section">
-                <h2>Educación Formal</h2>
-                
-                <div class="card">
-                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">Especialización en Gestión de Tecnología de Información</h3>
-                    <p><strong>Universidad Corporación Unificada Nacional</strong></p>
-                    <p class="job-meta">En curso - Diciembre 2026</p>
-                </div>
-
-                <div class="card">
-                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">Ingeniería Electrónica</h3>
-                    <p><strong>Universidad Cooperativa de Colombia</strong></p>
-                    <p class="job-meta">Septiembre 2022</p>
-                </div>
-
-                <h2 style="margin-top: 40px;">Cursos y Certificaciones</h2>
-                <div class="card">
-                    <ul class="styled-list">
-                        <li>Six Sigma Mejora de procesos – Universidad EAN</li>
-                        <li>UiPath Developer – UiPath Academy</li>
-                        <li>Power Apps – Microsoft Learn</li>
-                        <li>Python – Uniagustiniana</li>
-                        <li>AutoCAD 2D – SENA</li>
-                        <li>IoT Fundamentals – Cisco</li>
-                    </ul>
-                </div>
-            </section>
-
             <!-- Habilidades Section -->
             <section id="habilidades" class="section">
                 <h2>Habilidades Técnicas</h2>
@@ -297,7 +1020,7 @@
                                 <span>VB.NET</span>
                             </div>
                             <div class="skill-icon-card">
-                                <img src="assets/icons/excel.svg" width="24" height="24" alt="Excel" style="display: block;">
+                                <img src="assets/icons/excel.svg" width="24" height="24" alt="Excel">
                                 <span>VBA</span>
                             </div>
                             <div class="skill-icon-card">
@@ -349,7 +1072,7 @@
                                 <span>SQLite</span>
                             </div>
                             <div class="skill-icon-card">
-                                <img src="assets/icons/dataverse.svg" width="24" height="24" alt="Dataverse" style="display: block;">
+                                <img src="assets/icons/dataverse.svg" width="24" height="24" alt="Dataverse">
                                 <span>Dataverse</span>
                             </div>
                             <div class="skill-icon-card">
@@ -363,11 +1086,11 @@
                         <h4><i class="fas fa-robot"></i> RPA y Automatización</h4>
                         <div class="skill-icons-grid">
                             <div class="skill-icon-card">
-                                <img src="assets/icons/uipath.svg" width="24" height="24" alt="UiPath" style="display: block;">
+                                <img src="assets/icons/uipath.svg" width="24" height="24" alt="UiPath">
                                 <span>UiPath</span>
                             </div>
                             <div class="skill-icon-card">
-                                <img src="assets/icons/powerautomate.svg" width="24" height="24" alt="Power Automate" style="display: block;">
+                                <img src="assets/icons/powerautomate.svg" width="24" height="24" alt="Power Automate">
                                 <span>Power Automate</span>
                             </div>
                             <div class="skill-icon-card">
@@ -375,7 +1098,7 @@
                                 <span>Power Virtual Agents</span>
                             </div>
                             <div class="skill-icon-card">
-                                <img src="assets/icons/excel.svg" width="24" height="24" alt="Excel" style="display: block;">
+                                <img src="assets/icons/excel.svg" width="24" height="24" alt="Excel">
                                 <span>Excel VBA</span>
                             </div>
                         </div>
@@ -393,11 +1116,11 @@
                                 <span>Postman</span>
                             </div>
                             <div class="skill-icon-card">
-                                <img src="assets/icons/powerapps.svg" width="24" height="24" alt="Power Apps" style="display: block;">
+                                <img src="assets/icons/powerapps.svg" width="24" height="24" alt="Power Apps">
                                 <span>Power Apps</span>
                             </div>
                             <div class="skill-icon-card">
-                                <img src="assets/icons/odoo.svg" width="24" height="24" alt="Odoo" style="display: block;">
+                                <img src="assets/icons/odoo.svg" width="24" height="24" alt="Odoo">
                                 <span>Odoo</span>
                             </div>
                             <div class="skill-icon-card">
@@ -455,721 +1178,32 @@
                 </div>
             </section>
 
-<!-- Proyectos Section -->
-            <section id="proyectos" class="section">
-                <h2>Proyectos Realizados</h2>
-                
-                <div class="category-cards-grid">
-                    <!-- Power Platform -->
-                    <div class="category-card" onclick="filterProjects('power-platform')" id="filter-power-platform">
-                        <div class="category-card-header">
-                            <h4>Power Platform</h4>
-                            <span class="category-badge">5 proyectos</span>
-                        </div>
-                        <div class="category-tech-icons">
-                            <div class="tech-icon-item" title="Power Apps">
-                                <img src="assets/icons/powerapps.svg" width="24" height="24" alt="Power Apps" style="display: block;">
-                            </div>
-                            <div class="tech-icon-item" title="Power Automate">
-                                <img src="assets/icons/powerautomate.svg" width="24" height="24" alt="Power Automate" style="display: block;">
-                            </div>
-                            <div class="tech-icon-item" title="Dataverse">
-                                <img src="assets/icons/dataverse.svg" width="24" height="24" alt="Dataverse" style="display: block;">
-                            </div>
-                            <div class="tech-icon-item" title="SharePoint">
-                                <img src="assets/icons/sharepoint.svg" width="24" height="24" alt="SharePoint" style="display: block;">
-                            </div>
-                            <div class="tech-icon-item" title="Power BI">
-                                <img src="assets/icons/powerbi.svg" width="24" height="24" alt="Power BI" style="display: block;">
-                            </div>
-                            <div class="tech-icon-item" title="Excel">
-                                <img src="assets/icons/excel.svg" width="24" height="24" alt="Excel" style="display: block;">
-                            </div>
-                        </div>
-                        <p class="category-card-desc">Apps empresariales, flujos y dashboards</p>
-                    </div>
+            <!-- Educación Section -->
+            <section id="educacion" class="section">
+                <h2>Educación Formal</h2>
 
-                    <!-- RPA UiPath -->
-                    <div class="category-card" onclick="filterProjects('rpa')" id="filter-rpa">
-                        <div class="category-card-header">
-                            <h4>RPA - UiPath</h4>
-                            <span class="category-badge">5 bots</span>
-                        </div>
-                        <div class="category-tech-icons">
-                            <div class="tech-icon-item" title="UiPath">
-                                <img src="assets/icons/uipath.svg" width="24" height="24" alt="UiPath" style="display: block;">
-                            </div>
-                            <div class="tech-icon-item" title="VB.NET">
-                                <i class="devicon-dot-net-plain colored"></i>
-                            </div>
-                            <div class="tech-icon-item" title="Python">
-                                <i class="devicon-python-plain colored"></i>
-                            </div>
-                            <div class="tech-icon-item" title="ERP Integration">
-                                <i class="fas fa-cogs" style="color: #6366f1;"></i>
-                            </div>
-                            <div class="tech-icon-item" title="Email Automation">
-                                <i class="fas fa-envelope" style="color: #0078D4;"></i>
-                            </div>
-                        </div>
-                        <p class="category-card-desc">UiPath + VB.NET + Python scripting</p>
-                    </div>
-
-                    <!-- Desarrollo Web -->
-                    <div class="category-card" onclick="filterProjects('web-dev')" id="filter-web-dev">
-                        <div class="category-card-header">
-                            <h4>Desarrollo Web</h4>
-                            <span class="category-badge">6 proyectos</span>
-                        </div>
-                        <div class="category-tech-icons">
-                            <div class="tech-icon-item" title="Laravel">
-                                <i class="devicon-laravel-original colored"></i>
-                            </div>
-                            <div class="tech-icon-item" title="Vue.js">
-                                <i class="devicon-vuejs-plain colored"></i>
-                            </div>
-                            <div class="tech-icon-item" title="PHP">
-                                <i class="devicon-php-plain colored"></i>
-                            </div>
-                            <div class="tech-icon-item" title="MySQL">
-                                <i class="devicon-mysql-plain colored"></i>
-                            </div>
-                            <div class="tech-icon-item" title="Tailwind CSS">
-                                <i class="devicon-tailwindcss-original colored"></i>
-                            </div>
-                            <div class="tech-icon-item" title="Odoo">
-                                <img src="assets/icons/odoo.svg" width="24" height="24" alt="Odoo" style="display: block;">
-                            </div>
-                        </div>
-                        <p class="category-card-desc">Laravel + Vue.js + Odoo Full Stack</p>
-                    </div>
-
-                    <!-- Ver Todos -->
-                    <div class="category-card category-card-all" onclick="filterProjects('all')" id="filter-all">
-                        <div class="category-card-header">
-                            <h4>Ver Todos</h4>
-                            <span class="category-badge">16 proyectos</span>
-                        </div>
-                        <div class="category-tech-icons">
-                            <div class="tech-icon-item" title="Todos">
-                                <i class="fas fa-th-large" style="color: var(--primary-color);"></i>
-                            </div>
-                        </div>
-                        <p class="category-card-desc">Explorar todos los proyectos</p>
-                    </div>
+                <div class="card">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">Especialización en Gestión de Tecnología de Información</h3>
+                    <p><strong>Universidad Corporación Unificada Nacional</strong></p>
+                    <p class="job-meta">En curso - Diciembre 2026</p>
                 </div>
 
-                <!-- Proyectos Power Platform -->
-                <div class="projects-container" data-category="power-platform">
-                    <h3 style="color: var(--primary-color); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-plug"></i> Power Platform (Power Apps, Power Automate, Dataverse, Power Virtual Agents)
-                    </h3>
-
-                    <!-- TaskTime - Destacado con galería -->
-                    <div class="card project-featured" style="margin-bottom: 30px;">
-                        <div style="display: flex; flex-wrap: wrap; gap: 25px;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                                    <h4 style="color: var(--secondary-color); margin: 0;">
-                                        <i class="fas fa-clock"></i> TaskTime - Registro de Tiempo
-                                    </h4>
-                                    <span style="background: linear-gradient(135deg, #6d28d9, #5b21b6); color: white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">POWER PLATFORM</span>
-                                </div>
-                                <p style="margin-bottom: 15px;"><strong>Plataforma de seguimiento de tiempo</strong> para el Centro de Servicios Compartidos (CSC), recopilando y analizando tiempo dedicado a proyectos y servicios en múltiples áreas de negocio.</p>
-
-                                <div style="background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #8b5cf6;">
-                                    <h5 class="accent-purple" style="margin-bottom: 10px;">Capacidades del sistema:</h5>
-                                    <ul class="styled-list" style="margin-bottom: 0;">
-                                        <li>Registro de actividades con formularios intuitivos</li>
-                                        <li>Reportes mensuales por empleado, cliente y proyecto</li>
-                                        <li>Dashboard para líderes de procesos</li>
-                                        <li>Exportación a Excel y Power BI</li>
-                                    </ul>
-                                </div>
-
-                                <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Power Apps</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Power Automate</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Dataverse</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Power BI</span>
-                                </div>
-
-                                <p style="font-style: italic; color: var(--text-light); font-size: 0.9rem;"><i class="fas fa-building"></i> Desarrollado en Thomas Greg and Sons</p>
-                            </div>
-                            <div style="flex: 1; min-width: 300px;">
-                                <div class="project-gallery" data-project="tasktime">
-                                    <div class="gallery-main">
-                                        <img src="assets/images/projects/tasktime/screenshot1.png" alt="TaskTime Screenshot 1" class="gallery-image active" onclick="openImageModal(this.src)">
-                                    </div>
-                                    <div class="gallery-thumbs">
-                                        <img src="assets/images/projects/tasktime/screenshot1.png" alt="Thumb 1" class="thumb active" onclick="changeGalleryImage(this, 'tasktime')">
-                                        <img src="assets/images/projects/tasktime/screenshot2.png" alt="Thumb 2" class="thumb" onclick="changeGalleryImage(this, 'tasktime')">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-map-marker-alt"></i> Reserva de Zonas Corporativas
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Gestión integral de espacios:</strong> Puestos de trabajo, oficinas, salas de reuniones, parqueaderos y salas de capacitación.</p>
-                        
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 style="color: var(--primary-color); margin-bottom: 10px;">Características destacadas:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li>Plano interactivo para selección de ubicaciones exactas</li>
-                                <li>Validaciones automáticas de capacidad y disponibilidad</li>
-                                <li>Función de habilitar/deshabilitar zonas específicas</li>
-                                <li>Flujo de aprobación para personal externo</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span class="skill-tag" style="font-size: 0.8rem;">Power Apps</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">Power Automate</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">Dataverse</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">SharePoint</span>
-                        </div>
-                        
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Optimizó la gestión de espacios corporativos, reduciendo conflictos en reservas y aumentando la eficiencia del uso de recursos.</p>
-                    </div>
-
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-gift"></i> Gestión de Beneficios a Empleados
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Dashboard personalizado</strong> para que cada empleado visualice y administre sus beneficios laborales.</p>
-                        
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 style="color: var(--primary-color); margin-bottom: 10px;">Funcionalidades principales:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li>Visualización de horas y días de beneficios disponibles</li>
-                                <li>Solicitud organizada de permisos</li>
-                                <li>Beneficios configurables adaptables a políticas empresariales</li>
-                                <li>Control de beneficios no acumulables</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span class="skill-tag" style="font-size: 0.8rem;">Power Apps</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">Dataverse</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">Control de Roles</span>
-                        </div>
-                        
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Facilitó la administración de beneficios, reduciendo carga administrativa y mejorando transparencia en comunicación con empleados.</p>
-                    </div>
-
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-file-alt"></i> Gestión Documental
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Sistema integral</strong> para gestionar solicitudes de desarrollos internos con trazabilidad completa.</p>
-                        
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 style="color: var(--primary-color); margin-bottom: 10px;">Características avanzadas:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li>Creación automática de tickets de mesa de ayuda</li>
-                                <li>Seguimiento detallado con historial completo</li>
-                                <li>Generación automática de documentos PDF</li>
-                                <li>Envío automático por correo electrónico</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span class="skill-tag" style="font-size: 0.8rem;">Power Apps</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">Power Automate</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">SharePoint</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">PDF Generation</span>
-                        </div>
-                        
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Automatizó gestión de solicitudes, mejorando trazabilidad y reduciendo tiempos de resolución de incidentes.</p>
-                    </div>
-
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-comments"></i> Chatbots de Autogestión para Empleados
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Asistentes virtuales</strong> desarrollados con Power Virtual Agents para resolver consultas frecuentes y reducir la carga operativa del área de nómina y RRHH.</p>
-
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 style="color: var(--primary-color); margin-bottom: 10px;">Funcionalidades principales:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li>Consulta de días acumulados de vacaciones e información general de nómina</li>
-                                <li>Respuestas automáticas a preguntas frecuentes de empleados</li>
-                                <li>Generación automática de documentos como certificados laborales</li>
-                                <li>Gestión de solicitudes desde el chatbot sin intervención del área de nómina</li>
-                            </ul>
-                        </div>
-
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span class="skill-tag" style="font-size: 0.8rem;">Power Virtual Agents</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">Power Automate</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">Dataverse</span>
-                            <span class="skill-tag" style="font-size: 0.8rem;">SharePoint</span>
-                        </div>
-
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Redujo significativamente las consultas presenciales al área de nómina, liberando tiempo operativo y permitiendo a los empleados resolver sus dudas de forma autónoma e inmediata.</p>
-                    </div>
+                <div class="card">
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">Ingeniería Electrónica</h3>
+                    <p><strong>Universidad Cooperativa de Colombia</strong></p>
+                    <p class="job-meta">Septiembre 2022</p>
                 </div>
 
-                <!-- Proyectos RPA -->
-                <div class="projects-container" data-category="rpa">
-                    <h3 style="color: var(--primary-color); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-robot"></i> Automatización RPA con UiPath
-                    </h3>
-
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-receipt"></i> Asistente Virtual Impuestos
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Automatización fiscal:</strong> Generación y envío automático de certificados de retenciones para el área de Impuestos del Centro de Servicios Compartidos (CSC).</p>
-
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 class="accent-blue" style="margin-bottom: 10px;">Proceso automatizado:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li>Acceso automático al ERP de la compañía</li>
-                                <li>Filtrado de clientes según reglas de negocio</li>
-                                <li>Generación de certificados de IVA, ICA y Retención en la Fuente en PDF</li>
-                                <li>Envío automático por correo electrónico a proveedores</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">UiPath</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">VB.NET</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Python</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">ERP Integration</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">PDF Generation</span>
-                        </div>
-                        
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Automatizó emisión de certificados de impuestos, reduciendo tiempos de respuesta y mejorando experiencia de clientes.</p>
-                    </div>
-
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-upload"></i> Asistente Virtual Documental
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Carga masiva inteligente:</strong> Automatización de carga de documentos de contratación para el área de Gestión del Talento.</p>
-
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 class="accent-blue" style="margin-bottom: 10px;">Validaciones automáticas:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li>Validación de nombres y estructuras de archivos de empleados</li>
-                                <li>Carga masiva al ERP con verificaciones de documentos de contratación</li>
-                                <li>Generación de alertas para documentos faltantes</li>
-                                <li>Reportes de errores y correcciones necesarias</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">UiPath</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">VB.NET</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">File Processing</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">ERP Integration</span>
-                        </div>
-                        
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Facilitó proceso de contratación, reduciendo errores y tiempos de carga manual.</p>
-                    </div>
-
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-file-invoice-dollar"></i> Asistente Virtual Estados de Cuenta
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Comunicación automatizada:</strong> Generación y envío de estados de cuenta para el área de Cuentas por Pagar.</p>
-
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 class="accent-blue" style="margin-bottom: 10px;">Funcionalidades:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li>Generación automática de estados de cuenta de proveedores</li>
-                                <li>Consolidación mensual en formato PDF</li>
-                                <li>Envío programado a proveedores</li>
-                                <li>Trazabilidad de entregas</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">UiPath</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">VB.NET</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Python</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Automated Reports</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Email Automation</span>
-                        </div>
-                        
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Redujo carga de trabajo manual del área de servicio al cliente y mejoró puntualidad de respuestas.</p>
-                    </div>
-
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-shield-alt"></i> Asistente Virtual Control de Acceso
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Seguridad automatizada:</strong> Validación inteligente de accesos y documentación.</p>
-                        
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 class="accent-blue" style="margin-bottom: 10px;">Sistema de validación:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li>Validación automática de documentación</li>
-                                <li>Verificación de fechas y restricciones</li>
-                                <li>Consultas en plataformas públicas</li>
-                                <li>Aprobaciones/rechazos automáticos</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">UiPath</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">VB.NET</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Web Scraping</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Security</span>
-                        </div>
-                        
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Optimizó gestión de accesos en empresas con alto flujo de personal externo, mejorando seguridad y reduciendo errores.</p>
-                    </div>
-
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-users"></i> Asistente Virtual Terceros
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Integración de datos:</strong> Automatización de la creación de proveedores y clientes (terceros) en Odoo para el área contable.</p>
-
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 class="accent-blue" style="margin-bottom: 10px;">Proceso de integración:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li>Extracción de datos desde API externa</li>
-                                <li>Alta automática de proveedores/clientes en Odoo</li>
-                                <li>Validaciones propias del ERP y reglas de negocio contable</li>
-                                <li>Garantía de integridad de datos entre sistemas</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">UiPath</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">VB.NET</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Python</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">API Integration</span>
-                            <span style="background: linear-gradient(135deg, #1d4ed8, #2563eb); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Odoo</span>
-                        </div>
-                        
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Aceleró registro de datos de terceros, reduciendo tiempos y garantizando consistencia.</p>
-                    </div>
-                </div>
-
-                <!-- Proyectos Desarrollo Web -->
-                <div class="projects-container" data-category="web-dev">
-                    <h3 style="color: var(--primary-color); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-code"></i> Desarrollo Web Full Stack (Laravel + Vue.js)
-                    </h3>
-
-                    <!-- PetuniaPlay - CON GALERÍA -->
-                    <div class="card project-featured" style="margin-bottom: 30px;">
-                        <div style="display: flex; flex-wrap: wrap; gap: 25px;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <h4 style="color: var(--secondary-color); margin: 0;">
-                                        <i class="fas fa-paw"></i> PetuniaPlay - E-commerce para Mascotas
-                                    </h4>
-                                    <span style="background: linear-gradient(135deg, #047857, #065f46); color: white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">PROYECTO PERSONAL</span>
-                                </div>
-                                <p style="margin-bottom: 15px;"><strong>Sistema completo de e-commerce</strong> especializado en productos para mascotas. Arquitectura REST API (Laravel 12) + SPA (Vue.js 3) con programa de fidelidad, cupones avanzados y cumplimiento legal colombiano.</p>
-
-                                <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #10b981;">
-                                    <h5 class="accent-green" style="margin-bottom: 10px;">Funcionalidades principales:</h5>
-                                    <ul class="styled-list" style="margin-bottom: 0;">
-                                        <li>Catálogo con filtros avanzados, carrito y checkout completo</li>
-                                        <li>Sistema de cupones con validaciones y programa de fidelidad</li>
-                                        <li>Panel admin con dashboard, gestión de inventario y despachos</li>
-                                        <li>Reseñas, wishlist, Q&A y rastreo de pedidos</li>
-                                        <li>Autenticación Sanctum, roles (admin/manager/customer)</li>
-                                        <li>Dark mode, diseño responsive y cumplimiento Ley 1581/2012</li>
-                                    </ul>
-                                </div>
-
-                                <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Laravel 12</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Vue.js 3</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">PHP 8.2</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">MySQL</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Tailwind CSS</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">PrimeVue</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Pinia</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">REST API</span>
-                                </div>
-
-                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
-                                    <a href="https://tienda.deepdev.com.co" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #047857, #065f46); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
-                                    </a>
-                                    <a href="https://github.com/ROBOCOP3PK/PetuniaPlay" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                                        <i class="fab fa-github"></i> Ver en GitHub
-                                    </a>
-                                </div>
-
-                                <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;"><i class="fas fa-server"></i> Desplegado en servidor propio | 22 modelos | 33 vistas Vue | 37 migraciones</p>
-                            </div>
-                            <div style="flex: 1; min-width: 300px;">
-                                <div class="project-gallery" data-project="petuniaplay">
-                                    <div class="gallery-main">
-                                        <img src="assets/images/projects/petuniaplay/screenshot1.png" alt="PetuniaPlay Screenshot 1" class="gallery-image active" onclick="openImageModal(this.src)">
-                                    </div>
-                                    <div class="gallery-thumbs">
-                                        <img src="assets/images/projects/petuniaplay/screenshot1.png" alt="Thumb 1" class="thumb active" onclick="changeGalleryImage(this, 'petuniaplay')">
-                                        <img src="assets/images/projects/petuniaplay/screenshot2.png" alt="Thumb 2" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
-                                        <img src="assets/images/projects/petuniaplay/screenshot3.png" alt="Thumb 3" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
-                                        <img src="assets/images/projects/petuniaplay/screenshot4.png" alt="Thumb 4" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
-                                        <img src="assets/images/projects/petuniaplay/screenshot5.png" alt="Thumb 5" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
-                                        <img src="assets/images/projects/petuniaplay/screenshot6.png" alt="Thumb 6" class="thumb" onclick="changeGalleryImage(this, 'petuniaplay')">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Defensoría - CON GALERÍA -->
-                    <div class="card project-featured" style="margin-bottom: 30px;">
-                        <div style="display: flex; flex-wrap: wrap; gap: 25px;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                                    <h4 style="color: var(--secondary-color); margin: 0;">
-                                        <i class="fas fa-university"></i> Sistema de Gestión de Demandas
-                                    </h4>
-                                    <span style="background: linear-gradient(135deg, #2563eb, #1e40af); color: white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">PROYECTO LABORAL</span>
-                                </div>
-                                <p style="margin-bottom: 15px;"><strong>Plataforma web para entidades públicas</strong> - Sistema crítico para gestión de demandas del sector público colombiano.</p>
-
-                                <div style="background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--primary-color);">
-                                    <h5 style="color: var(--primary-color); margin-bottom: 10px;">Módulos desarrollados:</h5>
-                                    <ul class="styled-list" style="margin-bottom: 0;">
-                                        <li>Gestión de Pagos con validaciones bancarias</li>
-                                        <li>Distribución automática de intereses</li>
-                                        <li>Generación de reportes PDF oficiales</li>
-                                        <li>Panel de administración completo</li>
-                                    </ul>
-                                </div>
-
-                                <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Laravel</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Vue.js</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">MySQL</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">ORACLE</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Tailwind CSS</span>
-                                </div>
-
-                                <p style="font-style: italic; color: var(--text-light); font-size: 0.9rem;"><i class="fas fa-building"></i> Desarrollado en TurriSystem para el sector público</p>
-                            </div>
-                            <div style="flex: 1; min-width: 300px;">
-                                <div class="project-gallery" data-project="defensoria">
-                                    <div class="gallery-main">
-                                        <img src="assets/images/projects/defensoria/screenshot1.jpeg" alt="Defensoría Screenshot 1" class="gallery-image active" onclick="openImageModal(this.src)">
-                                    </div>
-                                    <div class="gallery-thumbs">
-                                        <img src="assets/images/projects/defensoria/screenshot1.jpeg" alt="Thumb 1" class="thumb active" onclick="changeGalleryImage(this, 'defensoria')">
-                                        <img src="assets/images/projects/defensoria/screenshot2.jpeg" alt="Thumb 2" class="thumb" onclick="changeGalleryImage(this, 'defensoria')">
-                                        <img src="assets/images/projects/defensoria/screenshot3.jpeg" alt="Thumb 3" class="thumb" onclick="changeGalleryImage(this, 'defensoria')">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Finanzas Compartidas -->
-                    <div class="card project-featured" style="margin-bottom: 30px;">
-                        <div style="display: flex; flex-wrap: wrap; gap: 25px;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <h4 style="color: var(--secondary-color); margin: 0;">
-                                        <i class="fas fa-wallet"></i> Finanzas Compartidas - Gestión de Gastos
-                                    </h4>
-                                    <span style="background: linear-gradient(135deg, #047857, #065f46); color: white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">PROYECTO PERSONAL</span>
-                                    <span style="background: linear-gradient(135deg, #b45309, #92400e); color: white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">PWA</span>
-                                </div>
-                                <p style="margin-bottom: 15px;"><strong>Aplicación PWA completa</strong> para gestión de gastos personales y compartidos con pareja. Calcula automáticamente deudas, soporta funcionamiento offline con sincronización, y está desplegada en servidor propio con Cloudflare Tunnel.</p>
-
-                                <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #10b981;">
-                                    <h5 class="accent-green" style="margin-bottom: 10px;">Funcionalidades principales:</h5>
-                                    <ul class="styled-list" style="margin-bottom: 0;">
-                                        <li>Dashboard con deuda en tiempo real y resumen mensual por categoría</li>
-                                        <li>Gastos personales, compartidos (%) y de pareja con cálculo automático</li>
-                                        <li>Sistema de servicios/recibos con ciclos de facturación configurables</li>
-                                        <li>Plantillas rápidas para registro de gastos frecuentes en 2-3 taps</li>
-                                        <li>PWA offline con IndexedDB, sincronización y manejo de conflictos</li>
-                                        <li>Autenticación Sanctum con verificación email y dark mode</li>
-                                        <li>Exportación de datos a CSV y PDF para reportes</li>
-                                    </ul>
-                                </div>
-
-                                <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Laravel 12</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Vue.js 3</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Pinia</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Tailwind CSS</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">SQLite</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Sanctum</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">PWA</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">IndexedDB</span>
-                                </div>
-
-                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
-                                    <a href="https://finanzas.deepdev.com.co" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #047857, #065f46); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
-                                    </a>
-                                    <a href="https://github.com/ROBOCOP3PK/finanzas" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                                        <i class="fab fa-github"></i> Ver en GitHub
-                                    </a>
-                                </div>
-
-                                <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;"><i class="fas fa-server"></i> Desplegado en servidor casero (Ubuntu + Nginx + Cloudflare Tunnel)</p>
-                            </div>
-                            <div style="flex: 1; min-width: 300px;">
-                                <div class="project-gallery" data-project="finanzas">
-                                    <div class="gallery-main">
-                                        <img src="assets/images/projects/finanzas/screenshot1.jpeg" alt="Finanzas Compartidas Screenshot 1" class="gallery-image active" onclick="openImageModal(this.src)">
-                                    </div>
-                                    <div class="gallery-thumbs">
-                                        <img src="assets/images/projects/finanzas/screenshot1.jpeg" alt="Thumb 1" class="thumb active" onclick="changeGalleryImage(this, 'finanzas')">
-                                        <img src="assets/images/projects/finanzas/screenshot2.jpeg" alt="Thumb 2" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
-                                        <img src="assets/images/projects/finanzas/screenshot3.jpeg" alt="Thumb 3" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
-                                        <img src="assets/images/projects/finanzas/screenshot4.jpeg" alt="Thumb 4" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
-                                        <img src="assets/images/projects/finanzas/screenshot5.jpeg" alt="Thumb 5" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
-                                        <img src="assets/images/projects/finanzas/screenshot6.jpeg" alt="Thumb 6" class="thumb" onclick="changeGalleryImage(this, 'finanzas')">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- VigilIA - SIN GALERÍA -->
-                    <div class="card project-featured" style="margin-bottom: 30px;">
-                        <div style="display: flex; flex-wrap: wrap; gap: 25px;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <h4 style="color: var(--secondary-color); margin: 0;">
-                                        <i class="fas fa-shield-halved"></i> VigilIA - Administración de Conjuntos Residenciales
-                                    </h4>
-                                    <span style="background: linear-gradient(135deg, #047857, #065f46); color: white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">PROYECTO PERSONAL</span>
-                                </div>
-                                <p style="margin-bottom: 15px;"><strong>Sistema integral de administración de conjuntos residenciales</strong> con arquitectura multi-tenant. REST API (Laravel 12) + SPA (Vue.js 3) con 8 módulos funcionales, gestión de roles y permisos granulares, y despliegue automatizado.</p>
-
-                                <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #10b981;">
-                                    <h5 class="accent-green" style="margin-bottom: 10px;">Funcionalidades principales:</h5>
-                                    <ul class="styled-list" style="margin-bottom: 0;">
-                                        <li>Control de acceso vehicular y peatonal con registro de visitantes</li>
-                                        <li>Facturación, cartera y gestión de pagos por unidad</li>
-                                        <li>Reservas de áreas comunes con validación de disponibilidad</li>
-                                        <li>Sistema de PQRS con seguimiento y categorización</li>
-                                        <li>Módulo de emergencias y comunicados</li>
-                                        <li>Multi-tenancy por propiedad, 7 roles y 105 permisos</li>
-                                    </ul>
-                                </div>
-
-                                <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Laravel 12</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Vue.js 3</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">PHP 8.4</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">MySQL</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Tailwind CSS</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Sanctum</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Spatie Permission</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Redis</span>
-                                </div>
-
-                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
-                                    <a href="https://vigilia.deepdev.com.co" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #047857, #065f46); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                                        <i class="fas fa-external-link-alt"></i> Ver Aplicación
-                                    </a>
-                                    <a href="https://github.com/ROBOCOP3PK/vigilia" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                                        <i class="fab fa-github"></i> Ver en GitHub
-                                    </a>
-                                </div>
-
-                                <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;"><i class="fas fa-server"></i> Desplegado en servidor propio | 8 módulos | 105 permisos | CI/CD con GitHub Actions</p>
-                            </div>
-                            <div style="flex: 1; min-width: 300px;">
-                                <div class="project-icon-display">
-                                    <i class="fas fa-shield-halved"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Valera Emocional - SIN GALERÍA -->
-                    <div class="card project-featured" style="margin-bottom: 30px;">
-                        <div style="display: flex; flex-wrap: wrap; gap: 25px;">
-                            <div style="flex: 1; min-width: 300px;">
-                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <h4 style="color: var(--secondary-color); margin: 0;">
-                                        <i class="fas fa-hand-holding-heart"></i> Valera Emocional - Bienestar Laboral
-                                    </h4>
-                                    <span style="background: linear-gradient(135deg, #047857, #065f46); color: white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">PROYECTO PERSONAL</span>
-                                    <span style="background: linear-gradient(135deg, #b45309, #92400e); color: white; padding: 4px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">PWA</span>
-                                </div>
-                                <p style="margin-bottom: 15px;"><strong>Plataforma SaaS multi-tenant de bienestar y permisos laborales.</strong> Permite a empresas gestionar solicitudes de permisos con aprobaciones jerárquicas, motor de reglas configurable y dashboards de analítica.</p>
-
-                                <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #10b981;">
-                                    <h5 class="accent-green" style="margin-bottom: 10px;">Funcionalidades principales:</h5>
-                                    <ul class="styled-list" style="margin-bottom: 0;">
-                                        <li>Flujos de aprobación jerárquicos multinivel</li>
-                                        <li>Motor de reglas configurable por empresa</li>
-                                        <li>Dashboard de analítica con gráficos interactivos</li>
-                                        <li>Integración con Slack y Microsoft Teams</li>
-                                        <li>PWA con funcionamiento offline</li>
-                                        <li>Multi-tenancy completo con aislamiento por empresa</li>
-                                    </ul>
-                                </div>
-
-                                <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Laravel 12</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Vue.js 3</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">TypeScript</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">PHP 8.2</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">MySQL</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Tailwind CSS</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">Chart.js</span>
-                                    <span class="skill-tag" style="font-size: 0.8rem;">PWA</span>
-                                </div>
-
-                                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
-                                    <a href="https://github.com/ROBOCOP3PK/valera" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background: var(--gradient); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                                        <i class="fab fa-github"></i> Ver en GitHub
-                                    </a>
-                                </div>
-
-                                <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;"><i class="fas fa-code-branch"></i> En desarrollo activo | Arquitectura SaaS multi-tenant</p>
-                            </div>
-                            <div style="flex: 1; min-width: 300px;">
-                                <div class="project-icon-display">
-                                    <i class="fas fa-hand-holding-heart"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Odoo - SIN GALERÍA -->
-                    <div class="card">
-                        <h4 style="color: var(--secondary-color); margin-bottom: 15px;">
-                            <i class="fas fa-cogs"></i> Personalización de Módulos Odoo
-                        </h4>
-                        <p style="margin-bottom: 15px;"><strong>Desarrollo y mantenimiento</strong> de módulos personalizados en Odoo, el ERP seleccionado para reemplazar SAP en la organización, implementado en 8 módulos (Finanzas, RRHH, CRM, Producción, Nómina, Mesa de Ayuda, entre otros).</p>
-
-                        <div style="background: rgba(14, 165, 233, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                            <h5 class="accent-sky" style="margin-bottom: 10px;">Trabajos realizados:</h5>
-                            <ul class="styled-list" style="margin-bottom: 0;">
-                                <li><strong>Módulo "Scrum Web":</strong> Inclusión de nuevos campos funcionales</li>
-                                <li>Modificación de reglas de negocio según nuevos requisitos</li>
-                                <li>Ajustes visuales y mejoras en la interfaz de usuario</li>
-                                <li>Corrección de errores y optimización de acciones específicas</li>
-                                <li>Documentación técnica de cambios implementados</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                            <span style="background: linear-gradient(135deg, #0369a1, #075985); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Odoo</span>
-                            <span style="background: linear-gradient(135deg, #0369a1, #075985); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">Python</span>
-                            <span style="background: linear-gradient(135deg, #0369a1, #075985); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">XML</span>
-                            <span style="background: linear-gradient(135deg, #0369a1, #075985); color: white; padding: 4px 8px; border-radius: 15px; font-size: 0.8rem;">PostgreSQL</span>
-                        </div>
-                        
-                        <p style="font-style: italic; color: var(--text-light); margin-bottom: 0;"><strong>Impacto:</strong> Mejoró usabilidad y funcionalidad de módulos existentes, garantizando experiencia más fluida para usuarios finales.</p>
-                    </div>
+                <h2 style="margin-top: 40px;">Cursos y Certificaciones</h2>
+                <div class="card">
+                    <ul class="styled-list">
+                        <li>Six Sigma Mejora de procesos – Universidad EAN</li>
+                        <li>UiPath Developer – UiPath Academy</li>
+                        <li>Power Apps – Microsoft Learn</li>
+                        <li>Python – Uniagustiniana</li>
+                        <li>AutoCAD 2D – SENA</li>
+                        <li>IoT Fundamentals – Cisco</li>
+                    </ul>
                 </div>
             </section>
 
@@ -1206,13 +1240,51 @@
 
                     <div class="diagram-title">
                         <h3>Red de Habilidades</h3>
-                        <p>Haz hover sobre los nodos</p>
+                        <p>Toca o pasa el cursor sobre los nodos</p>
                     </div>
 
                     <div class="network-container">
                         <div class="network" id="network">
                             <!-- Los nodos se generarán dinámicamente -->
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contacto Section -->
+            <section id="contacto" class="section">
+                <h2>Trabajemos juntos</h2>
+                <div class="card contact-card">
+                    <p class="contact-availability">
+                        <span class="contact-status-dot"></span>
+                        Disponible para roles <strong>Full Stack remotos</strong> · Bogotá (GMT-5) · Español / Inglés B2
+                    </p>
+                    <p class="contact-intro">
+                        ¿Tienes un proyecto o una vacante donde Laravel + Vue.js encajen? Hablemos. Respondo rápido por correo o WhatsApp.
+                    </p>
+
+                    <div class="contact-actions">
+                        <a href="mailto:davidsgonzalez98@hotmail.com" class="btn-demo">
+                            <i class="fas fa-envelope"></i> Escríbeme un correo
+                        </a>
+                        <a href="https://wa.me/573057594088" target="_blank" rel="noopener noreferrer" class="btn-repo">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                        <button class="btn-repo" onclick="CVGenerator.generate()">
+                            <i class="fas fa-download"></i> Descargar CV
+                        </button>
+                    </div>
+
+                    <div class="contact-links">
+                        <a href="https://www.linkedin.com/in/david-steven-gonzalez-padilla" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <i class="fab fa-linkedin"></i> linkedin.com/in/david-steven-gonzalez-padilla
+                        </a>
+                        <a href="https://github.com/ROBOCOP3PK" target="_blank" rel="noopener noreferrer" class="contact-link">
+                            <i class="fab fa-github"></i> github.com/ROBOCOP3PK
+                        </a>
+                        <a href="tel:+573057594088" class="contact-link">
+                            <i class="fas fa-phone"></i> +57 305 759 4088
+                        </a>
                     </div>
                 </div>
             </section>
@@ -1249,11 +1321,16 @@
         "email": "davidsgonzalez98@hotmail.com",
         "telephone": "+57-3057594088",
         "url": "https://portafolio.deepdev.com.co",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bogotá",
+            "addressCountry": "CO"
+        },
         "alumniOf": {
             "@type": "EducationalOrganization",
             "name": "Universidad Cooperativa de Colombia"
         },
-        "knowsAbout": ["Laravel", "Vue.js", "PHP", "JavaScript", "RPA", "UiPath", "Power Platform", "MySQL", "ORACLE"],
+        "knowsAbout": ["Laravel", "Vue.js", "PHP", "JavaScript", "TypeScript", "RPA", "UiPath", "Power Platform", "MySQL", "ORACLE"],
         "sameAs": [
             "https://www.linkedin.com/in/david-steven-gonzalez-padilla",
             "https://github.com/ROBOCOP3PK"
@@ -1262,12 +1339,12 @@
     </script>
 
     <!-- Image Modal -->
-    <div class="image-modal" id="imageModal" onclick="closeImageModal()">
-        <button class="modal-close" onclick="closeImageModal()">&times;</button>
-        <img src="" alt="Preview" id="modalImage">
+    <div class="image-modal" id="imageModal" role="dialog" aria-modal="true" aria-label="Vista ampliada de imagen" onclick="closeImageModal()">
+        <button class="modal-close" onclick="closeImageModal()" aria-label="Cerrar imagen ampliada">&times;</button>
+        <img src="" alt="Vista ampliada del proyecto" id="modalImage">
     </div>
 
     <!-- Main JavaScript -->
-    <script src="js/main.js?v=4" defer></script>
+    <script src="js/main.js?v=5" defer></script>
 </body>
-</html> 
+</html>

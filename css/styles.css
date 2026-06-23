@@ -25,6 +25,13 @@
     --glass-border-hover: rgba(255,255,255,0.55);
     --glass-shadow-inset: rgba(255,255,255,0.45);
     --glass-nav-bg: linear-gradient(180deg, rgba(248,250,252,0.07) 0%, rgba(248,250,252,0.03) 100%);
+    /* CTA accent (ámbar) — único color reservado para acciones: demos en vivo y botones principales */
+    --cta: #b45309;
+    --cta-grad: linear-gradient(135deg, #b45309, #92400e);
+    /* Chips neutros: las etiquetas de tecnología pasan a segundo plano para que badges/CTA destaquen */
+    --chip-bg: #eef2f7;
+    --chip-text: #374151;
+    --chip-border: #e2e8f0;
 }
 
 /* Dark Mode Variables */
@@ -49,6 +56,11 @@
     --glass-border-hover: rgba(255,255,255,0.20);
     --glass-shadow-inset: rgba(255,255,255,0.15);
     --glass-nav-bg: linear-gradient(180deg, rgba(15,23,42,0.07) 0%, rgba(15,23,42,0.03) 100%);
+    --cta: #fbbf24;
+    --cta-grad: linear-gradient(135deg, #d97706, #b45309);
+    --chip-bg: rgba(255,255,255,0.06);
+    --chip-text: #cbd5e1;
+    --chip-border: rgba(255,255,255,0.12);
 }
 
 body {
@@ -136,8 +148,91 @@ body {
 
 .hero .subtitle {
     font-size: 1.3rem;
-    margin-bottom: 30px;
-    opacity: 0.9;
+    margin-bottom: 18px;
+}
+
+/* Hero tagline — propuesta de valor en una línea */
+.hero-tagline {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 620px;
+    margin: 0 auto 26px;
+    color: rgba(255,255,255,0.92);
+}
+
+.hero-tagline strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Hero stats — prueba de un vistazo */
+.hero-stats {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin: 0 auto 28px;
+    padding: 0;
+    max-width: 640px;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+    padding: 12px 18px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 12px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    line-height: 1.25;
+}
+
+.hero-stat strong {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.hero-stat span {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.85);
+}
+
+/* Hero actions — CTA primario (ámbar) + CV secundario */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+.btn-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cta-grad);
+    color: #fff;
+    padding: 13px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(146, 64, 14, 0.35);
+    transition: all 0.3s ease;
+}
+
+.btn-cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(146, 64, 14, 0.45);
 }
 
 .contact-info {
@@ -271,6 +366,22 @@ body {
 .nav-link:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: -2px;
+}
+
+/* Foco visible consistente para todos los controles interactivos (teclado) */
+.btn-cta-primary:focus-visible,
+.btn-download:focus-visible,
+.btn-demo:focus-visible,
+.btn-repo:focus-visible,
+.category-card:focus-visible,
+.contact-link:focus-visible,
+.gallery-main img:focus-visible,
+.gallery-thumbs .thumb:focus-visible,
+.modal-close:focus-visible,
+.theme-toggle:focus-visible,
+.node:focus-visible {
+    outline: 3px solid var(--cta);
+    outline-offset: 3px;
 }
 
 /* Content Sections */
@@ -542,12 +653,297 @@ body {
 }
 
 .skill-tag {
-    background: var(--gradient);
-    color: white;
+    background: var(--chip-bg);
+    color: var(--chip-text);
+    border: 1px solid var(--chip-border);
     padding: 6px 12px;
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
+}
+
+/* ================================
+   PROJECT LAYOUT, BADGES & ACTION BUTTONS
+   (clases reutilizables que reemplazan estilos inline duplicados)
+   ================================ */
+.project-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.project-col {
+    flex: 1;
+    min-width: 300px;
+}
+
+.project-featured { margin-bottom: 30px; }
+
+.project-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.project-title {
+    color: var(--secondary-color);
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.project-lead { margin-bottom: 15px; }
+
+.project-foot {
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.project-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.projects-group-title {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Cajas de info con borde de color por familia de proyecto */
+.info-box {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary-color);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.info-box h5 { margin-bottom: 10px; }
+.info-box .styled-list { margin-bottom: 0; }
+.info-box--green  { background: rgba(16, 185, 129, 0.1);  border-left-color: #10b981; }
+.info-box--purple { background: rgba(139, 92, 246, 0.1);  border-left-color: #8b5cf6; }
+.info-box--sky    { background: rgba(14, 165, 233, 0.06); border-left-color: #0ea5e9; }
+
+/* Badges de tipo de proyecto — un solo sistema consistente */
+.proj-badge {
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.proj-badge--personal { background: linear-gradient(135deg, #047857, #065f46); }
+.proj-badge--labor    { background: linear-gradient(135deg, #2563eb, #1e40af); }
+.proj-badge--platform { background: linear-gradient(135deg, #6d28d9, #5b21b6); }
+.proj-badge--pwa      { background: linear-gradient(135deg, #0e7490, #155e75); }
+.proj-badge--wip      { background: linear-gradient(135deg, #475569, #334155); }
+
+/* Badge "Demo en vivo" — usa el acento ámbar para señalar lo más valioso */
+.demo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--cta-grad);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.demo-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 0 0 rgba(255,255,255,0.8);
+    animation: demoPulse 1.8s infinite;
+}
+
+@keyframes demoPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+    70%  { box-shadow: 0 0 0 6px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+
+/* Botón "Ver Aplicación" (acción primaria, ámbar) vs "GitHub" (secundario, ghost) */
+.btn-demo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cta-grad);
+    color: #fff;
+    padding: 11px 22px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(146, 64, 14, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-demo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(146, 64, 14, 0.4);
+}
+
+.btn-repo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 0.95rem;
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-repo:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Lockup de tecnologías para proyectos sin galería (reemplaza el icono solitario) */
+.tech-lockup {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    height: 250px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(59, 130, 246, 0.04));
+    overflow: hidden;
+}
+
+[data-theme="dark"] .tech-lockup {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));
+}
+
+.tech-lockup-bg {
+    position: absolute;
+    right: -10px;
+    bottom: -20px;
+    font-size: 150px;
+    color: var(--primary-color);
+    opacity: 0.08;
+    line-height: 1;
+}
+
+.tech-lockup-icons {
+    display: flex;
+    gap: 18px;
+    font-size: 2.4rem;
+    z-index: 1;
+}
+
+.tech-lockup-label {
+    z-index: 1;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+/* ================================
+   CONTACT SECTION
+   ================================ */
+.contact-card { text-align: center; }
+
+.contact-availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+}
+
+.contact-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: demoPulse 1.8s infinite;
+    flex-shrink: 0;
+}
+
+.contact-intro {
+    max-width: 560px;
+    margin: 0 auto 26px;
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.contact-link i {
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.contact-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
 }
 
 /* Lists */
@@ -669,39 +1065,6 @@ footer {
     display: none;
 }
 
-/* Hamburger Menu */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    padding: 10px;
-    background: none;
-    border: none;
-    z-index: 1001;
-}
-
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: var(--primary-color);
-    margin: 3px 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 3px;
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-    transform: translateX(-10px);
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-}
-
 /* Mobile Carousel Navigation */
 .mobile-nav-dots {
     display: none;
@@ -796,10 +1159,6 @@ footer {
     }
 
     .nav-list {
-        display: none;
-    }
-
-    .hamburger {
         display: none;
     }
 
@@ -1569,10 +1928,18 @@ footer {
    CUSTOM CURSOR EFFECTS
    ====================== */
 
-/* Hide native cursor on devices with fine pointer */
+/* Ocultar el cursor nativo SOLO cuando el cursor personalizado se inicializó con éxito
+   (la clase la añade JS). Si main.js falla o hay reduced-motion, el cursor del sistema
+   sigue visible. Los campos de texto mantienen su cursor para no romper usabilidad. */
 @media (pointer: fine) {
-    * {
-        cursor: none !important;
+    html.custom-cursor,
+    html.custom-cursor * {
+        cursor: none;
+    }
+    html.custom-cursor input,
+    html.custom-cursor textarea,
+    html.custom-cursor [contenteditable="true"] {
+        cursor: text;
     }
 }
 
@@ -1919,4 +2286,55 @@ footer {
 [data-theme="dark"] h4[style*="var(--primary-color)"],
 [data-theme="dark"] h5[style*="var(--primary-color)"] {
     color: var(--secondary-color) !important;
+}
+
+/* En dark mode los títulos de proyecto y de grupo usan el tono secundario (AA sobre la card) */
+[data-theme="dark"] .project-title {
+    color: var(--secondary-color);
+}
+
+/* ================================
+   PREFERS-REDUCED-MOTION
+   Respeta a quien pide menos animación: apaga lo decorativo y deja la UI usable.
+   (main.js además NO inicializa red neuronal, orbes ni cursor de partículas.)
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .ambient-orb,
+    .whatsapp-float,
+    .demo-dot,
+    .contact-status-dot,
+    .pulse,
+    .node.pulse {
+        animation: none !important;
+    }
+
+    .neural-canvas,
+    .cursor-canvas,
+    .cursor-dot,
+    .cursor-ring,
+    .cursor-glow {
+        display: none !important;
+    }
+
+    .section.active {
+        animation: none !important;
+    }
+
+    .card:hover,
+    .category-card:hover,
+    .skill-icon-card:hover,
+    .btn-demo:hover,
+    .btn-repo:hover,
+    .btn-cta-primary:hover {
+        transform: none !important;
+    }
 }

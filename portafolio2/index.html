@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>David Gonzalez — Sala de máquinas</title>
+<meta name="description" content="Estudio de producto de una persona: diez plataformas SaaS en producción, de la API al despliegue. Laravel, Vue y automatización de procesos.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230B131C'/><rect x='6' y='13' width='4' height='13' rx='1.4' fill='%23E89A3C' opacity='.55'/><rect x='14' y='8' width='4' height='18' rx='1.4' fill='%23E89A3C' opacity='.8'/><rect x='22' y='4' width='4' height='22' rx='1.4' fill='%23E89A3C'/></svg>">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+
+<style>
+/* ============================================================
+   TOKENS — nativa en oscuro; en claro pasa a azul acero pálido
+   ============================================================ */
+:root {
+  --ground:  #EDF1F6;
+  --sunk:    #E2E8F0;
+  --surface: #FFFFFF;
+  --line:    #D3DCE7;
+  --ink:     #0D1720;
+  --muted:   #566A80;
+  --accent:  #9A5406;
+  --accent-soft: rgba(154, 84, 6, 0.10);
+  --live:    #0F7A52;
+  --shadow:  0 18px 40px -22px rgba(13, 23, 32, 0.45);
+
+  --c-frontend: #2563EB;      --c-frontend-soft: rgba(37,99,235,.10);
+  --c-backend: #7C3AED;       --c-backend-soft: rgba(124,58,237,.10);
+  --c-database: #0F7A52;      --c-database-soft: rgba(15,122,82,.10);
+  --c-automation: #B45309;    --c-automation-soft: rgba(180,83,9,.10);
+  --c-tools: #0E7490;         --c-tools-soft: rgba(14,116,144,.10);
+  --c-methodologies: #BE185D; --c-methodologies-soft: rgba(190,24,93,.10);
+  --edge: #A3B4C8;
+  --net-glow: rgba(37,99,235,.07);
+
+
+  --font-display: Bahnschrift, "DIN Alternate", "Avenir Next Condensed", "Roboto Condensed", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --font-mono: "Cascadia Mono", Consolas, "SF Mono", ui-monospace, "Liberation Mono", monospace;
+
+  --img-vigilia:     url("/assets/images/projects/vigilia/screenshot1.jpg");
+  --img-deepview:    url("/assets/images/projects/deepview/screenshot1.jpg");
+  --img-citaria:     url("/assets/images/projects/citaria/screenshot1.jpg");
+  --img-edugestion:  url("/assets/images/projects/edugestion/screenshot1.jpg");
+  --img-inventarios: url("/assets/images/projects/inventarios/screenshot1.jpg");
+  --img-domicilios:  url("/assets/images/projects/domicilios/screenshot1.jpg");
+  --img-valera:      url("/assets/images/projects/valera/screenshot1.jpg");
+  --img-petuniaplay: url("/assets/images/projects/petuniaplay/screenshot1.png");
+  --img-profile:     url("/assets/images/profile.jpg");
+  --img-talentia:    url("/assets/images/projects/talentia/landing.jpg");
+  --img-centinela:   url("/assets/images/projects/centinela/landing.jpg");
+  --img-coworkia:    url("/assets/images/projects/coworkia/landing.jpg");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground:  #0B131C;
+    --sunk:    #070D14;
+    --surface: #121D29;
+    --line:    #1E2E40;
+    --ink:     #E6EDF5;
+    --muted:   #8AA0B8;
+    --accent:  #E89A3C;
+    --accent-soft: rgba(232, 154, 60, 0.12);
+    --live:    #46C08C;
+    --shadow:  0 24px 50px -24px rgba(0, 0, 0, 0.8);
+    --c-frontend: #5B9DFF;      --c-frontend-soft: rgba(91,157,255,.13);
+    --c-backend: #A78BFA;       --c-backend-soft: rgba(167,139,250,.13);
+    --c-database: #46C08C;      --c-database-soft: rgba(70,192,140,.13);
+    --c-automation: #E89A3C;    --c-automation-soft: rgba(232,154,60,.13);
+    --c-tools: #38D6E0;         --c-tools-soft: rgba(56,214,224,.13);
+    --c-methodologies: #F472B6; --c-methodologies-soft: rgba(244,114,182,.13);
+    --edge: #2B3D52;
+    --net-glow: rgba(91,157,255,.10);
+  }
+}
+
+:root[data-theme="light"] {
+  --ground: #EDF1F6; --sunk: #E2E8F0; --surface: #FFFFFF; --line: #D3DCE7;
+  --ink: #0D1720; --muted: #566A80; --accent: #9A5406;
+  --accent-soft: rgba(154, 84, 6, 0.10); --live: #0F7A52;
+  --shadow: 0 18px 40px -22px rgba(13, 23, 32, 0.45);
+  --c-frontend: #2563EB; --c-frontend-soft: rgba(37,99,235,.10);
+  --c-backend: #7C3AED; --c-backend-soft: rgba(124,58,237,.10);
+  --c-database: #0F7A52; --c-database-soft: rgba(15,122,82,.10);
+  --c-automation: #B45309; --c-automation-soft: rgba(180,83,9,.10);
+  --c-tools: #0E7490; --c-tools-soft: rgba(14,116,144,.10);
+  --c-methodologies: #BE185D; --c-methodologies-soft: rgba(190,24,93,.10);
+  --edge: #A3B4C8; --net-glow: rgba(37,99,235,.07);
+}
+
+:root[data-theme="dark"] {
+  --ground: #0B131C; --sunk: #070D14; --surface: #121D29; --line: #1E2E40;
+  --ink: #E6EDF5; --muted: #8AA0B8; --accent: #E89A3C;
+  --accent-soft: rgba(232, 154, 60, 0.12); --live: #46C08C;
+  --shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.8);
+  --c-frontend: #5B9DFF;    --c-frontend-soft: rgba(91,157,255,.13);
+  --c-backend: #A78BFA;     --c-backend-soft: rgba(167,139,250,.13);
+  --c-database: #46C08C;    --c-database-soft: rgba(70,192,140,.13);
+  --c-automation: #E89A3C;  --c-automation-soft: rgba(232,154,60,.13);
+  --c-tools: #38D6E0;       --c-tools-soft: rgba(56,214,224,.13);
+  --c-methodologies: #F472B6; --c-methodologies-soft: rgba(244,114,182,.13);
+  --edge: #2B3D52;
+  --net-glow: rgba(91,157,255,.10);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-body);
+  background: var(--ground);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+*:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 2px; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+.display {
+  font-family: var(--font-display);
+  font-variation-settings: "wght" 700, "wdth" 80;
+  font-weight: 700; letter-spacing: 0.005em; line-height: 1.02;
+  text-wrap: balance;
+}
+.mono {
+  font-family: var(--font-mono); font-size: 11.5px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* ------------------------- nav ------------------------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.nav-in { max-width: 1180px; margin: 0 auto; padding: 0 28px; height: 62px; display: flex; align-items: center; gap: 30px; }
+.brand { display: flex; align-items: center; gap: 11px; font-weight: 650; letter-spacing: -0.01em; }
+.brand-mark {
+  width: 30px; height: 30px; border-radius: 7px; flex: 0 0 auto;
+  background: var(--img-profile) center/cover, var(--accent);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.nav-links { display: flex; gap: 24px; margin-left: auto; font-size: 14.5px; }
+.nav-links a { color: var(--muted); text-decoration: none; transition: color .16s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-cv {
+  font-size: 13.5px; font-weight: 600; padding: 8px 15px; border-radius: 8px;
+  border: 1px solid var(--line); text-decoration: none; color: var(--ink);
+  transition: border-color .16s, background .16s;
+}
+.nav-cv:hover { border-color: var(--accent); background: var(--accent-soft); }
+@media (max-width: 880px) { .nav-links { display: none; } .nav-cv { margin-left: auto; } }
+
+/* ------------------------- hero ------------------------- */
+.hero { padding: 76px 0 64px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); gap: 60px; align-items: center; }
+@media (max-width: 940px) { .hero-grid { grid-template-columns: 1fr; gap: 46px; } .hero { padding: 52px 0 44px; } }
+
+.eyebrow { display: flex; align-items: center; gap: 9px; color: var(--muted); margin-bottom: 22px; }
+.pulse {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--live);
+  animation: pulse 2.4s ease-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--live) 55%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 8px transparent; }
+}
+.h1 { font-size: clamp(2.7rem, 6vw, 4.15rem); margin-bottom: 22px; }
+.h1 em { font-style: normal; color: var(--accent); }
+.lead { font-size: 1.09rem; color: var(--muted); max-width: 34em; margin-bottom: 30px; }
+.lead strong { color: var(--ink); font-weight: 600; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-size: 15px; font-weight: 600; text-decoration: none;
+  padding: 13px 22px; border-radius: 10px; border: 1px solid transparent;
+  transition: transform .16s ease, box-shadow .16s ease, background .16s;
+}
+.btn-primary { background: var(--accent); color: var(--ground); box-shadow: 0 10px 24px -12px var(--accent); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -14px var(--accent); }
+.btn-ghost { border-color: var(--line); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--muted); background: var(--surface); }
+
+/* mosaico del hero */
+.mosaic { position: relative; height: 430px; }
+@media (max-width: 940px) { .mosaic { height: 340px; } }
+@media (max-width: 560px) { .mosaic { height: 260px; } }
+.mosaic figure {
+  position: absolute; border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: var(--shadow);
+  background-size: cover; background-position: top center;
+  transition: transform .35s cubic-bezier(.22,.61,.36,1);
+}
+.mosaic figure:hover { transform: translateY(-6px) scale(1.015); z-index: 5; }
+.m1 { width: 78%; aspect-ratio: 16/10; top: 0; right: 0; background-image: var(--img-vigilia); }
+.m2 { width: 62%; aspect-ratio: 16/10; bottom: 6%; left: 0; background-image: var(--img-petuniaplay); }
+.m3 { width: 40%; aspect-ratio: 16/10; bottom: 30%; right: 6%; background-image: var(--img-inventarios); z-index: 2; }
+.mosaic figcaption {
+  position: absolute; inset: auto 0 0 0; padding: 20px 12px 8px;
+  background: linear-gradient(to top, rgba(4,10,16,.86), transparent);
+  color: #fff; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase;
+}
+
+/* ------------------------- franja de datos ------------------------- */
+.facts { border-block: 1px solid var(--line); background: var(--sunk); }
+.facts-in {
+  max-width: 1180px; margin: 0 auto; padding: 22px 28px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+@media (max-width: 720px) { .facts-in { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+.fact strong {
+  display: block; font-family: var(--font-display);
+  font-variation-settings: "wght" 700, "wdth" 82;
+  font-size: 1.9rem; line-height: 1.1; font-variant-numeric: tabular-nums;
+}
+.fact span { color: var(--muted); font-size: 13px; }
+
+/* ------------------------- secciones ------------------------- */
+.section { padding: 82px 0; scroll-margin-top: 84px; }
+.section + .section { padding-top: 0; }
+.section-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 34px; flex-wrap: wrap; }
+.section-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); }
+.section-head .mono { color: var(--accent); }
+.section-note { color: var(--muted); font-size: 14.5px; margin-left: auto; }
+
+/* rejilla de productos */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+
+.card {
+  display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  overflow: hidden; text-decoration: none; color: inherit;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); box-shadow: var(--shadow); }
+.shot {
+  aspect-ratio: 16/10; background-size: cover; background-position: top center;
+  border-bottom: 1px solid var(--line);
+}
+.shot.is-empty {
+  background: repeating-linear-gradient(135deg, var(--sunk) 0 10px, transparent 10px 20px);
+  display: grid; place-items: center;
+}
+.shot.is-empty span { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.card-body { padding: 17px 18px 19px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.card h3 { font-size: 1.08rem; font-weight: 650; letter-spacing: -0.01em; }
+.card p { font-size: 13.9px; color: var(--muted); line-height: 1.55; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; padding-top: 4px; }
+.chip {
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .04em;
+  padding: 3px 7px; border-radius: 5px; background: var(--sunk); color: var(--muted);
+  border: 1px solid var(--line);
+}
+.status {
+  display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .09em; text-transform: uppercase;
+  padding: 4px 8px; border-radius: 999px; border: 1px solid;
+}
+.status--live { color: var(--live); border-color: color-mix(in srgb, var(--live) 35%, transparent); background: color-mix(in srgb, var(--live) 10%, transparent); }
+.status--wip  { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-soft); }
+.status--priv { color: var(--muted); border-color: var(--line); }
+
+/* trayectoria */
+.track { display: grid; grid-template-columns: 168px 1fr; gap: 0 30px; }
+@media (max-width: 720px) { .track { grid-template-columns: 1fr; gap: 4px; } }
+.track-row { display: contents; }
+.track-when {
+  font-family: var(--font-mono); font-size: 12px; color: var(--muted);
+  padding: 24px 0; border-top: 1px solid var(--line); letter-spacing: .02em;
+}
+.track-what { padding: 24px 0; border-top: 1px solid var(--line); }
+@media (max-width: 720px) {
+  .track-when { padding: 20px 0 0; }
+  .track-what { padding: 6px 0 20px; border-top: 0; }
+}
+.track-what h3 { margin-bottom: 5px; font-size: 1.13rem; font-weight: 650; }
+.track-what h3 span { color: var(--accent); font-weight: 500; }
+.track-what p { color: var(--muted); font-size: 14.6px; max-width: 62ch; }
+
+/* stack por nivel de uso */
+.stack { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 880px) { .stack { grid-template-columns: 1fr; } }
+.stack-col { border-top: 2px solid var(--line); padding-top: 16px; }
+.stack-col:first-child { border-top-color: var(--accent); }
+.stack-col h3 { margin-bottom: 4px; font-size: 1rem; font-weight: 650; }
+.stack-col > p { margin-bottom: 14px; font-size: 13px; color: var(--muted); }
+.stack-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack-list span {
+  font-size: 13.5px; padding: 5px 11px; border-radius: 7px;
+  background: var(--surface); border: 1px solid var(--line);
+}
+.stack-col:first-child .stack-list span { border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+
+/* contacto */
+.contact { background: var(--sunk); border-top: 1px solid var(--line); scroll-margin-top: 70px; }
+.contact-in { max-width: 1180px; margin: 0 auto; padding: 66px 28px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+@media (max-width: 820px) { .contact-in { grid-template-columns: 1fr; } }
+.contact h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 12px; }
+.contact p { color: var(--muted); max-width: 44ch; }
+.contact-links { display: flex; flex-direction: column; gap: 9px; font-family: var(--font-mono); font-size: 13.5px; }
+.contact-links a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 3px; transition: border-color .16s, color .16s; }
+.contact-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* notas del diseñador */
+.notes { border-top: 1px solid var(--line); background: var(--surface); }
+.notes-in { max-width: 1180px; margin: 0 auto; padding: 46px 28px 60px; }
+.notes h2 {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 22px; font-weight: 500;
+}
+.notes-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 24px; }
+.notes-item h3 { margin-bottom: 6px; font-size: 15px; font-weight: 650; }
+.notes-item h3::before { content: attr(data-n); font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-right: 8px; }
+.notes-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* banner de contexto (solo en esta maqueta, no va al sitio real) */
+/* revelado al hacer scroll */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s cubic-bezier(.22,.61,.36,1); }
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .pulse { animation: none; }
+}
+
+/* ============================================================
+   TOGGLE DE TEMA — por defecto manda el sistema; el boton fuerza
+   ============================================================ */
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: auto;
+  margin-right: 10px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: color .18s ease, border-color .18s ease, background .18s ease;
+}
+.theme-btn:hover { color: var(--accent); border-color: var(--accent); }
+.theme-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.theme-btn svg { fill: none; stroke: currentColor; stroke-width: 1.7; }
+.theme-btn .ico-luna { display: none; }
+.nav-links + .theme-btn { margin-left: auto; }
+
+/* En claro se ofrece la luna; en oscuro, el sol */
+.ico-sol { display: none; }
+.ico-luna { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ico-sol { display: block; }
+  :root:not([data-theme="light"]) .ico-luna { display: none; }
+}
+:root[data-theme="dark"] .ico-sol { display: block; }
+:root[data-theme="dark"] .ico-luna { display: none; }
+:root[data-theme="light"] .ico-sol { display: none; }
+:root[data-theme="light"] .ico-luna { display: block; }
+
+/* ============================================================
+   STACK — muro de logos
+   ============================================================ */
+.tool-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 16px;
+}
+.tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 13px 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: .01em;
+  color: var(--ink);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.tool i,
+.tool img {
+  width: 21px;
+  height: 21px;
+  font-size: 21px;
+  line-height: 1;
+  display: block;
+  flex: 0 0 auto;
+}
+.tool:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+/* El neon vive en oscuro: el halo sale del color del propio logo */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tool { box-shadow: inset 0 0 0 1px rgba(255,255,255,.02); }
+  :root:not([data-theme="light"]) .tool i { text-shadow: 0 0 10px currentColor, 0 0 22px currentColor; }
+  :root:not([data-theme="light"]) .tool img { filter: drop-shadow(0 0 7px rgba(232,154,60,.55)); }
+  :root:not([data-theme="light"]) .tool:hover { box-shadow: 0 0 0 1px var(--accent), 0 10px 26px -14px var(--accent); }
+}
+:root[data-theme="dark"] .tool i { text-shadow: 0 0 10px currentColor, 0 0 22px currentColor; }
+:root[data-theme="dark"] .tool img { filter: drop-shadow(0 0 7px rgba(232,154,60,.55)); }
+:root[data-theme="dark"] .tool:hover { box-shadow: 0 0 0 1px var(--accent), 0 10px 26px -14px var(--accent); }
+
+/* En claro el halo seria suciedad: sombra sobria y logo limpio */
+:root[data-theme="light"] .tool,
+:root:not([data-theme="dark"]) .tool { box-shadow: 0 1px 2px rgba(13,23,32,.05); }
+:root[data-theme="light"] .tool:hover,
+:root:not([data-theme="dark"]) .tool:hover { box-shadow: 0 8px 20px -12px rgba(13,23,32,.45); }
+
+/* ============================================================
+   RED DE SKILLS
+   ============================================================ */
+.net-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-bottom: 22px;
+}
+.net-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--muted);
+}
+.net-key::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--cat);
+  box-shadow: 0 0 8px var(--cat);
+}
+.net-key[data-cat="frontend"]     { --cat: var(--c-frontend); }
+.net-key[data-cat="backend"]      { --cat: var(--c-backend); }
+.net-key[data-cat="database"]     { --cat: var(--c-database); }
+.net-key[data-cat="automation"]   { --cat: var(--c-automation); }
+.net-key[data-cat="tools"]        { --cat: var(--c-tools); }
+.net-key[data-cat="methodologies"]{ --cat: var(--c-methodologies); }
+
+.net-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background:
+    radial-gradient(120% 90% at 50% 0%, var(--net-glow), transparent 70%),
+    var(--sunk);
+}
+.net {
+  position: relative;
+  width: 1000px;
+  height: 600px;
+  transform-origin: 0 0;
+}
+.edge {
+  position: absolute;
+  height: 1px;
+  transform-origin: 0 50%;
+  background: var(--edge);
+  opacity: .55;
+  pointer-events: none;
+  transition: background .2s ease, opacity .2s ease, box-shadow .2s ease;
+}
+.edge.on {
+  background: var(--cat);
+  opacity: 1;
+  box-shadow: 0 0 9px var(--cat);
+}
+.node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 9px 14px;
+  border: 1px solid var(--cat);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: box-shadow .2s ease, transform .2s ease, background .2s ease;
+}
+.node.is-cat {
+  padding: 10px 16px;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: var(--cat-soft);
+}
+.node:hover,
+.node:focus-visible,
+.node.on {
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 0 0 1px var(--cat), 0 0 18px -2px var(--cat);
+  outline: none;
+}
+.node[data-cat="frontend"]     { --cat: var(--c-frontend);     --cat-soft: var(--c-frontend-soft); }
+.node[data-cat="backend"]      { --cat: var(--c-backend);      --cat-soft: var(--c-backend-soft); }
+.node[data-cat="database"]     { --cat: var(--c-database);     --cat-soft: var(--c-database-soft); }
+.node[data-cat="automation"]   { --cat: var(--c-automation);   --cat-soft: var(--c-automation-soft); }
+.node[data-cat="tools"]        { --cat: var(--c-tools);        --cat-soft: var(--c-tools-soft); }
+.node[data-cat="methodologies"]{ --cat: var(--c-methodologies);--cat-soft: var(--c-methodologies-soft); }
+.edge[data-cat="frontend"]     { --cat: var(--c-frontend); }
+.edge[data-cat="backend"]      { --cat: var(--c-backend); }
+.edge[data-cat="database"]     { --cat: var(--c-database); }
+.edge[data-cat="automation"]   { --cat: var(--c-automation); }
+.edge[data-cat="tools"]        { --cat: var(--c-tools); }
+.edge[data-cat="methodologies"]{ --cat: var(--c-methodologies); }
+
+.net-hint {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .node, .edge, .tool { transition: none; }
+}
+
+</style>
+</head>
+<body>
+
+
+<nav class="nav">
+  <div class="nav-in">
+    <span class="brand"><span class="brand-mark"></span> David Gonzalez</span>
+    <span class="nav-links">
+      <a href="#productos">Productos</a>
+      <a href="#trayectoria">Trayectoria</a>
+      <a href="#stack">Stack</a>
+      <a href="#red">Red</a>
+      <a href="#contacto">Contacto</a>
+    </span>
+    <button class="theme-btn" type="button" aria-label="Cambiar entre tema claro y oscuro" title="Tema">
+      <svg class="ico-sol" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><g stroke-linecap="round"><path d="M12 2.6v2.6M12 18.8v2.6M2.6 12h2.6M18.8 12h2.6M5.3 5.3l1.9 1.9M16.8 16.8l1.9 1.9M18.7 5.3l-1.9 1.9M7.2 16.8l-1.9 1.9"/></g></svg>
+      <svg class="ico-luna" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z"/></svg>
+    </button>
+    <a class="nav-cv" href="#contacto">Descargar CV</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow mono"><span class="pulse"></span> Bogotá · GMT-5 · abierto a roles remotos</p>
+      <h1 class="display h1">Software que puedes <em>abrir</em>, no solo leer.</h1>
+      <p class="lead">
+        Soy <strong>David Gonzalez</strong>, desarrollador full stack. Construyo plataformas SaaS
+        multi-tenant de extremo a extremo —API, panel, app móvil y despliegue— y las mantengo
+        en línea en <strong>mi propio servidor</strong>. Diez productos propios, veinticuatro proyectos,
+        <strong data-exp="largo">4 años y 11 meses</strong> de experiencia.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#productos">Ver los productos →</a>
+        <a class="btn btn-ghost" href="#contacto">Descargar CV</a>
+      </div>
+    </div>
+    <div class="mosaic" aria-hidden="true">
+      <figure class="m1"><figcaption>VigilIA · panel de administración</figcaption></figure>
+      <figure class="m2"><figcaption>PetuniaPlay · e-commerce</figcaption></figure>
+      <figure class="m3"><figcaption>TallerPro</figcaption></figure>
+    </div>
+  </div>
+</header>
+
+<div class="facts">
+  <div class="facts-in">
+    <div class="fact"><strong>24</strong><span>proyectos entregados</span></div>
+    <div class="fact"><strong>10</strong><span>productos SaaS propios</span></div>
+    <div class="fact"><strong data-exp="corto">4a 11m</strong><span>de experiencia</span></div>
+    <div class="fact"><strong>Laravel · Vue</strong><span>stack principal</span></div>
+  </div>
+</div>
+
+<section class="section" id="productos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">01 · Productos propios</span>
+      <h2 class="display">Diez plataformas en deepdev.com.co</h2>
+      <p class="section-note">Cada tarjeta abre la aplicación real.</p>
+    </div>
+
+    <div class="grid">
+      <a class="card reveal" href="https://vigilia.deepdev.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-vigilia)"></div>
+        <div class="card-body">
+          <span class="status status--live">Demo en vivo</span>
+          <h3>VigilIA</h3>
+          <p>Administración de conjuntos residenciales. API Laravel 12 + panel Vue 3 + landing React + dos apps Ionic (residentes y guardias). Multi-tenant, 7 roles, 106 permisos.</p>
+          <div class="chips"><span class="chip">Laravel 12</span><span class="chip">Vue 3</span><span class="chip">Ionic</span><span class="chip">Reverb</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://admin-deepview.deepdev.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-deepview)"></div>
+        <div class="card-body">
+          <span class="status status--live">Demo en vivo</span>
+          <h3>DeepView</h3>
+          <p>Seguridad comunitaria para barrios y conjuntos. Monorepo con API Laravel 12, panel Vue 3 y app Ionic; alertas en tiempo real y multi-tenant por frente de seguridad.</p>
+          <div class="chips"><span class="chip">Laravel 12</span><span class="chip">TypeScript</span><span class="chip">Redis</span><span class="chip">Ionic 8</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://reservas-citaria.deepdev.com.co/barberia-demo" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-citaria)"></div>
+        <div class="card-body">
+          <span class="status status--wip">En desarrollo</span>
+          <h3>Citaria</h3>
+          <p>Agenda y reservas online para negocios por cita. Portal público por slug, panel de gestión y temas por nicho (barbería oscura, spa clara).</p>
+          <div class="chips"><span class="chip">Laravel 12</span><span class="chip">Vue 3</span><span class="chip">Tailwind</span><span class="chip">Sanctum</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://app-edugestion.deepdev.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-edugestion)"></div>
+        <div class="card-body">
+          <span class="status status--wip">En desarrollo</span>
+          <h3>EduGestión</h3>
+          <p>Gestión escolar para colegios privados: 14 módulos y portal de padres. Next.js 15 con SSR, aislamiento multi-tenant y avisos por WhatsApp, email e in-app.</p>
+          <div class="chips"><span class="chip">Next.js 15</span><span class="chip">Prisma</span><span class="chip">MySQL</span><span class="chip">JWT</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://inventarios.deepdev.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-inventarios)"></div>
+        <div class="card-body">
+          <span class="status status--wip">En desarrollo</span>
+          <h3>TallerPro · Inventarios</h3>
+          <p>Inventario y control contable para talleres automotrices. Monorepo API Laravel 12 + SPA Vue 3, con 5 roles y 35 permisos.</p>
+          <div class="chips"><span class="chip">Laravel 12</span><span class="chip">Vue 3</span><span class="chip">Spatie</span><span class="chip">Tailwind</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://domicilios.deepdev.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-domicilios)"></div>
+        <div class="card-body">
+          <span class="status status--live">Demo en vivo · PWA</span>
+          <h3>Domicilios</h3>
+          <p>Pedidos sin comisiones para restaurantes locales. App de cliente, panel de restaurante y módulo «Momentos» con video procesado por FFmpeg.</p>
+          <div class="chips"><span class="chip">Laravel</span><span class="chip">Vue 3</span><span class="chip">PWA</span><span class="chip">FFmpeg</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://valera.deepdev.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-valera)"></div>
+        <div class="card-body">
+          <span class="status status--live">Demo en vivo · PWA</span>
+          <h3>Valera Emocional</h3>
+          <p>Bienestar y permisos laborales multi-tenant. Aprobaciones jerárquicas, motor de reglas configurable y dashboards de analítica.</p>
+          <div class="chips"><span class="chip">Laravel 12</span><span class="chip">Vue 3</span><span class="chip">Cola + scheduler</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://talentia.deepdev.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-talentia)"></div>
+        <div class="card-body">
+          <span class="status status--wip">En desarrollo</span>
+          <h3>TalentIA</h3>
+          <p>Gestión de talento humano white-label para IPS. En línea: la landing comercial y el backend del chatbot «Tali», con IA sobre un flujo n8n y respaldo por palabras clave.</p>
+          <div class="chips"><span class="chip">React 19</span><span class="chip">Laravel 12</span><span class="chip">n8n</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://centinela.deepdev.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-centinela)"></div>
+        <div class="card-body">
+          <span class="status status--priv">Piloto</span>
+          <h3>Centinela</h3>
+          <p>Operación para empresas de vigilancia privada: turnos, marcación con GPS y selfie, rondas por QR, minuta digital y portal en vivo para el cliente final.</p>
+          <div class="chips"><span class="chip">Vue 3</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">Tailwind 4</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" href="https://coworkia.deepdev.com.co" target="_blank" rel="noopener noreferrer">
+        <div class="shot" style="background-image: var(--img-coworkia)"></div>
+        <div class="card-body">
+          <span class="status status--priv">Piloto</span>
+          <h3>Coworkia</h3>
+          <p>Reserva de espacios de coworking: zonas y salas por franja, créditos por plan, acceso con QR y control de aforo en tiempo real.</p>
+          <div class="chips"><span class="chip">Vue 3</span><span class="chip">TypeScript</span><span class="chip">Vite</span><span class="chip">Tailwind 4</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="trayectoria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">02 · Trayectoria</span>
+      <h2 class="display">De mejorar procesos a construirlos</h2>
+    </div>
+    <div class="track">
+      <div class="track-row reveal">
+        <div class="track-when">Abr 2026 — hoy</div>
+        <div class="track-what">
+          <h3>Ingeniero de Desarrollo <span>· Sies Salud</span></h3>
+          <p>Rol actual.</p>
+        </div>
+      </div>
+      <div class="track-row reveal">
+        <div class="track-when">Dic 2024 — Mar 2026</div>
+        <div class="track-what">
+          <h3>Desarrollador Full Stack <span>· TurriSystem</span></h3>
+          <p>Sistemas web con Laravel y Vue.js para entidades públicas: módulos completos desde mockup hasta interfaz, APIs REST, migración de PHP legacy a 8.x y bases de datos MySQL y Oracle.</p>
+        </div>
+      </div>
+      <div class="track-row reveal">
+        <div class="track-when">Feb 2023 — Nov 2024</div>
+        <div class="track-what">
+          <h3>Desarrollador RPA <span>· Thomas Greg and Sons</span></h3>
+          <p>Bots UiPath para procesos financieros y de RRHH, aplicaciones internas en Power Apps y Dataverse, chatbots de autogestión y módulos a medida en Odoo.</p>
+        </div>
+      </div>
+      <div class="track-row reveal">
+        <div class="track-when">Sep 2021 — Ene 2023</div>
+        <div class="track-what">
+          <h3>Auxiliar II de Mejora Continua <span>· Thomas Greg and Sons</span></h3>
+          <p>Levantamiento de procesos, documentación PDD bajo estándares ISO y automatización de tareas repetitivas con scripts y macros.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="stack">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">03 · Stack</span>
+      <h2 class="display">Con qué trabajo, y cuánto</h2>
+      <p class="section-note">Ordenado por uso real, no por cantidad de logos.</p>
+    </div>
+    <div class="stack">
+      <div class="stack-col reveal">
+        <h3>A diario</h3>
+        <p>Lo que uso en casi todos mis proyectos.</p>
+        <div class="tool-grid">
+          <span class="tool"><i class="devicon-laravel-original colored" aria-hidden="true"></i><span>Laravel</span></span>
+          <span class="tool"><i class="devicon-vuejs-plain colored" aria-hidden="true"></i><span>Vue.js</span></span>
+          <span class="tool"><i class="devicon-php-plain colored" aria-hidden="true"></i><span>PHP 8</span></span>
+          <span class="tool"><i class="devicon-mysql-plain colored" aria-hidden="true"></i><span>MySQL</span></span>
+          <span class="tool"><i class="devicon-tailwindcss-original colored" aria-hidden="true"></i><span>Tailwind</span></span>
+          <span class="tool"><i class="devicon-javascript-plain colored" aria-hidden="true"></i><span>JavaScript</span></span>
+          <span class="tool"><i class="devicon-git-plain colored" aria-hidden="true"></i><span>Git</span></span>
+        </div>
+      </div>
+      <div class="stack-col reveal">
+        <h3>Con frecuencia</h3>
+        <p>Cuando el proyecto lo pide. Con ellas van las utilidades del ecosistema: Sanctum, Pinia, Inertia.</p>
+        <div class="tool-grid">
+          <span class="tool"><i class="devicon-typescript-plain colored" aria-hidden="true"></i><span>TypeScript</span></span>
+          <span class="tool"><i class="devicon-nextjs-original" aria-hidden="true"></i><span>Next.js</span></span>
+          <span class="tool"><i class="devicon-ionic-original colored" aria-hidden="true"></i><span>Ionic</span></span>
+          <span class="tool"><i class="devicon-oracle-original colored" aria-hidden="true"></i><span>Oracle</span></span>
+          <span class="tool"><i class="devicon-redis-plain colored" aria-hidden="true"></i><span>Redis</span></span>
+          <span class="tool"><i class="devicon-prisma-original" aria-hidden="true"></i><span>Prisma</span></span>
+          <span class="tool"><i class="devicon-postman-plain colored" aria-hidden="true"></i><span>Postman</span></span>
+        </div>
+      </div>
+      <div class="stack-col reveal">
+        <h3>He trabajado con</h3>
+        <p>Experiencia previa en automatización empresarial.</p>
+        <div class="tool-grid">
+          <span class="tool"><img src="/assets/icons/uipath.svg" alt="" width="22" height="22" loading="lazy"><span>UiPath</span></span>
+          <span class="tool"><img src="/assets/icons/powerapps.svg" alt="" width="22" height="22" loading="lazy"><span>Power Apps</span></span>
+          <span class="tool"><img src="/assets/icons/powerautomate.svg" alt="" width="22" height="22" loading="lazy"><span>Power Automate</span></span>
+          <span class="tool"><img src="/assets/icons/powerbi.svg" alt="" width="22" height="22" loading="lazy"><span>Power BI</span></span>
+          <span class="tool"><img src="/assets/icons/dataverse.svg" alt="" width="22" height="22" loading="lazy"><span>Dataverse</span></span>
+          <span class="tool"><img src="/assets/icons/odoo.svg" alt="" width="22" height="22" loading="lazy"><span>Odoo</span></span>
+          <span class="tool"><i class="devicon-python-plain colored" aria-hidden="true"></i><span>Python</span></span>
+          <span class="tool"><i class="devicon-dot-net-plain colored" aria-hidden="true"></i><span>VB.NET</span></span>
+          <span class="tool"><img src="/assets/icons/excel.svg" alt="" width="22" height="22" loading="lazy"><span>Excel VBA</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="red">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="mono">04 · Red de skills</span>
+      <h2 class="display">Cómo se conecta lo que uso</h2>
+      <p class="section-note">Pasa el cursor o toca un nodo para ver con qué se relaciona.</p>
+    </div>
+
+    <div class="net-legend reveal">
+      <span class="net-key" data-cat="frontend">Frontend</span>
+      <span class="net-key" data-cat="backend">Backend</span>
+      <span class="net-key" data-cat="database">Bases de datos</span>
+      <span class="net-key" data-cat="automation">Automatización</span>
+      <span class="net-key" data-cat="tools">Herramientas</span>
+      <span class="net-key" data-cat="methodologies">Metodologías</span>
+    </div>
+
+    <div class="net-frame reveal">
+      <div class="net" id="net"></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="contact-in">
+    <div class="reveal">
+      <h2 class="display">¿Buscas a alguien que entregue el producto completo?</h2>
+      <p>Respondo rápido por correo o WhatsApp. Disponible para roles full stack remotos desde Bogotá (GMT-5). Español nativo, inglés B2.</p>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:davidsgonzalez98@hotmail.com">davidsgonzalez98@hotmail.com</a>
+      <a href="https://wa.me/573057594088">+57 305 759 4088 · WhatsApp</a>
+      <a href="https://www.linkedin.com/in/david-steven-gonzalez-padilla" target="_blank" rel="noopener noreferrer">linkedin.com/in/david-steven-gonzalez-padilla</a>
+      <a href="https://github.com/ROBOCOP3PK" target="_blank" rel="noopener noreferrer">github.com/ROBOCOP3PK</a>
+    </div>
+  </div>
+</section>
+
+<div class="notes">
+  <div class="notes-in">
+    <h2>Decisiones de diseño</h2>
+    <div class="notes-list">
+      <div class="notes-item">
+        <h3 data-n="01">Se ve trabajo antes que biografía</h3>
+        <p>Hoy la primera pantalla es foto, nombre y estadísticas. Aquí la mitad derecha son capturas reales de las apps: el visitante ve software funcionando en el primer segundo.</p>
+      </div>
+      <div class="notes-item">
+        <h3 data-n="02">Los proyectos no están escondidos</h3>
+        <p>Se elimina el paso «selecciona una categoría»: la rejilla de productos aparece completa. Los filtros pueden volver, pero por encima de contenido ya visible.</p>
+      </div>
+      <div class="notes-item">
+        <h3 data-n="03">Una sola página con scroll</h3>
+        <p>Las pestañas se cambian por scroll continuo con nav fija. Cada sección tiene URL propia y es compartible; también mejora el SEO frente a contenido oculto.</p>
+      </div>
+      <div class="notes-item">
+        <h3 data-n="04">El ámbar se queda, el azul cambia de papel</h3>
+        <p>Se conserva el acento ámbar para acciones y el azul baja a estructura: azul acero profundo como fondo. Menos glassmorphism, más contraste y legibilidad.</p>
+      </div>
+      <div class="notes-item">
+        <h3 data-n="05">El stack dice nivel, no cantidad</h3>
+        <p>La pared de 30 logos pasa a tres columnas: a diario / con frecuencia / he trabajado con. Comunica dónde eres fuerte sin inventar un porcentaje.</p>
+      </div>
+      <div class="notes-item">
+        <h3 data-n="06">Tipografía con carácter</h3>
+        <p>Titulares en una grotesca condensada de aire industrial y datos en monoespaciada. Se acaba el «Segoe UI para todo», que hace que el sitio se lea como plantilla.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  document.documentElement.style.scrollBehavior = 'smooth';
+})();
+</script>
+
+<script>
+/* ============================================================
+   Tema — por defecto manda el sistema; el boton guarda la eleccion
+   ============================================================ */
+(function () {
+  var raiz = document.documentElement;
+  var guardado = null;
+  try { guardado = localStorage.getItem('tema'); } catch (e) {}
+  if (guardado === 'light' || guardado === 'dark') raiz.setAttribute('data-theme', guardado);
+
+  var boton = document.querySelector('.theme-btn');
+  if (!boton) return;
+
+  boton.addEventListener('click', function () {
+    var sistemaOscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var actual = raiz.getAttribute('data-theme') || (sistemaOscuro ? 'dark' : 'light');
+    var siguiente = actual === 'dark' ? 'light' : 'dark';
+    raiz.setAttribute('data-theme', siguiente);
+    try { localStorage.setItem('tema', siguiente); } catch (e) {}
+  });
+})();
+
+/* ============================================================
+   Experiencia — se calcula sola desde septiembre de 2021
+   ============================================================ */
+(function () {
+  var inicio = new Date(2021, 8, 1);
+  var hoy = new Date();
+  var anios = hoy.getFullYear() - inicio.getFullYear();
+  var meses = hoy.getMonth() - inicio.getMonth();
+  var dias = hoy.getDate() - inicio.getDate();
+  if (dias < 0) { meses--; dias += new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate(); }
+  if (meses < 0) { anios--; meses += 12; }
+
+
+  document.querySelectorAll('[data-exp]').forEach(function (el) {
+    if (el.dataset.exp === 'corto') {
+      el.textContent = anios + 'a ' + meses + 'm';
+    } else {
+      var partes = [];
+      if (anios) partes.push(anios + (anios === 1 ? ' año' : ' años'));
+      if (meses) partes.push(meses + (meses === 1 ? ' mes' : ' meses'));
+      if (dias) partes.push(dias + (dias === 1 ? ' día' : ' días'));
+      el.textContent = partes.length > 1
+        ? partes.slice(0, -1).join(', ') + ' y ' + partes[partes.length - 1]
+        : (partes[0] || '0 días');
+    }
+  });
+})();
+
+/* ============================================================
+   Red de skills — mismo grafo que el portafolio principal
+   ============================================================ */
+(function () {
+  var lienzo = document.getElementById('net');
+  if (!lienzo) return;
+
+const SKILLS = {
+        // Nodos principales (categorías)
+        frontend: {
+            type: 'category',
+            class: 'frontend center-node',
+            position: { x: 15, y: 25 },
+            connections: ['javascript', 'typescript', 'html', 'vuejs', 'tailwind']
+        },
+        backend: {
+            type: 'category',
+            class: 'backend center-node',
+            position: { x: 85, y: 25 },
+            connections: ['php', 'laravel', 'python', 'django', 'vbnet']
+        },
+        database: {
+            type: 'category',
+            class: 'database center-node',
+            position: { x: 50, y: 15 },
+            connections: ['mysql', 'oracle', 'sqlite', 'redis', 'dataverse']
+        },
+        automation: {
+            type: 'category',
+            class: 'automation center-node',
+            position: { x: 20, y: 70 },
+            connections: ['uipath', 'powerautomate', 'vba']
+        },
+        tools: {
+            type: 'category',
+            class: 'tools center-node',
+            position: { x: 80, y: 70 },
+            connections: ['git', 'github', 'postman', 'powerapps', 'powerbi', 'odoo', 'vscode']
+        },
+        methodologies: {
+            type: 'category',
+            class: 'methodologies center-node',
+            position: { x: 50, y: 85 },
+            connections: ['scrum', 'kanban']
+        },
+        // Tecnologías específicas
+        javascript: {
+            type: 'tech',
+            class: 'frontend tech-node',
+            position: { x: 5, y: 40 },
+            connections: ['vuejs', 'typescript', 'php', 'postman']
+        },
+        typescript: {
+            type: 'tech',
+            class: 'frontend tech-node',
+            position: { x: 8, y: 15 },
+            connections: ['javascript', 'vuejs']
+        },
+        html: {
+            type: 'tech',
+            class: 'frontend tech-node',
+            position: { x: 25, y: 10 },
+            connections: ['tailwind', 'javascript']
+        },
+        vuejs: {
+            type: 'tech',
+            class: 'frontend tech-node',
+            position: { x: 35, y: 35 },
+            connections: ['laravel', 'tailwind', 'typescript']
+        },
+        tailwind: {
+            type: 'tech',
+            class: 'frontend tech-node',
+            position: { x: 30, y: 50 },
+            connections: ['html', 'vuejs']
+        },
+        php: {
+            type: 'tech',
+            class: 'backend tech-node',
+            position: { x: 70, y: 40 },
+            connections: ['laravel', 'mysql', 'oracle']
+        },
+        laravel: {
+            type: 'tech',
+            class: 'backend tech-node',
+            position: { x: 65, y: 50 },
+            connections: ['php', 'mysql', 'vuejs', 'redis']
+        },
+        python: {
+            type: 'tech',
+            class: 'backend tech-node',
+            position: { x: 90, y: 40 },
+            connections: ['django', 'mysql', 'uipath', 'odoo']
+        },
+        django: {
+            type: 'tech',
+            class: 'backend tech-node',
+            position: { x: 95, y: 48 },
+            connections: ['python']
+        },
+        vbnet: {
+            type: 'tech',
+            class: 'backend tech-node',
+            position: { x: 75, y: 10 },
+            connections: ['uipath']
+        },
+        mysql: {
+            type: 'tech',
+            class: 'database tech-node',
+            position: { x: 40, y: 5 },
+            connections: ['php', 'laravel', 'python']
+        },
+        oracle: {
+            type: 'tech',
+            class: 'database tech-node',
+            position: { x: 60, y: 5 },
+            connections: ['php']
+        },
+        sqlite: {
+            type: 'tech',
+            class: 'database tech-node',
+            position: { x: 29, y: 20 },
+            connections: ['laravel']
+        },
+        redis: {
+            type: 'tech',
+            class: 'database tech-node',
+            position: { x: 71, y: 20 },
+            connections: ['laravel']
+        },
+        dataverse: {
+            type: 'tech',
+            class: 'database tech-node',
+            position: { x: 50, y: 2 },
+            connections: ['powerapps', 'powerbi']
+        },
+        uipath: {
+            type: 'tech',
+            class: 'automation tech-node',
+            position: { x: 10, y: 85 },
+            connections: ['vba', 'vbnet', 'python']
+        },
+        powerautomate: {
+            type: 'tech',
+            class: 'automation tech-node',
+            position: { x: 30, y: 85 },
+            connections: ['powerapps', 'vba']
+        },
+        vba: {
+            type: 'tech',
+            class: 'automation tech-node',
+            position: { x: 5, y: 55 },
+            connections: ['uipath', 'powerautomate']
+        },
+        git: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 95, y: 75 },
+            connections: ['github', 'laravel', 'django']
+        },
+        github: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 95, y: 62 },
+            connections: ['git', 'vscode']
+        },
+        postman: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 70, y: 85 },
+            connections: ['php', 'laravel']
+        },
+        powerapps: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 85, y: 85 },
+            connections: ['powerautomate', 'dataverse', 'powerbi']
+        },
+        powerbi: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 58, y: 68 },
+            connections: ['powerapps', 'dataverse']
+        },
+        odoo: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 90, y: 10 },
+            connections: ['python']
+        },
+        vscode: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 75, y: 60 },
+            connections: ['github', 'git']
+        },
+        scrum: {
+            type: 'tech',
+            class: 'methodologies tech-node',
+            position: { x: 40, y: 95 },
+            connections: ['kanban']
+        },
+        kanban: {
+            type: 'tech',
+            class: 'methodologies tech-node',
+            position: { x: 60, y: 95 },
+            connections: ['scrum']
+        }
+};
+
+  var ANCHO = 1000, ALTO = 600;
+  var nodos = {};
+
+  var nombres = {
+    javascript: 'JavaScript', typescript: 'TypeScript', html: 'HTML', vuejs: 'Vue.js',
+    tailwind: 'Tailwind CSS', php: 'PHP', laravel: 'Laravel', python: 'Python',
+    django: 'Django', vbnet: 'VB.NET', mysql: 'MySQL', oracle: 'ORACLE', sqlite: 'SQLite',
+    redis: 'Redis', dataverse: 'Dataverse', uipath: 'UiPath', powerautomate: 'Power Automate',
+    powerapps: 'Power Apps', powerbi: 'Power BI', vba: 'Excel VBA', git: 'Git', github: 'GitHub',
+    postman: 'Postman', odoo: 'Odoo', vscode: 'VS Code', scrum: 'Scrum', kanban: 'Kanban',
+    frontend: 'Frontend', backend: 'Backend', database: 'Bases de datos',
+    automation: 'Automatización', tools: 'Herramientas', methodologies: 'Metodologías'
+  };
+
+  function etiqueta(id) {
+    return nombres[id] || (id.charAt(0).toUpperCase() + id.slice(1));
+  }
+
+  // --- Nodos
+  Object.keys(SKILLS).forEach(function (id) {
+    var s = SKILLS[id];
+    var categoria = s.class.split(' ')[0];
+    var el = document.createElement('button');
+    el.type = 'button';
+    el.className = 'node' + (s.type === 'category' ? ' is-cat' : '');
+    el.dataset.cat = categoria;
+    el.dataset.id = id;
+    el.textContent = etiqueta(id);
+    el.style.left = s.position.x + '%';
+    el.style.top = s.position.y + '%';
+    el.setAttribute('aria-label', etiqueta(id) + ' — ver conexiones');
+    lienzo.appendChild(el);
+    nodos[id] = el;
+  });
+
+  // --- Aristas (una por par, sin duplicar las reciprocas)
+  var vistas = {};
+  var aristas = [];
+  Object.keys(SKILLS).forEach(function (id) {
+    (SKILLS[id].connections || []).forEach(function (destino) {
+      if (!SKILLS[destino]) return;
+      var clave = [id, destino].sort().join('|');
+      if (vistas[clave]) return;
+      vistas[clave] = true;
+
+      var a = SKILLS[id].position, b = SKILLS[destino].position;
+      var x1 = a.x / 100 * ANCHO, y1 = a.y / 100 * ALTO;
+      var x2 = b.x / 100 * ANCHO, y2 = b.y / 100 * ALTO;
+      var largo = Math.hypot(x2 - x1, y2 - y1);
+      var giro = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+
+      var el = document.createElement('div');
+      el.className = 'edge';
+      el.dataset.cat = SKILLS[id].class.split(' ')[0];
+      el.style.left = x1 + 'px';
+      el.style.top = y1 + 'px';
+      el.style.width = largo + 'px';
+      el.style.transform = 'rotate(' + giro + 'deg)';
+      lienzo.appendChild(el);
+      aristas.push({ el: el, a: id, b: destino });
+    });
+  });
+
+  // --- Resaltado
+  function encender(id) {
+    apagar();
+    var vecinos = {};
+    aristas.forEach(function (ar) {
+      if (ar.a === id || ar.b === id) {
+        ar.el.classList.add('on');
+        ar.el.dataset.cat = SKILLS[id].class.split(' ')[0];
+        vecinos[ar.a === id ? ar.b : ar.a] = true;
+      }
+    });
+    Object.keys(vecinos).forEach(function (v) { if (nodos[v]) nodos[v].classList.add('on'); });
+    if (nodos[id]) nodos[id].classList.add('on');
+  }
+
+  function apagar() {
+    aristas.forEach(function (ar) { ar.el.classList.remove('on'); });
+    Object.keys(nodos).forEach(function (k) { nodos[k].classList.remove('on'); });
+  }
+
+  Object.keys(nodos).forEach(function (id) {
+    var el = nodos[id];
+    el.addEventListener('mouseenter', function () { encender(id); });
+    el.addEventListener('focus', function () { encender(id); });
+    el.addEventListener('mouseleave', apagar);
+    el.addEventListener('blur', apagar);
+    el.addEventListener('click', function (e) { e.preventDefault(); encender(id); });
+  });
+
+  // --- Escalado: el grafo se dibuja a 1000x600 y se ajusta al ancho disponible
+  var marco = lienzo.parentElement;
+  function ajustar() {
+    var k = Math.min(1, marco.clientWidth / ANCHO);
+    lienzo.style.transform = 'scale(' + k + ')';
+    marco.style.height = (ALTO * k) + 'px';
+  }
+  ajustar();
+  window.addEventListener('resize', ajustar);
+  if (window.ResizeObserver) new ResizeObserver(ajustar).observe(marco);
+})();
+</script>
+</body>
+</html>

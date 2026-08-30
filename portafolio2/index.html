@@ -156,7 +156,10 @@ a { color: inherit; }
   border: 1px solid var(--line); text-decoration: none; color: var(--ink);
   transition: border-color .16s, background .16s;
 }
-.nav-cv:hover { border-color: var(--accent); background: var(--accent-soft); }
+.nav-cv {
+  border-color: var(--accent); color: var(--accent); background: var(--accent-soft);
+}
+.nav-cv:hover { background: var(--accent); color: var(--ground); border-color: var(--accent); }
 @media (max-width: 880px) { .nav-links { display: none; } .nav-cv { margin-left: auto; } }
 
 /* ------------------------- hero ------------------------- */
@@ -188,6 +191,11 @@ a { color: inherit; }
 .btn-primary { background: var(--accent); color: var(--ground); box-shadow: 0 10px 24px -12px var(--accent); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 30px -14px var(--accent); }
 .btn-ghost { border-color: var(--line); color: var(--ink); }
+.btn-cv {
+  border-color: var(--accent); color: var(--accent);
+  background: var(--accent-soft); font-weight: 650;
+}
+.btn-cv:hover { background: var(--accent); color: var(--ground); }
 .btn-ghost:hover { border-color: var(--muted); background: var(--surface); }
 
 /* mosaico del hero */
@@ -276,8 +284,16 @@ a { color: inherit; }
 @media (max-width: 720px) { .track { grid-template-columns: 1fr; gap: 4px; } }
 .track-row { display: contents; }
 .track-when {
-  font-family: var(--font-mono); font-size: 12px; color: var(--muted);
-  padding: 24px 0; border-top: 1px solid var(--line); letter-spacing: .02em;
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 24px 0; border-top: 1px solid var(--line);
+}
+.track-fecha {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+  color: var(--ink); letter-spacing: .02em;
+}
+.track-dur {
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--accent);
+  letter-spacing: .04em;
 }
 .track-what { padding: 24px 0; border-top: 1px solid var(--line); }
 @media (max-width: 720px) {
@@ -469,7 +485,7 @@ a { color: inherit; }
 .net {
   position: relative;
   width: 1000px;
-  height: 600px;
+  height: 620px;
   transform-origin: 0 0;
 }
 .edge {
@@ -575,7 +591,7 @@ a { color: inherit; }
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#productos">Ver los productos →</a>
-        <a class="btn btn-ghost" href="#contacto">Descargar CV</a>
+        <a class="btn btn-cv" href="#contacto">Descargar CV</a>
       </div>
     </div>
     <div class="mosaic" aria-hidden="true">
@@ -715,28 +731,28 @@ a { color: inherit; }
     </div>
     <div class="track">
       <div class="track-row reveal">
-        <div class="track-when">Abr 2026 — hoy</div>
+        <div class="track-when"><span class="track-fecha">Abr 2026 — hoy</span><span class="track-dur" data-desde="2026-04" data-hasta="hoy"></span></div>
         <div class="track-what">
           <h3>Ingeniero de Desarrollo <span>· Sies Salud</span></h3>
           <p>Rol actual.</p>
         </div>
       </div>
       <div class="track-row reveal">
-        <div class="track-when">Dic 2024 — Mar 2026</div>
+        <div class="track-when"><span class="track-fecha">Dic 2024 — Mar 2026</span><span class="track-dur" data-desde="2024-12" data-hasta="2026-03"></span></div>
         <div class="track-what">
           <h3>Desarrollador Full Stack <span>· TurriSystem</span></h3>
           <p>Sistemas web con Laravel y Vue.js para entidades públicas: módulos completos desde mockup hasta interfaz, APIs REST, migración de PHP legacy a 8.x y bases de datos MySQL y Oracle.</p>
         </div>
       </div>
       <div class="track-row reveal">
-        <div class="track-when">Feb 2023 — Nov 2024</div>
+        <div class="track-when"><span class="track-fecha">Feb 2023 — Nov 2024</span><span class="track-dur" data-desde="2023-02" data-hasta="2024-11"></span></div>
         <div class="track-what">
           <h3>Desarrollador RPA <span>· Thomas Greg and Sons</span></h3>
           <p>Bots UiPath para procesos financieros y de RRHH, aplicaciones internas en Power Apps y Dataverse, chatbots de autogestión y módulos a medida en Odoo.</p>
         </div>
       </div>
       <div class="track-row reveal">
-        <div class="track-when">Sep 2021 — Ene 2023</div>
+        <div class="track-when"><span class="track-fecha">Sep 2021 — Ene 2023</span><span class="track-dur" data-desde="2021-09" data-hasta="2023-01"></span></div>
         <div class="track-what">
           <h3>Auxiliar II de Mejora Continua <span>· Thomas Greg and Sons</span></h3>
           <p>Levantamiento de procesos, documentación PDD bajo estándares ISO y automatización de tareas repetitivas con scripts y macros.</p>
@@ -933,6 +949,39 @@ a { color: inherit; }
         ? partes.slice(0, -1).join(', ') + ' y ' + partes[partes.length - 1]
         : (partes[0] || '0 días');
     }
+  });
+})();
+
+/* ============================================================
+   Cuanto duro cada etapa de la trayectoria
+   ============================================================ */
+(function () {
+  function meses(desde, hasta) {
+    var a = desde.split('-');
+    var inicio = new Date(+a[0], +a[1] - 1, 1);
+    var fin;
+    if (hasta === 'hoy') {
+      var h = new Date();
+      fin = new Date(h.getFullYear(), h.getMonth(), 1);
+    } else {
+      var b = hasta.split('-');
+      fin = new Date(+b[0], +b[1] - 1, 1);
+    }
+    return (fin.getFullYear() - inicio.getFullYear()) * 12 + (fin.getMonth() - inicio.getMonth());
+  }
+
+  function texto(total) {
+    var anios = Math.floor(total / 12);
+    var resto = total % 12;
+    var partes = [];
+    if (anios) partes.push(anios + (anios === 1 ? ' año' : ' años'));
+    if (resto) partes.push(resto + (resto === 1 ? ' mes' : ' meses'));
+    return partes.length ? partes.join(' y ') : 'menos de un mes';
+  }
+
+  document.querySelectorAll('.track-dur').forEach(function (el) {
+    var total = meses(el.dataset.desde, el.dataset.hasta);
+    el.textContent = texto(total) + (el.dataset.hasta === 'hoy' ? ' · en curso' : '');
   });
 })();
 
@@ -1146,8 +1195,18 @@ const SKILLS = {
         }
 };
 
-  var ANCHO = 1000, ALTO = 600;
+  var ANCHO = 1000, ALTO = 620;
+  // Aire interior para que ningun nodo toque el borde: los porcentajes del
+  // grafo se mapean a este rectangulo, no al lienzo completo.
+  var MARGEN_X = 80, MARGEN_Y = 44;
   var nodos = {};
+
+  function aPixeles(x, y) {
+    return {
+      x: MARGEN_X + (x / 100) * (ANCHO - MARGEN_X * 2),
+      y: MARGEN_Y + (y / 100) * (ALTO - MARGEN_Y * 2)
+    };
+  }
 
   var nombres = {
     javascript: 'JavaScript', typescript: 'TypeScript', html: 'HTML', vuejs: 'Vue.js',
@@ -1174,8 +1233,9 @@ const SKILLS = {
     el.dataset.cat = categoria;
     el.dataset.id = id;
     el.textContent = etiqueta(id);
-    el.style.left = s.position.x + '%';
-    el.style.top = s.position.y + '%';
+    var punto = aPixeles(s.position.x, s.position.y);
+    el.style.left = punto.x + 'px';
+    el.style.top = punto.y + 'px';
     el.setAttribute('aria-label', etiqueta(id) + ' — ver conexiones');
     lienzo.appendChild(el);
     nodos[id] = el;
@@ -1191,9 +1251,9 @@ const SKILLS = {
       if (vistas[clave]) return;
       vistas[clave] = true;
 
-      var a = SKILLS[id].position, b = SKILLS[destino].position;
-      var x1 = a.x / 100 * ANCHO, y1 = a.y / 100 * ALTO;
-      var x2 = b.x / 100 * ANCHO, y2 = b.y / 100 * ALTO;
+      var a = aPixeles(SKILLS[id].position.x, SKILLS[id].position.y);
+      var b = aPixeles(SKILLS[destino].position.x, SKILLS[destino].position.y);
+      var x1 = a.x, y1 = a.y, x2 = b.x, y2 = b.y;
       var largo = Math.hypot(x2 - x1, y2 - y1);
       var giro = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
 
@@ -1242,7 +1302,9 @@ const SKILLS = {
   var marco = lienzo.parentElement;
   function ajustar() {
     var k = Math.min(1, marco.clientWidth / ANCHO);
-    lienzo.style.transform = 'scale(' + k + ')';
+    var sobrante = marco.clientWidth - ANCHO * k;
+    // translate antes que scale: mueve el bloque ya escalado, sin deformarlo
+    lienzo.style.transform = 'translateX(' + (sobrante / 2) + 'px) scale(' + k + ')';
     marco.style.height = (ALTO * k) + 'px';
   }
   ajustar();

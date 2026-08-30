@@ -288,26 +288,46 @@ body {
     transform: scale(1.1);
 }
 
+/* El CV es lo que se lleva un reclutador: solido y con peso, no un fantasma
+   sobre el azul del hero (antes era negro al 15% con borde blanco al 30%). */
 .btn-download {
-    display: inline-block;
-    background: rgba(0,0,0,0.15);
-    color: white;
-    padding: 12px 25px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #16337a; /* fijo: siempre va sobre blanco, en ambos temas */
+    padding: 13px 28px;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1rem;
     font-family: inherit;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid #fff;
+    box-shadow: 0 8px 22px rgba(3, 18, 51, 0.35);
     cursor: pointer;
 }
 
 .btn-download:hover {
-    background: white;
-    color: #1d4ed8; /* fijo: sobre fondo blanco en ambos temas */
+    background: #eef4ff;
+    border-color: #eef4ff;
+    color: #16337a;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 28px rgba(3, 18, 51, 0.45);
+}
+
+/* Mismo criterio en Contacto: alli el ambar es "escribeme" y el CV va solido
+   en azul, para que no compita en color pero tampoco quede en segundo plano. */
+.btn-repo.btn-cv {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-repo.btn-cv:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+    color: #fff;
 }
 
 /* Main Container */

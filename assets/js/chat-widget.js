@@ -49,7 +49,7 @@
     '.dgc-fab:hover{transform:scale(1.1)}',
     '.dgc-fab:active{transform:scale(.92)}',
     '.dgc-fab.is-open{background:#4b5563;box-shadow:none;animation:none}',
-    '.dgc-fab svg{position:relative;z-index:2;color:#fff;stroke:currentColor;fill:none;stroke-width:2.3}',
+    '.dgc-fab svg{position:relative;z-index:2;width:27px;height:27px;color:#fff;stroke:currentColor;fill:none;stroke-width:2.3}',
     '.dgc-shine{position:absolute;inset:0;border-radius:50%;z-index:1;',
     'background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.45) 0%,rgba(255,255,255,.1) 40%,transparent 70%);',
     'animation:dgcSpin 25s linear infinite}',

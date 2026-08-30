@@ -113,7 +113,7 @@ const SkillsDiagram = {
             type: 'category',
             class: 'tools center-node',
             position: { x: 80, y: 70 },
-            connections: ['git', 'github', 'postman', 'powerapps', 'odoo', 'vscode']
+            connections: ['git', 'github', 'postman', 'powerapps', 'powerbi', 'odoo', 'vscode']
         },
         methodologies: {
             type: 'category',
@@ -173,7 +173,7 @@ const SkillsDiagram = {
         django: {
             type: 'tech',
             class: 'backend tech-node',
-            position: { x: 95, y: 55 },
+            position: { x: 95, y: 48 },
             connections: ['python']
         },
         vbnet: {
@@ -210,7 +210,7 @@ const SkillsDiagram = {
             type: 'tech',
             class: 'database tech-node',
             position: { x: 50, y: 2 },
-            connections: ['powerapps']
+            connections: ['powerapps', 'powerbi']
         },
         uipath: {
             type: 'tech',
@@ -239,7 +239,7 @@ const SkillsDiagram = {
         github: {
             type: 'tech',
             class: 'tools tech-node',
-            position: { x: 95, y: 60 },
+            position: { x: 95, y: 62 },
             connections: ['git', 'vscode']
         },
         postman: {
@@ -252,7 +252,13 @@ const SkillsDiagram = {
             type: 'tech',
             class: 'tools tech-node',
             position: { x: 85, y: 85 },
-            connections: ['powerautomate', 'dataverse']
+            connections: ['powerautomate', 'dataverse', 'powerbi']
+        },
+        powerbi: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 58, y: 68 },
+            connections: ['powerapps', 'dataverse']
         },
         odoo: {
             type: 'tech',
@@ -304,6 +310,7 @@ const SkillsDiagram = {
             'github': 'GitHub',
             'postman': 'Postman',
             'powerapps': 'Power Apps',
+            'powerbi': 'Power BI',
             'odoo': 'Odoo',
             'vscode': 'VS Code',
             'scrum': 'Scrum',
@@ -863,26 +870,103 @@ const ImageGallery = {
     },
 
     lastFocus: null,
+    modalImages: [],
+    modalIndex: 0,
+    modalProject: null,
+    swiped: false,
 
-    openModal(imageSrc) {
+    // Las miniaturas son la lista completa de capturas del proyecto
+    collectImages(gallery) {
+        if (!gallery) return [];
+        const thumbs = [...gallery.querySelectorAll('.gallery-thumbs .thumb')];
+        if (thumbs.length) return thumbs.map(t => ({ src: t.src, alt: t.alt }));
+        const main = gallery.querySelector('.gallery-main img');
+        return main ? [{ src: main.src, alt: main.alt }] : [];
+    },
+
+    // Acepta el <img> que disparó el clic (para saber a qué galería pertenece)
+    // o solo el src, por compatibilidad con llamadas antiguas
+    openModal(source) {
         const modal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
 
+        let el = null;
+        let src = source;
+        if (typeof source === 'string') {
+            el = [...document.querySelectorAll('.gallery-main img')].find(i => i.src === source) || null;
+        } else if (source) {
+            el = source;
+            src = source.src;
+        }
+
+        const gallery = el ? el.closest('.project-gallery') : null;
+        this.modalProject = gallery ? gallery.dataset.project : null;
+        this.modalImages = this.collectImages(gallery);
+        const idx = this.modalImages.findIndex(i => i.src === src);
+        this.modalIndex = idx >= 0 ? idx : 0;
+
         this.lastFocus = document.activeElement;
-        modalImage.src = imageSrc;
+        modalImage.src = src;
+        modalImage.alt = (el && el.alt) || 'Vista ampliada del proyecto';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        this.updateModalNav();
 
         // Mover el foco al botón de cerrar para navegación por teclado
         const closeBtn = modal.querySelector('.modal-close');
         if (closeBtn) closeBtn.focus();
     },
 
+    // Flechas y contador solo tienen sentido con más de una captura
+    updateModalNav() {
+        const modal = document.getElementById('imageModal');
+        const counter = modal.querySelector('.modal-counter');
+        const varias = this.modalImages.length > 1;
+
+        modal.querySelectorAll('.modal-nav').forEach(nav => { nav.hidden = !varias; });
+        if (counter) {
+            counter.hidden = !varias;
+            counter.textContent = `${this.modalIndex + 1} / ${this.modalImages.length}`;
+        }
+    },
+
+    // step: 1 siguiente, -1 anterior. Da la vuelta al llegar al extremo
+    stepModal(step) {
+        if (this.modalImages.length < 2) return;
+        const total = this.modalImages.length;
+        this.modalIndex = (this.modalIndex + step + total) % total;
+
+        const img = this.modalImages[this.modalIndex];
+        const modalImage = document.getElementById('modalImage');
+        modalImage.src = img.src;
+        modalImage.alt = img.alt || 'Vista ampliada del proyecto';
+        this.updateModalNav();
+        this.syncGallery(img.src);
+    },
+
+    // Deja la tarjeta del proyecto en la misma captura que quedó viéndose en el modal
+    syncGallery(src) {
+        if (!this.modalProject) return;
+        const gallery = document.querySelector(`.project-gallery[data-project="${this.modalProject}"]`);
+        if (!gallery) return;
+        const thumb = [...gallery.querySelectorAll('.gallery-thumbs .thumb')].find(t => t.src === src);
+        if (thumb) this.changeImage(thumb, this.modalProject);
+    },
+
     closeModal() {
         const modal = document.getElementById('imageModal');
         if (!modal.classList.contains('active')) return;
+
+        // Un swipe en móvil puede terminar disparando el clic que cierra el modal
+        if (this.swiped) {
+            this.swiped = false;
+            return;
+        }
+
         modal.classList.remove('active');
         document.body.style.overflow = '';
+        this.modalImages = [];
+        this.modalProject = null;
 
         // Devolver el foco al elemento que abrió el modal
         if (this.lastFocus && typeof this.lastFocus.focus === 'function') {
@@ -900,11 +984,24 @@ const ImageGallery = {
             if (e.key === 'Escape') {
                 this.closeModal();
             }
-            // Trampa de foco simple: mantener el foco en el botón de cerrar
+            // Navegar entre capturas con las flechas
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                this.stepModal(1);
+            }
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                this.stepModal(-1);
+            }
+            // Trampa de foco: ciclar entre los botones visibles del modal
             if (e.key === 'Tab') {
                 e.preventDefault();
-                const closeBtn = modal.querySelector('.modal-close');
-                if (closeBtn) closeBtn.focus();
+                const focusables = [...modal.querySelectorAll('button')].filter(b => !b.hidden);
+                if (!focusables.length) return;
+                const actual = focusables.indexOf(document.activeElement);
+                const paso = e.shiftKey ? -1 : 1;
+                const siguiente = (actual + paso + focusables.length) % focusables.length;
+                focusables[actual === -1 ? 0 : siguiente].focus();
             }
         });
 
@@ -914,6 +1011,24 @@ const ImageGallery = {
             modalImage.addEventListener('click', (e) => {
                 e.stopPropagation();
             });
+        }
+
+        // Swipe horizontal en móvil para pasar de captura
+        if (modal) {
+            let inicioX = null;
+            modal.addEventListener('touchstart', (e) => {
+                inicioX = e.changedTouches[0].clientX;
+            }, { passive: true });
+
+            modal.addEventListener('touchend', (e) => {
+                if (inicioX === null) return;
+                const dx = e.changedTouches[0].clientX - inicioX;
+                inicioX = null;
+                if (Math.abs(dx) < 45) return;
+                this.swiped = true;
+                this.stepModal(dx < 0 ? 1 : -1);
+                setTimeout(() => { this.swiped = false; }, 400);
+            }, { passive: true });
         }
 
         // Hacer operables por teclado las miniaturas y la imagen principal de cada galería
@@ -943,6 +1058,14 @@ function closeImageModal() {
     ImageGallery.closeModal();
 }
 
+function modalPrevImage() {
+    ImageGallery.stepModal(-1);
+}
+
+function modalNextImage() {
+    ImageGallery.stepModal(1);
+}
+
 // ======================
 // CV GENERATOR MODULE
 // ======================
@@ -969,7 +1092,7 @@ const CVGenerator = {
         },
         get perfil() {
             const exp = ExperienceCalculator.getFullText();
-            return `Desarrollador Full Stack con ${exp} de experiencia en desarrollo de software y automatización de procesos para el sector público y empresarial. Trabajo de extremo a extremo adaptándome al stack de cada proyecto (Laravel, Vue, Next.js), con sólida experiencia en RPA y Power Platform. Enfoque en código limpio, buenas prácticas y entrega de valor.`;
+            return `Desarrollador Full Stack con ${exp} de experiencia en desarrollo de software y automatización de procesos para el sector público y empresarial, incluyendo áreas financieras y contables (impuestos, cuentas por pagar y proveedores). Trabajo de extremo a extremo adaptándome al stack de cada proyecto (Laravel, Vue, Next.js), con sólida experiencia en RPA y Power Platform. Enfoque en código limpio, buenas prácticas y entrega de valor.`;
         },
         experiencia: [
             {
@@ -998,7 +1121,7 @@ const CVGenerator = {
                 periodo: 'Feb 2023 - Nov 2024',
                 ubicacion: 'Bogotá (Híbrido)',
                 logros: [
-                    'Desarrollo de bots RPA con UiPath (VB.NET + Python) para procesos financieros y de RRHH',
+                    'Desarrollo de bots RPA con UiPath (VB.NET + Python) para el área financiera (impuestos, cuentas por pagar y estados de cuenta de proveedores) y RRHH',
                     'Desarrollo de aplicaciones internas con Power Apps y Dataverse',
                     'Creación de chatbots internos con Power Virtual Agents para autogestión de empleados (nómina, vacaciones y certificados laborales)',
                     'Personalización y desarrollo de módulos en ODOO (ERP)',
@@ -1040,7 +1163,7 @@ const CVGenerator = {
                 'Python / Django',
                 'VB.NET / VBA',
                 'UiPath / Power Automate',
-                'Power Apps / Dataverse',
+                'Power Apps / Power BI / Dataverse',
                 'Power Virtual Agents',
                 'Git / GitHub / Postman'
             ],
@@ -1470,13 +1593,20 @@ const ExperienceCalculator = {
         const now = new Date();
         let years = now.getFullYear() - this.startDate.getFullYear();
         let months = now.getMonth() - this.startDate.getMonth();
+        let days = now.getDate() - this.startDate.getDate();
+
+        if (days < 0) {
+            months--;
+            // Días que tuvo el mes anterior al actual
+            days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        }
 
         if (months < 0) {
             years--;
             months += 12;
         }
 
-        return { years, months };
+        return { years, months, days };
     },
 
     getShortText() {
@@ -1490,11 +1620,30 @@ const ExperienceCalculator = {
         return `+${years} años y ${months} meses`;
     },
 
+    // Contador exacto para el sitio: "4 años, 11 meses y 29 días"
+    getCounterText() {
+        const { years, months, days } = this.calculate();
+        const partes = [];
+        if (years) partes.push(`${years} ${years === 1 ? 'año' : 'años'}`);
+        if (months) partes.push(`${months} ${months === 1 ? 'mes' : 'meses'}`);
+        if (days) partes.push(`${days} ${days === 1 ? 'día' : 'días'}`);
+
+        if (!partes.length) return '0 días';
+        if (partes.length === 1) return partes[0];
+        return `${partes.slice(0, -1).join(', ')} y ${partes[partes.length - 1]}`;
+    },
+
     init() {
+        const formatos = {
+            'counter': () => this.getCounterText(),
+            'full': () => this.getFullText(),
+            'short': () => this.getShortText()
+        };
+
         const elements = document.querySelectorAll('[data-experience]');
         elements.forEach(el => {
             const format = el.dataset.experience;
-            el.textContent = format === 'full' ? this.getFullText() : this.getShortText();
+            el.textContent = (formatos[format] || formatos.short)();
         });
 
         // Update meta description

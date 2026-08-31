@@ -39,6 +39,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://portafolio.deepdev.com.co">
 
+    <!-- No filtrar la URL completa a los CDN de terceros -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
     <!-- Font Awesome with SRI -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           rel="stylesheet"
@@ -46,13 +49,20 @@
           crossorigin="anonymous">
 
     <!-- DevIcon - Technology Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@6910f0503efdd315c8f9b858234310c06e04d9c0/devicon.min.css"
+          integrity="sha384-DjehTlU5SubGD1zUGe78SkwLgw+q2y9DXnmy3EaDbXA9nvFMPW3LP5verNrWr9rW"
+          crossorigin="anonymous">
 
     <!-- Main Stylesheet -->
     <link href="css/styles.css?v=12" rel="stylesheet">
 
     <!-- jsPDF for CV Generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+            integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+            defer></script>
     <!-- Roboto Font for jsPDF UTF-8 support -->
     <script src="js/roboto-font.js" defer></script>
 </head>

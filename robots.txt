@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Notas internas y metadatos del repo: fuera del indice
+Disallow: /docs/
+Disallow: /.git/
+
 Sitemap: https://portafolio.deepdev.com.co/sitemap.xml

@@ -1,1 +1,38 @@
 .claude/
+
+# Notas internas: no deben publicarse con el sitio
+docs/
+
+# Secretos y credenciales (red de seguridad: hoy no hay ninguno en el repo)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+credentials.json
+secrets.json
+
+# Dependencias y basura de build
+node_modules/
+vendor/
+dist/
+.cache/
+
+# Backups y volcados
+*.bak
+*.old
+*.orig
+*.log
+*.sql
+*.sqlite
+*.zip
+*.tar.gz
+
+# Sistema operativo / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/

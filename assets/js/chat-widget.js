@@ -1,10 +1,9 @@
 /**
  * Widget de chat de los portafolios de David Gonzalez.
  *
- * Es el mismo asistente del sitio de DeepDev (mismo endpoint, mismo flujo de
- * n8n y las mismas credenciales); lo que cambia es el guion: alli vende
- * servicios del estudio y aqui responde dudas sobre el perfil de David y sobre
- * que entra y que no entra en su alcance. Eso se elige con `bot: 'portafolio'`.
+ * Habla con el backend del asistente. El guion vive en el servidor: aqui
+ * responde dudas sobre el perfil de David y sobre que entra y que no entra en
+ * su alcance.
  *
  * Sin dependencias: inyecta su propio CSS y su propio DOM, y funciona igual en
  * el portafolio clasico y en portafolio2.
@@ -19,6 +18,12 @@
   'use strict';
 
   var API_URL = 'https://deepdev.com.co/api/chat';
+
+  // El corte real tiene que estar en el servidor; esto solo evita que un pegado
+  // enorme salga del navegador. Y si el backend se cuelga, el widget no puede
+  // quedarse en "escribiendo..." para siempre.
+  var LIMITE_MENSAJE = 1000;
+  var TIMEOUT_MS = 45000;
   var script = document.currentScript;
   var POSICION = (script && script.dataset.position === 'left') ? 'left' : 'right';
 
@@ -171,17 +176,35 @@
   var abierto = false;
   var cargando = false;
   var conversationId = null;
+  // Solo hila la conversacion en la UI: el servidor no debe usarlo para limitar
+  // nada, porque lo fabrica el cliente.
+  function idVisitante() {
+    try {
+      if (window.crypto && typeof crypto.randomUUID === 'function') {
+        return 'visitor_' + crypto.randomUUID();
+      }
+      if (window.crypto && typeof crypto.getRandomValues === 'function') {
+        var b = new Uint8Array(16);
+        crypto.getRandomValues(b);
+        return 'visitor_' + Array.prototype.map.call(b, function (n) {
+          return ('0' + n.toString(16)).slice(-2);
+        }).join('');
+      }
+    } catch (e) { /* sin crypto */ }
+    return 'visitor_' + Math.random().toString(36).substring(2, 15);
+  }
+
   var visitorId = (function () {
     try {
       var k = 'dg_visitor_id';
       var v = localStorage.getItem(k);
       if (!v) {
-        v = 'visitor_' + Math.random().toString(36).substring(2, 15);
+        v = idVisitante();
         localStorage.setItem(k, v);
       }
       return v;
     } catch (e) {
-      return 'visitor_' + Math.random().toString(36).substring(2, 15);
+      return idVisitante();
     }
   })();
 
@@ -205,7 +228,7 @@
       '<div class="dgc-msgs" aria-live="polite"></div>' +
       '<div class="dgc-foot">' +
         '<form class="dgc-form">' +
-          '<input class="dgc-input" type="text" placeholder="Escribe tu mensaje..." aria-label="Mensaje" autocomplete="off">' +
+          '<input class="dgc-input" type="text" placeholder="Escribe tu mensaje..." aria-label="Mensaje" autocomplete="off" maxlength="1000">' +
           '<button class="dgc-send" type="submit" aria-label="Enviar mensaje" disabled>' + ICONOS.send + '</button>' +
         '</form>' +
         '<p class="dgc-note">Asistente de David Gonzalez · responde al instante</p>' +
@@ -303,6 +326,20 @@
   }
 
   // ---------------------------------------------------------------- envio
+  var CONTACTO = 'Mientras tanto puedes escribirle a David directo: davidsgonzalez98@hotmail.com o al WhatsApp +57 305 759 4088.';
+
+  // Un 429 no es lo mismo que el servidor caido: si no se distinguen, nadie se
+  // entera de que la cuota se esta agotando.
+  function mensajeDeError(e) {
+    if (e && e.name === 'AbortError') {
+      return 'La respuesta está tardando más de lo normal. Intenta de nuevo en un momento. ' + CONTACTO;
+    }
+    if (e && e.message && e.message.indexOf('HTTP 429') === 0) {
+      return 'Hay mucha demanda en este momento. Espera un minuto y vuelve a intentar. ' + CONTACTO;
+    }
+    return 'No pude conectarme en este momento. ' + CONTACTO;
+  }
+
   async function enviarMensaje(texto) {
     pintarMensaje(texto, 'user');
     cargando = true;
@@ -311,31 +348,38 @@
     enviar.innerHTML = ICONOS.loader;
     mostrarEscribiendo(true);
 
+    var control = (typeof AbortController === 'function') ? new AbortController() : null;
+    var corte = control ? setTimeout(function () { control.abort(); }, TIMEOUT_MS) : null;
+
     try {
-      var res = await fetch(API_URL, {
+      var opciones = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          message: texto,
+          message: texto.slice(0, LIMITE_MENSAJE),
           conversation_id: conversationId,
           visitor_id: visitorId,
           bot: 'portafolio'
         })
-      });
+      };
+      if (control) opciones.signal = control.signal;
+
+      var res = await fetch(API_URL, opciones);
 
       if (!res.ok) throw new Error('HTTP ' + res.status);
 
       var data = await res.json();
       if (data.conversation_id) conversationId = data.conversation_id;
       mostrarEscribiendo(false);
-      pintarMensaje(data.message || 'No pude procesar tu mensaje. Intenta de nuevo.', 'assistant');
+      var respuesta = (typeof data.message === 'string' && data.message.trim())
+        ? data.message
+        : 'No pude procesar tu mensaje. Intenta de nuevo.';
+      pintarMensaje(respuesta, 'assistant');
     } catch (e) {
       mostrarEscribiendo(false);
-      pintarMensaje(
-        'No pude conectarme en este momento. Puedes escribirle a David directo: davidsgonzalez98@hotmail.com o al WhatsApp +57 305 759 4088.',
-        'assistant'
-      );
+      pintarMensaje(mensajeDeError(e), 'assistant');
     } finally {
+      if (corte) clearTimeout(corte);
       cargando = false;
       enviar.classList.remove('is-loading');
       enviar.innerHTML = ICONOS.send;

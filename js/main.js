@@ -1092,7 +1092,7 @@ const CVGenerator = {
         },
         get perfil() {
             const exp = ExperienceCalculator.getFullText();
-            return `Desarrollador Full Stack con ${exp} de experiencia en desarrollo de software y automatización de procesos para el sector público y empresarial, incluyendo áreas financieras y contables (impuestos, cuentas por pagar y proveedores). Trabajo de extremo a extremo adaptándome al stack de cada proyecto (Laravel, Vue, Next.js), con sólida experiencia en RPA y Power Platform. Enfoque en código limpio, buenas prácticas y entrega de valor.`;
+            return `Desarrollador Full Stack con ${exp} de experiencia en desarrollo de software y automatización de procesos para los sectores salud, público y empresarial, incluyendo áreas financieras y contables (impuestos, cuentas por pagar y proveedores). Trabajo de extremo a extremo adaptándome al stack de cada proyecto (.NET, Angular, Laravel, Vue), desde la base de datos (SQL Server, MySQL, Oracle) hasta el despliegue en servidores, con sólida experiencia en RPA y Power Platform. Enfoque en código limpio, buenas prácticas y entrega de valor.`;
         },
         experiencia: [
             {
@@ -1100,7 +1100,11 @@ const CVGenerator = {
                 empresa: 'Sies Salud',
                 periodo: 'Abr 2026 - Actualidad',
                 ubicacion: '',
-                logros: []
+                logros: [
+                    'Desarrollo de aplicaciones web internas con .NET y Angular, de la base de datos a la interfaz',
+                    'Gestión de bases de datos SQL Server con T-SQL: consultas y procedimientos almacenados',
+                    'Administración de servidores Windows Server y despliegue de las aplicaciones'
+                ]
             },
             {
                 cargo: 'Desarrollador Full Stack',
@@ -1155,10 +1159,12 @@ const CVGenerator = {
         ],
         habilidades: {
             tecnicas: [
+                '.NET / Angular',
                 'PHP / Laravel',
                 'JavaScript / TypeScript',
                 'Vue.js / Next.js / Inertia',
-                'MySQL / ORACLE / SQLite',
+                'SQL Server (T-SQL) / MySQL / ORACLE / SQLite',
+                'Windows Server / Linux / Nginx',
                 'Tailwind CSS / Redis',
                 'Python / Django',
                 'VB.NET / VBA',
@@ -1617,7 +1623,7 @@ const ExperienceCalculator = {
     getFullText() {
         const { years, months } = this.calculate();
         if (months === 0) return `+${years} años`;
-        return `+${years} años y ${months} meses`;
+        return `+${years} años y ${months} ${months === 1 ? 'mes' : 'meses'}`;
     },
 
     // Contador exacto para el sitio: "4 años, 11 meses y 29 días"

@@ -1257,22 +1257,10 @@ const CVGenerator = {
                 descripcion: 'SaaS multi-tenant con control de acceso, facturación, reservas, PQRS, emergencias y apps móviles; 7 roles y 106 permisos'
             },
             {
-                nombre: 'DeepView - Seguridad Comunitaria',
-                tecnologias: 'Laravel 12 + Vue 3 + TypeScript + Ionic + MySQL + Redis',
-                url: 'admin-deepview.deepdev.com.co',
-                descripcion: 'Plataforma multi-tenant de seguridad para barrios y conjuntos: alertas, emergencias y app móvil para vecinos'
-            },
-            {
                 nombre: 'Valera Emocional - Bienestar Laboral',
                 tecnologias: 'Laravel 12 + Vue 3 + TypeScript + MySQL + PWA',
                 url: 'valera.deepdev.com.co',
                 descripcion: 'SaaS multi-tenant de permisos laborales con aprobaciones jerárquicas, motor de reglas y dashboards de analítica'
-            },
-            {
-                nombre: 'PetuniaPlay - E-commerce para Mascotas',
-                tecnologias: 'Laravel 12 + Vue 3 + Tailwind CSS + MySQL',
-                url: 'tienda.deepdev.com.co',
-                descripcion: 'E-commerce completo con catálogo, carrito, cupones, programa de fidelidad y panel de administración'
             },
             {
                 nombre: 'Finanzas Compartidas - Gestión de Gastos',

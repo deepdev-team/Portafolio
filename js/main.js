@@ -1140,16 +1140,26 @@ const CVGenerator = {
             {
                 cargo: 'Arquitecto de Soluciones Digitales',
                 empresa: 'Sies Salud',
-                periodo: 'Abr 2026 - Actualidad',
+                periodo: 'Nov 2026 - Actualidad',
                 ubicacion: '',
                 logros: [
-                    'Defino la arquitectura, los estándares de ingeniería y el modelo de datos común de un portafolio de diez aplicaciones de salud',
+                    'Defino la arquitectura, los estándares de ingeniería y el modelo de datos común de diez aplicaciones de salud',
                     'Diseño y construyo la plataforma común: inicio de sesión único con Microsoft Entra ID, base de datos compartida, servicio central (API) y plantilla base de las aplicaciones',
                     'Diseñé y puse en producción un visor clínico de verificación de identidad del paciente (.NET 10, Angular 22, SQL Server), con más de 1.100 pruebas automatizadas',
                     'Gobierno el código en GitHub: organización, estrategia de ramas, revisión y aprobación de pull requests y GitHub Actions',
-                    'Administro los ambientes de pruebas y producción (Windows Server) y apruebo cada despliegue, con trazabilidad completa de los cambios',
+                    'Administro los ambientes de pruebas y producción (Windows Server) y apruebo y registro cada despliegue',
                     'Respondo por la seguridad del código, las credenciales y la protección de los datos de pacientes',
-                    'Guía técnica del equipo e interlocutor con Infraestructura, TI, DBA, BI, Proyectos y proveedores; reporto el avance a la Gerencia'
+                    'Guía técnica del equipo e interlocutor con Infraestructura, TI, DBA, BI y proveedores; reporto a la Gerencia'
+                ]
+            },
+            {
+                cargo: 'Ingeniero de Desarrollo',
+                empresa: 'Sies Salud',
+                periodo: 'Abr 2026 - Oct 2026',
+                ubicacion: '',
+                logros: [
+                    'Desarrollo de aplicaciones web internas del sector salud con C# / .NET, Angular y SQL Server (T-SQL)',
+                    'Despliegue y soporte de las aplicaciones en servidores Windows Server'
                 ]
             },
             {

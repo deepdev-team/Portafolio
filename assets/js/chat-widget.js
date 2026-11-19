@@ -125,6 +125,13 @@
     '.dgc-time{display:block;font-size:11px;margin-top:4px;opacity:.65}',
     '.dgc-row.bot .dgc-time{color:var(--dgc-muted);opacity:1}',
 
+    // --- preguntas sugeridas (solo antes del primer mensaje)
+    '.dgc-chips{display:flex;flex-wrap:wrap;gap:8px;animation:dgcUp .22s ease-out}',
+    '.dgc-chip{border:1px solid var(--dgc-primary);background:transparent;color:var(--dgc-primary);',
+    'border-radius:999px;padding:7px 13px;font-size:12.5px;font-family:inherit;line-height:1.3;cursor:pointer;',
+    'text-align:left;transition:background .18s ease,color .18s ease}',
+    '.dgc-chip:hover,.dgc-chip:focus-visible{background:var(--dgc-primary);color:#fff;outline:none}',
+
     '.dgc-typing{display:flex;align-items:center;gap:12px;background:var(--dgc-bot);border-radius:16px;',
     'border-bottom-left-radius:6px;padding:14px 20px;box-shadow:0 1px 2px rgba(15,23,42,.08)}',
     '.dgc-bars{display:flex;align-items:flex-end;gap:3px;height:20px}',
@@ -289,6 +296,38 @@
     lista.scrollTop = lista.scrollHeight;
   }
 
+  // Lo que mas pregunta quien evalua un perfil. Le ahorran al visitante pensar
+  // por donde empezar, y desaparecen con el primer mensaje.
+  var SUGERENCIAS = [
+    '¿Qué experiencia tiene?',
+    '¿Con qué tecnologías trabaja hoy?',
+    '¿Qué productos ha construido?',
+    '¿Encaja en un rol de liderazgo técnico?'
+  ];
+
+  function pintarSugerencias() {
+    var caja = document.createElement('div');
+    caja.className = 'dgc-chips';
+    SUGERENCIAS.forEach(function (pregunta) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'dgc-chip';
+      b.textContent = pregunta;
+      b.addEventListener('click', function () {
+        if (!cargando) enviarMensaje(pregunta);
+      });
+      caja.appendChild(b);
+    });
+    lista.appendChild(caja);
+    // Arriba: que la bienvenida se lea completa y las sugerencias queden debajo
+    lista.scrollTop = 0;
+  }
+
+  function quitarSugerencias() {
+    var caja = lista.querySelector('.dgc-chips');
+    if (caja) caja.remove();
+  }
+
   function mostrarEscribiendo(activo) {
     var previo = lista.querySelector('.dgc-row.is-typing');
     if (previo) previo.remove();
@@ -313,7 +352,10 @@
 
     if (abierto) {
       ocultarTeaser();
-      if (!lista.children.length) pintarMensaje(BIENVENIDA, 'assistant');
+      if (!lista.children.length) {
+        pintarMensaje(BIENVENIDA, 'assistant');
+        pintarSugerencias();
+      }
       setTimeout(function () { input.focus(); }, 60);
     }
   }
@@ -341,6 +383,7 @@
   }
 
   async function enviarMensaje(texto) {
+    quitarSugerencias();
     pintarMensaje(texto, 'user');
     cargando = true;
     enviar.disabled = true;

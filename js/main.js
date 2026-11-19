@@ -1083,7 +1083,7 @@ const CVGenerator = {
     data: {
         personal: {
             nombre: 'David Steven Gonzalez Padilla',
-            titulo: 'Desarrollador Full Stack | Web & SaaS',
+            titulo: 'Arquitecto de Soluciones Digitales | Desarrollador Full Stack',
             telefono: '+57 305 759 4088',
             email: 'davidsgonzalez98@hotmail.com',
             ubicacion: 'Bogotá, Colombia',
@@ -1092,18 +1092,23 @@ const CVGenerator = {
         },
         get perfil() {
             const exp = ExperienceCalculator.getFullText();
-            return `Desarrollador Full Stack con ${exp} de experiencia en desarrollo de software y automatización de procesos para los sectores salud, público y empresarial, incluyendo áreas financieras y contables (impuestos, cuentas por pagar y proveedores). Trabajo de extremo a extremo adaptándome al stack de cada proyecto (.NET, Angular, Laravel, Vue), desde la base de datos (SQL Server, MySQL, Oracle) hasta el despliegue en servidores, con sólida experiencia en RPA y Power Platform. Enfoque en código limpio, buenas prácticas y entrega de valor.`;
+            return `Arquitecto de Soluciones Digitales y Desarrollador Full Stack con ${exp} de experiencia en desarrollo de software y automatización de procesos para los sectores salud, público y empresarial. En Sies Salud respondo por la calidad técnica de un portafolio de diez aplicaciones: defino la arquitectura común, los estándares de ingeniería y el modelo de datos compartido, gobierno el código en GitHub, administro los ambientes y apruebo cada despliegue. Sigo construyendo de extremo a extremo (.NET, Angular, Laravel, Vue; SQL Server, MySQL, Oracle), con experiencia previa en RPA y Power Platform y una mentalidad orientada a procesos.`;
         },
         experiencia: [
             {
-                cargo: 'Ingeniero de Desarrollo',
+                cargo: 'Arquitecto de Soluciones Digitales',
                 empresa: 'Sies Salud',
                 periodo: 'Abr 2026 - Actualidad',
                 ubicacion: '',
                 logros: [
-                    'Desarrollo de aplicaciones web internas con .NET y Angular, de la base de datos a la interfaz',
-                    'Gestión de bases de datos SQL Server con T-SQL: consultas y procedimientos almacenados',
-                    'Administración de servidores Windows Server y despliegue de las aplicaciones'
+                    'Arquitecto de Soluciones Digitales desde noviembre de 2026; ingresé en abril de 2026 como Ingeniero de Desarrollo',
+                    'Defino la arquitectura, los estándares de ingeniería y el modelo de datos común de un portafolio de diez aplicaciones de salud',
+                    'Diseño y construyo la plataforma común: inicio de sesión único con Microsoft Entra ID, base de datos compartida, servicio central (API) y plantilla base de las aplicaciones',
+                    'Diseñé y puse en producción un visor clínico de verificación de identidad del paciente (.NET 10, Angular 22, SQL Server), con más de 1.100 pruebas automatizadas',
+                    'Gobierno el código en GitHub: organización, estrategia de ramas, revisión y aprobación de pull requests y GitHub Actions',
+                    'Administro los ambientes de pruebas y producción (Windows Server) y apruebo cada despliegue, con trazabilidad completa de los cambios',
+                    'Respondo por la seguridad del código, las credenciales y la protección de los datos de pacientes',
+                    'Guía técnica del equipo e interlocutor con Infraestructura, TI, DBA, BI, Proyectos y proveedores; reporto el avance a la Gerencia'
                 ]
             },
             {
@@ -1159,14 +1164,14 @@ const CVGenerator = {
         ],
         habilidades: {
             tecnicas: [
-                '.NET / Angular',
-                'PHP / Laravel',
+                'Arquitectura de soluciones / Clean Architecture',
+                'C# / .NET / ASP.NET Core / Angular',
+                'Entra ID / Azure / GitHub Actions',
+                'PHP / Laravel / Python / Django',
                 'JavaScript / TypeScript',
-                'Vue.js / Next.js / Inertia',
-                'SQL Server (T-SQL) / MySQL / ORACLE / SQLite',
-                'Windows Server / Linux / Nginx',
-                'Tailwind CSS / Redis',
-                'Python / Django',
+                'Vue.js / Next.js / Inertia / Tailwind CSS',
+                'SQL Server (T-SQL) / MySQL / ORACLE / Redis',
+                'Windows Server / PowerShell / Linux / Nginx',
                 'VB.NET / VBA',
                 'UiPath / Power Automate',
                 'Power Apps / Power BI / Dataverse',
@@ -1174,11 +1179,11 @@ const CVGenerator = {
                 'Git / GitHub / Postman'
             ],
             blandas: [
+                'Liderazgo técnico',
                 'Resolución de problemas',
                 'Trabajo en equipo',
                 'Comunicación efectiva',
-                'Adaptación al cambio',
-                'Gestión del tiempo'
+                'Adaptación al cambio'
             ]
         },
         idiomas: [
@@ -1656,7 +1661,7 @@ const ExperienceCalculator = {
         const metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc) {
             metaDesc.setAttribute('content',
-                `David Gonzalez - Desarrollador Full Stack. ${this.getShortText()} construyendo apps web y plataformas SaaS; experiencia en Laravel, Vue, Next.js, RPA y Power Platform para sector público y empresarial.`
+                `David Gonzalez - Arquitecto de Soluciones Digitales y Desarrollador Full Stack. ${this.getShortText()} construyendo apps web y plataformas SaaS; .NET, Angular, Laravel y Vue para los sectores salud, público y empresarial.`
             );
         }
     }

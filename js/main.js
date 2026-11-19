@@ -89,19 +89,19 @@ const SkillsDiagram = {
             type: 'category',
             class: 'frontend center-node',
             position: { x: 15, y: 25 },
-            connections: ['javascript', 'typescript', 'html', 'vuejs', 'tailwind']
+            connections: ['javascript', 'typescript', 'html', 'vuejs', 'tailwind', 'angular']
         },
         backend: {
             type: 'category',
             class: 'backend center-node',
             position: { x: 85, y: 25 },
-            connections: ['php', 'laravel', 'python', 'django', 'vbnet']
+            connections: ['php', 'laravel', 'python', 'django', 'vbnet', 'dotnet', 'csharp']
         },
         database: {
             type: 'category',
             class: 'database center-node',
             position: { x: 50, y: 15 },
-            connections: ['mysql', 'oracle', 'sqlite', 'redis', 'dataverse']
+            connections: ['mysql', 'oracle', 'sqlite', 'redis', 'dataverse', 'sqlserver']
         },
         automation: {
             type: 'category',
@@ -113,7 +113,7 @@ const SkillsDiagram = {
             type: 'category',
             class: 'tools center-node',
             position: { x: 80, y: 70 },
-            connections: ['git', 'github', 'postman', 'powerapps', 'powerbi', 'odoo', 'vscode']
+            connections: ['git', 'github', 'postman', 'powerapps', 'powerbi', 'odoo', 'vscode', 'azure', 'entraid']
         },
         methodologies: {
             type: 'category',
@@ -272,6 +272,42 @@ const SkillsDiagram = {
             position: { x: 75, y: 60 },
             connections: ['github', 'git']
         },
+        angular: {
+            type: 'tech',
+            class: 'frontend tech-node',
+            position: { x: 20, y: 40 },
+            connections: ['typescript', 'dotnet', 'entraid']
+        },
+        dotnet: {
+            type: 'tech',
+            class: 'backend tech-node',
+            position: { x: 52, y: 42 },
+            connections: ['csharp', 'angular', 'sqlserver', 'azure', 'entraid']
+        },
+        csharp: {
+            type: 'tech',
+            class: 'backend tech-node',
+            position: { x: 57, y: 30 },
+            connections: ['dotnet']
+        },
+        sqlserver: {
+            type: 'tech',
+            class: 'database tech-node',
+            position: { x: 46, y: 27 },
+            connections: ['dotnet', 'azure']
+        },
+        azure: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 48, y: 55 },
+            connections: ['dotnet', 'sqlserver', 'entraid', 'github']
+        },
+        entraid: {
+            type: 'tech',
+            class: 'tools tech-node',
+            position: { x: 40, y: 63 },
+            connections: ['dotnet', 'azure', 'angular']
+        },
         scrum: {
             type: 'tech',
             class: 'methodologies tech-node',
@@ -313,6 +349,12 @@ const SkillsDiagram = {
             'powerbi': 'Power BI',
             'odoo': 'Odoo',
             'vscode': 'VS Code',
+            'angular': 'Angular',
+            'dotnet': '.NET',
+            'csharp': 'C#',
+            'sqlserver': 'SQL Server',
+            'azure': 'Azure',
+            'entraid': 'Entra ID',
             'scrum': 'Scrum',
             'kanban': 'Kanban',
             'frontend': 'FRONTEND',

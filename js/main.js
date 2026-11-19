@@ -1143,7 +1143,6 @@ const CVGenerator = {
                 periodo: 'Abr 2026 - Actualidad',
                 ubicacion: '',
                 logros: [
-                    'Arquitecto de Soluciones Digitales desde noviembre de 2026; ingresé en abril de 2026 como Ingeniero de Desarrollo',
                     'Defino la arquitectura, los estándares de ingeniería y el modelo de datos común de un portafolio de diez aplicaciones de salud',
                     'Diseño y construyo la plataforma común: inicio de sesión único con Microsoft Entra ID, base de datos compartida, servicio central (API) y plantilla base de las aplicaciones',
                     'Diseñé y puse en producción un visor clínico de verificación de identidad del paciente (.NET 10, Angular 22, SQL Server), con más de 1.100 pruebas automatizadas',
